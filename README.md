@@ -4,9 +4,13 @@ Base oficial de portais, galerias e experiências de entrega da NORTHE.
 
 Domínio canônico: `https://entregas.madebynorthe.com.br`
 
-## Bases aprovadas
+## Produtos de entrega aprovados
 
-Existem duas experiências aprovadas e mantidas:
+A NORTHE mantém três experiências oficiais dentro desta mesma base:
+
+- **Delivery Standard — V7.1** para entrega direta de peças prontas;
+- **Delivery Extended — Principal** para projetos que pedem dashboard e estrutura ampliada;
+- **Entrega de Roteiros** para revisão e aprovação antes da produção.
 
 ### 1. Delivery Standard — V7.1
 
@@ -29,6 +33,16 @@ Rota de referência:
 `https://entregas.madebynorthe.com.br/lavareda/`
 
 Usar quando o projeto justificar uma camada operacional/gerencial maior do que a entrega padrão.
+
+### 3. Entrega de Roteiros
+
+Experiência específica para apresentar roteiros antes da produção.
+
+Primeira implementação oficial:
+
+`https://entregas.madebynorthe.com.br/roteiros/pet-patty/outubro-2026/`
+
+A interface usa abertura inline: ao selecionar um roteiro ele expande no próprio lugar, os demais ficam recolhidos e o cliente aprova ou solicita ajuste dentro da mesma seção. A base é compartilhada entre clientes e ciclos.
 
 ## Regra de produto
 
