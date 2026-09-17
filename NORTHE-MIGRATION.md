@@ -29,6 +29,6 @@ Primeiro tentar resolver com configuração, rota ou módulo dentro desta base. 
 
 ## Marca
 
-Nova direção: NORTHE / MADE FROM THE NORTH.
+Nova direção: NORTHE / MADE IN THE NORTH.
 
 Os nomes técnicos atuais podem ser mantidos temporariamente enquanto a migração não estiver concluída, para evitar quebra de produção.
