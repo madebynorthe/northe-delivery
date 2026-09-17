@@ -1,60 +1,48 @@
-# AUDAZ — Experiência de Entrega
+# NORTHE Delivery
 
-Repositório oficial e único dos portais de clientes da Audaz.
+Base oficial de portais, galerias e experiências de entrega da NORTHE.
 
-## Estrutura
+## Bases aprovadas
 
-```text
-audaz-delivery/
-├── index.html                 # entrada institucional; não é link de cliente
-├── shell.html                 # estrutura compartilhada da interface
-├── app.js                     # navegação, renderização e integrações
-├── style.css                  # design system Audaz / dark + light
-├── clientes/
-│   ├── _template.json         # modelo para novos clientes
-│   ├── lavareda.json          # cliente ativo
-│   ├── pet-patty.json         # reservado
-│   ├── yinyang.json           # reservado
-│   ├── leonardo.json          # reservado
-│   └── bebe-aba.json          # reservado
-├── lavareda/
-│   └── index.html             # rota pública limpa do cliente
-└── assets/
-    ├── audaz/                 # logos e elementos globais da Audaz
-    └── clientes/
-        └── lavareda/          # assets exclusivos do cliente
-```
+Existem duas experiências aprovadas e mantidas:
 
-## Link oficial enviado ao cliente
+### 1. Delivery Standard — V7.1
 
-Nunca enviar link do repositório, URL com `?cliente=` ou endereço de teste.
+Base padrão aprovada para entrega aos clientes.
 
-Lavareda:
+Rota de referência:
+
+`https://produtoraaudaz-a11y.github.io/audaz-delivery/v7-1/lavareda/`
+
+Usar esta experiência como ponto de partida quando a entrega precisar ser direta, refinada e focada no cliente.
+
+A lógica de aprovação poderá evoluir, mas a estrutura visual e de experiência da V7.1 é a base aprovada.
+
+### 2. Delivery Extended — Principal
+
+Experiência maior para projetos que precisam de mais estrutura, dashboard e recursos adicionais.
+
+Rota de referência:
 
 `https://produtoraaudaz-a11y.github.io/audaz-delivery/lavareda/`
 
-## Regra central
+Usar quando o projeto justificar uma camada operacional/gerencial maior do que a entrega padrão.
 
-`app.js`, `style.css` e `shell.html` pertencem à experiência Audaz e são compartilhados por todos os clientes.
+## Regra de produto
 
-Cada cliente altera apenas:
-- configuração em `clientes/<slug>.json`;
-- assets em `assets/clientes/<slug>/`;
-- rota pública mínima em `<slug>/index.html`;
-- backend/projectKey quando o portal estiver ativo.
+Antes de criar uma nova experiência de entrega, escolher uma das duas bases:
 
-Não duplicar o sistema visual ou a lógica por cliente.
+- entrega padrão → V7.1;
+- entrega ampliada/dashboard → Principal.
 
-## Como ativar um novo cliente
+Não criar novas versões numeradas ou novos repositórios apenas para atender um cliente. Evoluções aprovadas devem partir de uma dessas duas bases.
 
-1. Copiar `clientes/_template.json` para `clientes/<slug>.json`.
-2. Preencher nome, textos, recursos, backend e projectKey.
-3. Criar `assets/clientes/<slug>/` e adicionar logo/imagens oficiais.
-4. Criar `<slug>/index.html` alterando somente `data-client` e o título da página.
-5. Testar desktop, mobile, tema automático, claro e escuro.
-6. Testar aprovação, alteração e calendário.
-7. Só então enviar a URL pública ao cliente.
+## Estrutura compartilhada
 
-## Status atual
+A base mantém configuração, assets e rotas de clientes dentro do mesmo repositório. Cada cliente deve receber apenas os dados, identidade e recursos específicos necessários, reaproveitando a estrutura aprovada.
 
-Lavareda é o primeiro cliente ativo. Os demais JSONs estão apenas reservados e não devem receber rota pública até serem configurados.
+## Status
+
+As versões V2, V3, V4, V5, V6 e V7 foram descontinuadas e removidas da árvore ativa. O Match Day do Estrela do Norte também foi removido.
+
+NORTHE — MADE IN THE NORTH.
