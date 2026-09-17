@@ -4,7 +4,7 @@
   if (!data || !nav || !Array.isArray(data.scripts)) return;
 
   let active = null;
-  const storageKey = data.storageKey || \`northe-script-review:\${data.id}\`;
+  const storageKey = data.storageKey || `northe-script-review:${data.id}`;
   const state = JSON.parse(localStorage.getItem(storageKey) || '{}');
 
   const escapeHtml = (value = '') => String(value).replace(/[&<>"']/g, (char) => ({
@@ -32,8 +32,8 @@
 
   function progress() {
     const reviewed = data.scripts.filter((script) => getState(script.id).status).length;
-    document.querySelector('#pl').textContent = \`\${reviewed}/\${data.scripts.length}\`;
-    document.querySelector('#pf').style.width = \`\${(reviewed / data.scripts.length) * 100}%\`;
+    document.querySelector('#pl').textContent = `${reviewed}/${data.scripts.length}`;
+    document.querySelector('#pf').style.width = `${(reviewed / data.scripts.length) * 100}%`;
   }
 
   function panelMarkup(script) {
@@ -41,60 +41,60 @@
     const index = data.scripts.findIndex((item) => item.id === script.id);
     const next = data.scripts[index + 1];
 
-    return \`
-      <section class="panel" id="panel" data-panel-for="\${script.id}">
+    return `
+      <section class="panel" id="panel" data-panel-for="${script.id}">
         <div class="toprow">
           <div>
             <div class="badges">
-              <span class="badge">Reel \${script.id}</span>
-              <span class="badge">\${escapeHtml(script.date)}</span>
-              <span class="badge">\${escapeHtml(script.role)}</span>
+              <span class="badge">Reel ${script.id}</span>
+              <span class="badge">${escapeHtml(script.date)}</span>
+              <span class="badge">${escapeHtml(script.role)}</span>
             </div>
-            <h2>\${escapeHtml(script.title)}</h2>
+            <h2>${escapeHtml(script.title)}</h2>
           </div>
-          <b style="font-size:12px;color:\${statusColor(st.status)}">\${statusText(st.status)}</b>
+          <b style="font-size:12px;color:${statusColor(st.status)}">${statusText(st.status)}</b>
         </div>
 
         <div class="meta">
-          <div><small>Ideia central</small>\${escapeHtml(script.idea)}</div>
-          <div><small>Formato</small>\${escapeHtml(script.format)}</div>
+          <div><small>Ideia central</small>${escapeHtml(script.idea)}</div>
+          <div><small>Formato</small>${escapeHtml(script.format)}</div>
           <div><small>Revisão</small>Roteiro + 3 hooks</div>
         </div>
 
         <div style="margin-top:24px">
           <div class="ey" style="color:#77756f">ROTEIRO PRINCIPAL</div>
-          <div class="script" style="margin-top:10px">\${escapeHtml(script.text)}</div>
+          <div class="script" style="margin-top:10px">${escapeHtml(script.text)}</div>
         </div>
 
         <div style="margin-top:24px">
           <div class="ey" style="color:#77756f">3 HOOKS ALTERNATIVOS</div>
           <div class="hooks" style="margin-top:10px">
-            \${script.hooks.map((hook, i) => \`<div class="hook"><b>\${i + 1}.</b> \${escapeHtml(hook)}</div>\`).join('')}
+            ${script.hooks.map((hook, i) => `<div class="hook"><b>${i + 1}.</b> ${escapeHtml(hook)}</div>`).join('')}
           </div>
         </div>
 
         <div style="border-top:1px solid #dedad1;margin-top:24px;padding-top:20px">
           <div class="ey" style="color:#77756f">SUA DECISÃO</div>
           <div class="decision" style="margin-top:10px">
-            <button class="ok \${st.status === 'ok' ? 'sel' : ''}" data-a="ok">✓ Aprovar roteiro</button>
-            <button class="chg \${st.status === 'chg' ? 'sel' : ''}" data-a="chg">✎ Pedir ajuste</button>
+            <button class="ok ${st.status === 'ok' ? 'sel' : ''}" data-a="ok">✓ Aprovar roteiro</button>
+            <button class="chg ${st.status === 'chg' ? 'sel' : ''}" data-a="chg">✎ Pedir ajuste</button>
           </div>
-          <textarea placeholder="Ex.: ajustar uma frase, simplificar um termo, trocar um hook…">\${escapeHtml(st.note || '')}</textarea>
+          <textarea placeholder="Ex.: ajustar uma frase, simplificar um termo, trocar um hook…">${escapeHtml(st.note || '')}</textarea>
         </div>
 
-        \${next ? \`<div class="nextbar"><button type="button" data-next="\${next.id}">Próximo roteiro →</button></div>\` : ''}
+        ${next ? `<div class="nextbar"><button type="button" data-next="${next.id}">Próximo roteiro →</button></div>` : ''}
       </section>
-    \`;
+    `;
   }
 
   function renderButtons() {
-    nav.innerHTML = data.scripts.map((script) => \`
-      <button type="button" class="\${active === script.id ? 'active' : ''}" data-id="\${script.id}">
-        <div class="n">\${script.id}</div>
-        <div class="t">\${escapeHtml(script.title)}</div>
-        <div class="d">\${escapeHtml(script.date)}</div>
+    nav.innerHTML = data.scripts.map((script) => `
+      <button type="button" class="${active === script.id ? 'active' : ''}" data-id="${script.id}">
+        <div class="n">${script.id}</div>
+        <div class="t">${escapeHtml(script.title)}</div>
+        <div class="d">${escapeHtml(script.date)}</div>
       </button>
-    \`).join('');
+    `).join('');
 
     nav.querySelectorAll('button[data-id]').forEach((button) => {
       button.onclick = () => openScript(button.dataset.id);
