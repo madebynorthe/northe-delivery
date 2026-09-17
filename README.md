@@ -45,9 +45,11 @@ A base mantém configuração, assets e rotas de clientes dentro do mesmo reposi
 
 ## Publicação
 
-O GitHub Pages continua sendo o host técnico. O cliente deve receber apenas endereços em `entregas.madebynorthe.com.br`.
+A Vercel é o host técnico de produção.
 
-O arquivo `CNAME` fixa `entregas.madebynorthe.com.br` como domínio canônico da publicação.
+O cliente deve receber apenas endereços em `entregas.madebynorthe.com.br`.
+
+O GitHub continua sendo a origem do código e poderá ser tornado privado depois que o domínio customizado estiver validado na Vercel.
 
 ## Status
 
