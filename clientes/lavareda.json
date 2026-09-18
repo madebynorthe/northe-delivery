@@ -3,7 +3,7 @@
   "name": "Lavareda",
   "descriptor": "Advogados",
   "logoMode": "wordmark",
-  "accent": "#ff1900",
+  "accent": "#727579",
   "headline": "Conteúdo jurídico com intenção, clareza e presença.",
   "manifesto": "ESTRATÉGIA. DIREITO. RESULTADOS.",
   "welcome": "Acompanhe conteúdos, aprovações e planejamento de publicações em um só lugar.",
@@ -13,6 +13,6 @@
   "files": [
     {"title": "Materiais do projeto", "description": "Documentos e materiais de apoio do ciclo atual.", "type": "folder", "url": "#"},
     {"title": "Pasta de entregas", "description": "Acesso aos arquivos finais quando necessário.", "type": "video", "url": "#"},
-    {"title": "Suporte Audaz", "description": "Canal para dúvidas sobre entregas e planejamento.", "type": "support", "url": "#"}
+    {"title": "Suporte NORTHE", "description": "Canal para dúvidas sobre entregas e planejamento.", "type": "support", "url": "#"}
   ]
 }
