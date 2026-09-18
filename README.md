@@ -1,6 +1,6 @@
-# AUDAZ — Experiência de Entrega
+# NORTHE — Experiência de Entrega
 
-Repositório oficial e único dos portais de clientes da Audaz.
+Repositório oficial e único dos portais de clientes da NORTHE.
 
 ## Estrutura
 
@@ -9,7 +9,7 @@ audaz-delivery/
 ├── index.html                 # entrada institucional; não é link de cliente
 ├── shell.html                 # estrutura compartilhada da interface
 ├── app.js                     # navegação, renderização e integrações
-├── style.css                  # design system Audaz / dark + light
+├── style.css                  # design system NORTHE / dark + light
 ├── clientes/
 │   ├── _template.json         # modelo para novos clientes
 │   ├── lavareda.json          # cliente ativo
@@ -20,7 +20,7 @@ audaz-delivery/
 ├── lavareda/
 │   └── index.html             # rota pública limpa do cliente
 └── assets/
-    ├── audaz/                 # logos e elementos globais da Audaz
+    ├── audaz/                 # logos e elementos globais da NORTHE
     └── clientes/
         └── lavareda/          # assets exclusivos do cliente
 ```
@@ -35,7 +35,7 @@ Lavareda:
 
 ## Regra central
 
-`app.js`, `style.css` e `shell.html` pertencem à experiência Audaz e são compartilhados por todos os clientes.
+`app.js`, `style.css` e `shell.html` pertencem à experiência NORTHE e são compartilhados por todos os clientes.
 
 Cada cliente altera apenas:
 - configuração em `clientes/<slug>.json`;
