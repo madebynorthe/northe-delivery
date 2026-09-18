@@ -40,6 +40,8 @@
     const st = getState(script.id);
     const index = data.scripts.findIndex((item) => item.id === script.id);
     const next = data.scripts[index + 1];
+    const hooks = Array.isArray(script.hooks) ? script.hooks : [];
+    const reviewLabel = data.reviewLabel || (hooks.length ? 'Roteiro + 3 hooks' : 'Roteiro final');
 
     return `
       <section class="panel" id="panel" data-panel-for="${script.id}">
@@ -58,7 +60,7 @@
         <div class="meta">
           <div><small>Ideia central</small>${escapeHtml(script.idea)}</div>
           <div><small>Formato</small>${escapeHtml(script.format)}</div>
-          <div><small>Revisão</small>Roteiro + 3 hooks</div>
+          <div><small>Revisão</small>${escapeHtml(reviewLabel)}</div>
         </div>
 
         <div style="margin-top:24px">
@@ -66,12 +68,13 @@
           <div class="script" style="margin-top:10px">${escapeHtml(script.text)}</div>
         </div>
 
+        ${hooks.length ? `
         <div style="margin-top:24px">
-          <div class="ey" style="color:#77756f">3 HOOKS ALTERNATIVOS</div>
+          <div class="ey" style="color:#77756f">${hooks.length} HOOK${hooks.length === 1 ? '' : 'S'} ALTERNATIVO${hooks.length === 1 ? '' : 'S'}</div>
           <div class="hooks" style="margin-top:10px">
-            ${script.hooks.map((hook, i) => `<div class="hook"><b>${i + 1}.</b> ${escapeHtml(hook)}</div>`).join('')}
+            ${hooks.map((hook, i) => `<div class="hook"><b>${i + 1}.</b> ${escapeHtml(hook)}</div>`).join('')}
           </div>
-        </div>
+        </div>` : ''}
 
         <div style="border-top:1px solid #dedad1;margin-top:24px;padding-top:20px">
           <div class="ey" style="color:#77756f">SUA DECISÃO</div>
