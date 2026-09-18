@@ -12,6 +12,7 @@
 (async()=>{
   try{
     let html=await fetch('../../v7/lavareda/index.html',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('V7 indisponível');return r.text()});
+    html=html.replaceAll('AUDAZ','NORTHE').replaceAll('Audaz','NORTHE').replaceAll('Poppins','Inter');
     html=html.replace('<title>Lavareda — Entrega NORTHE V7</title>','<title>Lavareda — Entrega NORTHE V7.1</title>');
     html=html.replace('</head>','<link rel="stylesheet" href="../refine.css"></head>');
     html=html.replace(/init\(\);\s*<\/script>/,'window.__audazV7Init=init;<\/script>');
