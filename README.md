@@ -8,21 +8,21 @@ Domínio canônico: `https://entregas.madebynorthe.com.br`
 
 A NORTHE mantém três experiências oficiais dentro desta mesma base:
 
-- **Delivery Standard — V7.1** para entrega direta de peças prontas;
+- **Delivery Standard** para entrega direta de peças prontas;
 - **Delivery Extended — Principal** para projetos que pedem dashboard e estrutura ampliada;
 - **Entrega de Roteiros** para revisão e aprovação antes da produção.
 
-### 1. Delivery Standard — V7.1
+### 1. Delivery Standard
 
 Base padrão aprovada para entrega aos clientes.
 
 Rota de referência:
 
-`https://entregas.madebynorthe.com.br/v7-1/lavareda/`
+`https://entregas.madebynorthe.com.br/standard/lavareda/`
 
 Usar esta experiência como ponto de partida quando a entrega precisar ser direta, refinada e focada no cliente.
 
-A lógica de aprovação poderá evoluir, mas a estrutura visual e de experiência da V7.1 é a base aprovada.
+A lógica de aprovação poderá evoluir, mas a estrutura visual e de experiência em `standard/` é a base aprovada.
 
 ### 2. Delivery Extended — Principal
 
@@ -48,7 +48,7 @@ A interface usa abertura inline: ao selecionar um roteiro ele expande no própri
 
 Antes de criar uma nova experiência de entrega, escolher uma das duas bases:
 
-- entrega padrão → V7.1;
+- entrega padrão → `standard/`;
 - entrega ampliada/dashboard → Principal.
 
 Não criar novas versões numeradas ou novos repositórios apenas para atender um cliente. Evoluções aprovadas devem partir de uma dessas duas bases.
@@ -67,6 +67,6 @@ O GitHub continua sendo a origem do código e poderá ser tornado privado depois
 
 ## Status
 
-As versões V2, V3, V4, V5, V6 e V7 foram descontinuadas e removidas da árvore ativa. O Match Day do Estrela do Norte também foi removido.
+As versões numeradas deixaram de ser bases de produto. A entrega padrão aprovada vive em `standard/`; a antiga rota V7.1 existe apenas como redirecionamento de compatibilidade. O Match Day do Estrela do Norte também foi removido.
 
 NORTHE — MADE IN THE NORTH.
