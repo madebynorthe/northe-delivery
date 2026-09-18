@@ -1,12 +1,14 @@
 /* V7.1 — passe final de direção, UX, motion e responsividade */
 :root{
+  --red:#727579;--signal:#C44C4C;--editorial:#C99A4B;--ink:#090909;--paper:#F0EEE8;--bg:#090909;--text:#F0EEE8;--surface:rgba(240,238,232,.035);--surface2:rgba(240,238,232,.060);--line:rgba(240,238,232,.14);--line2:rgba(240,238,232,.26);--success:#727579;--warning:#C99A4B;
+
   --gutter:clamp(22px,5vw,80px);
   --sp-xs:6px;--sp-s:12px;--sp-m:20px;--sp-l:32px;--sp-xl:52px;--sp-2xl:88px;--sp-3xl:132px;
   --motion-fast:150ms;--motion-normal:280ms;--motion-slow:520ms;
   --ease-standard:cubic-bezier(.2,.7,.2,1);--ease-emphasized:cubic-bezier(.16,1,.3,1);
-  --muted:#b1ada3;
+  --muted:#727579;
 }
-html[data-theme="light"]{--muted:#625f58}
+html[data-theme="light"]{--bg:#F0EEE8;--text:#090909;--surface:rgba(9,9,9,.025);--surface2:rgba(9,9,9,.045);--line:rgba(9,9,9,.13);--line2:rgba(9,9,9,.25);--muted:#727579}
 .wrap{width:min(var(--max),calc(100% - (var(--gutter) * 2)))}
 .site-header{padding-inline:max(var(--gutter),calc((100vw - var(--max))/2));gap:var(--sp-l)}
 .nav a,.brand{font-size:10px}.nav a{letter-spacing:.1em}
@@ -83,3 +85,6 @@ html[data-theme="light"]{--muted:#625f58}
   .copy-title{gap:var(--sp-s);margin-bottom:var(--sp-m)}.caption-text{font-size:14px;line-height:1.78}.decision p{font-size:12px}.decision-actions{gap:var(--sp-m)}
   .completion{padding:var(--sp-2xl) 0}.completion h2{font-size:clamp(48px,14vw,74px)}.completion-stats span{font-size:10px}
 }
+
+/* NORTHE Brand System 1.0 */
+body{font-family:Inter,Arial,sans-serif}.brand .dot{display:none}.brand b{font-style:normal}.hero h1,.chapter-number,.chapter-title,.completion h2,.secondary-head h2,.copy-title h3,.decision h3{font-style:normal}.chapter[data-state="alteracao"] .chapter-signature:before,.state-note.alteracao{color:var(--signal)}.state-note.alteracao:before{background:var(--signal)}
