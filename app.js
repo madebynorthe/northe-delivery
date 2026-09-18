@@ -27,7 +27,7 @@ function applyTheme(){
   if(pref==='system')resolved=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';
   document.documentElement.dataset.theme=resolved;
   $$('[data-theme-mode]').forEach(b=>b.classList.toggle('active',b.dataset.themeMode===pref));
-  document.querySelector('meta[name=theme-color]')?.setAttribute('content',resolved==='dark'?'#151514':'#e8e4d6');
+  document.querySelector('meta[name=theme-color]')?.setAttribute('content',resolved==='dark'?'#090909':'#F0EEE8');
 }
 matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change',()=>{if((localStorage.getItem('audaz-theme')||'system')==='system')applyTheme()});
 function setupTheme(){
@@ -186,7 +186,7 @@ function renderDashboard(){
     </div>
 
     <article class="partnership-banner">
-      <span class="partnership-kicker">AUDAZ × ${state.config.name.toUpperCase()}</span>
+      <span class="partnership-kicker">NORTHE × ${state.config.name.toUpperCase()}</span>
       <div class="partnership-copy">
         <h2>${state.config.manifesto}</h2>
         <p>${state.config.headline}</p>
@@ -394,7 +394,7 @@ async function init(){
     return;
   }
 
-  document.documentElement.style.setProperty('--client-accent',state.config.accent||'#ff1900');
+  document.documentElement.style.setProperty('--client-accent',state.config.accent||'#727579');
   $('#clientLogo').innerHTML=state.config.logo
     ?`<img class="client-logo-img" src="${BASE}${state.config.logo}" alt="${state.config.name}">`
     :`<div class="client-word">${state.config.name.toUpperCase()}</div><small>${(state.config.descriptor||'').toUpperCase()}</small>`;
