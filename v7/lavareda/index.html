@@ -3,26 +3,26 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#151514">
-  <title>Lavareda — Entrega Audaz V7</title>
+  <meta name="theme-color" content="#090909">
+  <title>Lavareda — Entrega NORTHE V7</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,800;1,900&display=swap" rel="stylesheet">
   <style>
     :root{
-      --red:#ff1900;--ink:#2b2b29;--paper:#e8e4d6;--bg:#151514;--text:#e8e4d6;
+      --red:#727579;--ink:#090909;--paper:#F0EEE8;--bg:#090909;--text:#F0EEE8;
       --muted:#9d9a91;--surface:#1c1c1a;--surface2:#242422;--line:rgba(232,228,214,.14);
       --line2:rgba(232,228,214,.26);--success:#7ac185;--warning:#e3a34f;--max:1320px;
       --header:70px;color-scheme:dark
     }
     html[data-theme="light"]{
-      --bg:#e8e4d6;--text:#2b2b29;--muted:#706e67;--surface:#ded9cb;--surface2:#f5f0e5;
+      --bg:#F0EEE8;--text:#090909;--muted:#706e67;--surface:#ded9cb;--surface2:#f5f0e5;
       --line:rgba(43,43,41,.13);--line2:rgba(43,43,41,.25);--success:#3f9251;--warning:#a86f21;
       color-scheme:light
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
-    body{margin:0;background:var(--bg);color:var(--text);font-family:Poppins,Arial,sans-serif;overflow-x:hidden}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,Arial,sans-serif;overflow-x:hidden}
     button,a,textarea{font:inherit}button,a{color:inherit}button{cursor:pointer}a{text-decoration:none}
     img{max-width:100%;display:block}:focus-visible{outline:2px solid var(--red);outline-offset:4px}
     ::selection{background:var(--red);color:#fff}
@@ -43,7 +43,7 @@
 
     .wrap{width:min(var(--max),calc(100% - 44px));margin:0 auto}
     .hero{min-height:68vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:clamp(54px,7vw,92px) 0 clamp(54px,7vw,88px)}
-    .hero:before{content:"AUDAZ";position:absolute;right:-.04em;bottom:-.23em;font-size:clamp(150px,27vw,420px);font-style:italic;font-weight:900;
+    .hero:before{content:"NORTHE";position:absolute;right:-.04em;bottom:-.23em;font-size:clamp(150px,27vw,420px);font-style:italic;font-weight:900;
       letter-spacing:-.1em;line-height:.8;color:transparent;-webkit-text-stroke:1px color-mix(in srgb,var(--text) 8%,transparent);pointer-events:none}
     .hero-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:clamp(38px,7vw,100px);align-items:end;position:relative;z-index:1;width:100%}
     .collab{display:flex;gap:10px;align-items:center;color:var(--muted);font-size:10px;letter-spacing:.13em;text-transform:uppercase;margin-bottom:24px}
@@ -181,7 +181,7 @@
 </head>
 <body data-client="lavareda" data-root="../../">
 <header class="site-header">
-  <a class="brand" href="#top" aria-label="Voltar ao início"><span class="dot"></span><b>AUDAZ</b><i>×</i><strong id="clientName">LAVAREDA</strong></a>
+  <a class="brand" href="#top" aria-label="Voltar ao início"><span class="dot"></span><b>NORTHE</b><i>×</i><strong id="clientName">LAVAREDA</strong></a>
   <nav class="nav"><a href="#entregas">Entregas</a><a href="#calendario">Calendário</a><a href="#arquivos">Arquivos</a></nav>
   <button id="themeBtn" class="theme-btn" aria-label="Alternar tema">◐</button><button id="menuBtn" class="menu-btn" aria-label="Abrir menu" aria-expanded="false">☰</button>
   <div class="progress-line"><i id="globalProgress"></i></div>
@@ -192,7 +192,7 @@
   <section class="hero">
     <div class="wrap hero-grid">
       <div>
-        <div class="collab reveal"><b>AUDAZ</b><i>×</i><span id="heroClient">LAVAREDA</span></div>
+        <div class="collab reveal"><b>NORTHE</b><i>×</i><span id="heroClient">LAVAREDA</span></div>
         <span class="eyebrow reveal reveal-delay-1">ENTREGA DA SEMANA</span>
         <h1 class="reveal reveal-delay-2" id="heroTitle">SUA SEMANA <em>ESTÁ PRONTA.</em></h1>
         <div class="period reveal reveal-delay-2">01 — 05 SETEMBRO</div>
@@ -213,10 +213,10 @@
       <div>
         <div class="completion-mark">✓</div><span class="eyebrow">ENTREGA REVISADA</span>
         <h2>TUDO CERTO <em>POR AQUI.</em></h2>
-        <p>Sua entrega desta semana foi revisada. O trabalho aprovado segue para publicação e os ajustes retornam para a Audaz.</p>
+        <p>Sua entrega desta semana foi revisada. O trabalho aprovado segue para publicação e os ajustes retornam para a NORTHE.</p>
         <div class="completion-stats"><span><b id="doneApproved">0</b>aprovados</span><span><b id="doneChanges">0</b>ajuste solicitado</span><span><b>4/4</b>revisados</span></div>
       </div>
-      <aside class="what-next"><h3>O QUE ACONTECE AGORA</h3><p>✓ Conteúdos aprovados seguem para publicação.</p><p>↻ O conteúdo com ajuste volta para a Audaz.</p><p>✓ Quando a nova versão estiver pronta, ela aparecerá aqui.</p><div class="media-tools"><a class="utility-btn" href="#top">VOLTAR AO TOPO ↑</a><a class="utility-btn" href="#calendario">VER CALENDÁRIO →</a></div></aside>
+      <aside class="what-next"><h3>O QUE ACONTECE AGORA</h3><p>✓ Conteúdos aprovados seguem para publicação.</p><p>↻ O conteúdo com ajuste volta para a NORTHE.</p><p>✓ Quando a nova versão estiver pronta, ela aparecerá aqui.</p><div class="media-tools"><a class="utility-btn" href="#top">VOLTAR AO TOPO ↑</a><a class="utility-btn" href="#calendario">VER CALENDÁRIO →</a></div></aside>
     </div>
   </section>
 
@@ -263,7 +263,7 @@ function downloadBtn(label,id){return id?`<a class="download-link" data-download
 function decisionBlock(c){
   const s=statusFor(c),open=state.feedbackOpen.has(c.id);
   if(s==='aprovado')return`<div class="decision"><h3>Resolvido.</h3><p>Esta peça está aprovada para seguir para publicação.</p><button class="action success" disabled>✓ APROVADO</button></div>`;
-  if(s==='alteracao')return`<div class="decision"><h3>Ajuste registrado.</h3><p>A Audaz recebeu sua solicitação. Você pode continuar rolando normalmente.</p><button class="action success" disabled>✓ AJUSTE SOLICITADO</button></div>`;
+  if(s==='alteracao')return`<div class="decision"><h3>Ajuste registrado.</h3><p>A NORTHE recebeu sua solicitação. Você pode continuar rolando normalmente.</p><button class="action success" disabled>✓ AJUSTE SOLICITADO</button></div>`;
   return`<div class="decision"><h3>Está tudo certo com essa peça?</h3><p>Se estiver pronta, aprove. Se algo precisar mudar, registre só o necessário.</p><div class="decision-actions"><button class="action" data-open-feedback="${c.id}">PEDIR AJUSTE</button><button class="action primary" data-approve="${c.id}">✓ APROVAR</button></div><div class="feedback-box ${open?'open':''}" id="feedback-${c.id}"><div class="feedback-inner"><label>O QUE PRECISA MUDAR?</label><textarea id="textarea-${c.id}" placeholder="Aos 00:18, trocar a frase de abertura."></textarea><div class="feedback-actions"><button class="action" data-cancel-feedback="${c.id}">CANCELAR</button><button class="action primary" data-send-feedback="${c.id}">ENVIAR AJUSTE</button></div><div class="feedback-status" id="feedback-status-${c.id}"></div></div></div></div>`;
 }
 function editorialCopy(c){return`<div class="editorial-copy reveal reveal-delay-1"><div class="copy-title"><div><span>A MENSAGEM QUE ACOMPANHA</span><h3>Legenda</h3></div><button class="utility-btn" data-copy="${c.id}">COPIAR LEGENDA</button></div><div class="caption-text ${c.caption?'':'caption-empty'}">${esc(c.caption||'Legenda ainda não adicionada.')}</div></div>`}
