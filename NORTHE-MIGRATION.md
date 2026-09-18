@@ -1,34 +1,55 @@
-# NORTHE Delivery — Migração
+# NORTHE Delivery — arquitetura atual
 
-Este repositório é a base principal para consolidar os portais e experiências de entrega da operação.
+A família Delivery é formada por produtos irmãos, cada um com uma função clara.
 
-## Direção
+## NORTHE Delivery
 
-A migração de AUDAZ para NORTHE será gradual. O objetivo é preservar o que já funciona e evitar recriar soluções por cliente.
+Repositório: `madebynorthe/northe-delivery`
 
-### Deve ficar aqui
+Responsável por:
 
-- shell/interface compartilhada de entrega;
-- configuração por cliente/projeto;
-- assets específicos;
-- integrações comuns;
-- módulos de aprovação, calendário, galeria e download;
-- experiências reutilizáveis de fotografia, vídeo e artes.
+- Delivery Standard;
+- Delivery Extended;
+- aprovação de conteúdo;
+- entrega de roteiros;
+- portais gerais de cliente.
 
-### Deve deixar de existir como sistema paralelo, depois de migrado
+A base padrão aprovada vive em:
 
-- `portal-lavareda-teste`;
-- implementações isoladas do `Site-de-entregas` que forem absorvidas aqui;
-- implementações isoladas do `Galeria-de-fotos` que forem absorvidas aqui.
+`standard/`
+
+A antiga rota `v7-1/` permanece apenas como redirecionamento de compatibilidade.
+
+## NORTHE Delivery / Photo
+
+Repositório: `madebynorthe/northe-delivery-photo`
+
+Responsável por:
+
+- galerias fotográficas;
+- seleção;
+- lightbox;
+- downloads de fotos.
+
+## NORTHE Delivery / Sport
+
+Repositório: `madebynorthe/northe-delivery-sport`
+
+Responsável por:
+
+- atletas;
+- equipes;
+- coleções esportivas;
+- galerias por atleta/time;
+- artes extras;
+- catálogo e backend esportivo.
+
+O Estrela do Norte pertence a esta base. Cópias antigas que existiam no Delivery geral foram removidas.
 
 ## Regra
 
 Novo cliente não significa novo repositório.
 
-Primeiro tentar resolver com configuração, rota ou módulo dentro desta base. Um repositório separado só deve existir quando o produto tiver arquitetura e ciclo de vida realmente independentes.
+Escolha primeiro o produto adequado da família Delivery e derive a experiência a partir dele.
 
-## Marca
-
-Nova direção: NORTHE / MADE IN THE NORTH.
-
-Os nomes técnicos atuais podem ser mantidos temporariamente enquanto a migração não estiver concluída, para evitar quebra de produção.
+NORTHE — MADE IN THE NORTH.
