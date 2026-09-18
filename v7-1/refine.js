@@ -1,4 +1,4 @@
-// AUDAZ Delivery V7.1 — camada de refinamento sobre a V7
+// NORTHE Delivery V7.1 — camada de refinamento sobre a V7
 (() => {
   const hero=document.querySelector('.hero');
   if(hero){
@@ -27,7 +27,7 @@ function updateProgress(){
     const next=s.items.findIndex(c=>statusFor(c)==='aguardando');cta.href=`#conteudo-${Math.max(0,next)+1}`;ctaText.textContent='CONTINUAR';
   }else{
     hero.dataset.state='done';title.innerHTML='TUDO CERTO <em>POR AQUI.</em>';period.textContent='SUA SEMANA FOI REVISADA.';
-    lead.innerHTML='<strong>A entrega foi revisada por completo.</strong><br>Os aprovados seguem para publicação e os ajustes retornam para a Audaz.';
+    lead.innerHTML='<strong>A entrega foi revisada por completo.</strong><br>Os aprovados seguem para publicação e os ajustes retornam para a NORTHE.';
     primary.textContent=String(s.approved.length).padStart(2,'0');primaryLabel.textContent='aprovados';secondary.textContent=String(s.changes.length).padStart(2,'0');secondaryLabel.textContent=s.changes.length===1?'ajuste':'ajustes';
     cta.href='#conteudo-1';ctaText.textContent='VER ENTREGA';
   }
