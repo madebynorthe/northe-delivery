@@ -1,7 +1,7 @@
 window.NORTHE_SCRIPT_DATA = {
   "id": "gabriel-ciclo-02-2026-09",
   "storageKey": "gabriel-review-ciclo-02-2026-09-v1",
-  "reviewLabel": "Teleprompter + StoryBoard Lite",
+  "reviewLabel": "Roteiro final",
   "client": {
     "name": "Gabriel Colares"
   },
