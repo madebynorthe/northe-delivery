@@ -13,6 +13,7 @@
 
   const save = () => localStorage.setItem(storageKey, JSON.stringify(state));
   const scriptById = (id) => data.scripts.find((script) => script.id === id);
+  const displayId = (script) => script.displayId || script.id;
 
   function getState(id) {
     return state[id] || state[Number(id)] || {};
@@ -41,14 +42,14 @@
     const index = data.scripts.findIndex((item) => item.id === script.id);
     const next = data.scripts[index + 1];
     const hooks = Array.isArray(script.hooks) ? script.hooks : [];
-    const reviewLabel = data.reviewLabel || (hooks.length ? 'Roteiro + 3 hooks' : 'Roteiro final');
+    const reviewLabel = script.reviewLabel || data.reviewLabel || (hooks.length ? 'Roteiro + 3 hooks' : 'Roteiro final');
 
     return `
       <section class="panel" id="panel" data-panel-for="${script.id}">
         <div class="toprow">
           <div>
             <div class="badges">
-              <span class="badge">Reel ${script.id}</span>
+              <span class="badge">${escapeHtml(script.kind || 'Reel')} ${escapeHtml(displayId(script))}</span>
               <span class="badge">${escapeHtml(script.date)}</span>
               <span class="badge">${escapeHtml(script.role)}</span>
             </div>
@@ -64,7 +65,7 @@
         </div>
 
         <div style="margin-top:24px">
-          <div class="ey" style="color:#77756f">ROTEIRO PRINCIPAL</div>
+          <div class="ey" style="color:#77756f">${escapeHtml(script.bodyLabel || 'ROTEIRO PRINCIPAL')}</div>
           <div class="script" style="margin-top:10px">${escapeHtml(script.text)}</div>
         </div>
 
@@ -82,22 +83,30 @@
             <button class="ok ${st.status === 'ok' ? 'sel' : ''}" data-a="ok">✓ Aprovar roteiro</button>
             <button class="chg ${st.status === 'chg' ? 'sel' : ''}" data-a="chg">✎ Pedir ajuste</button>
           </div>
-          <textarea placeholder="Ex.: ajustar uma frase, simplificar um termo, trocar um hook…">${escapeHtml(st.note || '')}</textarea>
+          <textarea placeholder="Ex.: ajustar uma frase, simplificar um termo, trocar a abordagem…">${escapeHtml(st.note || '')}</textarea>
         </div>
 
-        ${next ? `<div class="nextbar"><button type="button" data-next="${next.id}">Próximo roteiro →</button></div>` : ''}
+        ${next ? `<div class="nextbar"><button type="button" data-next="${next.id}">Próximo conteúdo →</button></div>` : ''}
       </section>
     `;
   }
 
   function renderButtons() {
-    nav.innerHTML = data.scripts.map((script) => `
-      <button type="button" class="${active === script.id ? 'active' : ''}" data-id="${script.id}">
-        <div class="n">${script.id}</div>
-        <div class="t">${escapeHtml(script.title)}</div>
-        <div class="d">${escapeHtml(script.date)}</div>
-      </button>
-    `).join('');
+    let currentSection = null;
+    nav.innerHTML = data.scripts.map((script) => {
+      const section = script.section || null;
+      const sectionMarkup = section && section !== currentSection
+        ? `<div class="sectionhead"><span>${escapeHtml(section)}</span><small>${escapeHtml(script.sectionDescription || '')}</small></div>`
+        : '';
+      if (section) currentSection = section;
+      return `${sectionMarkup}
+        <button type="button" class="${active === script.id ? 'active' : ''}" data-id="${script.id}">
+          <div class="n">${escapeHtml(displayId(script))}</div>
+          <div class="t">${escapeHtml(script.title)}</div>
+          <div class="d">${escapeHtml(script.date)}</div>
+        </button>
+      `;
+    }).join('');
 
     nav.querySelectorAll('button[data-id]').forEach((button) => {
       button.onclick = () => openScript(button.dataset.id);
@@ -112,8 +121,14 @@
     if (window.matchMedia('(max-width:760px)').matches) return current;
 
     const index = buttons.indexOf(current);
-    const endOfRowIndex = Math.min(buttons.length - 1, Math.floor(index / 3) * 3 + 2);
-    return buttons[endOfRowIndex];
+    const currentSection = scriptById(id)?.section;
+    let point = current;
+    for (let i = index + 1; i < buttons.length && i <= index + 2; i += 1) {
+      const nextScript = scriptById(buttons[i].dataset.id);
+      if (nextScript?.section !== currentSection) break;
+      point = buttons[i];
+    }
+    return point;
   }
 
   function mountPanel(id, shouldScroll = true) {
