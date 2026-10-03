@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#071e46">
+  <title>Artes Exclusivas — Estrela do Norte</title>
+  <link rel="stylesheet" href="./artes.css">
+</head>
+<body>
+  <header class="art-topbar">
+    <a href="./" class="back-link">← VOLTAR ÀS FOTOS</a>
+    <img src="./estrela-logo.svg" alt="Estrela do Norte">
+  </header>
+
+  <main>
+    <section class="art-hero">
+      <div class="art-star">★</div>
+      <span>EXTRA / ESTRELA DO NORTE</span>
+      <h1>NÃO ERA SÓ<br><em>UMA FOTO.</em></h1>
+      <p>Algumas imagens pediram para virar outra coisa. Este espaço é só para elas.</p>
+      <a href="#artes">VER AS ARTES ↓</a>
+    </section>
+
+    <section class="art-grid-section" id="artes">
+      <div class="art-heading">
+        <span>IDENTIDADE · ATLETA · PRESENÇA</span>
+        <h2>ARTES EXCLUSIVAS</h2>
+        <p>Essa área já está pronta para receber as peças finais. Quando você mandar as artes, elas entram aqui sem misturar com a galeria fotográfica.</p>
+      </div>
+      <div class="art-grid" id="artGrid"></div>
+    </section>
+  </main>
+
+  <footer class="art-footer">
+    <img src="./estrela-logo.svg" alt="Estrela do Norte">
+    <span>ARTE EXTRA · NORTHE × ESTRELA DO NORTE · 2026</span>
+  </footer>
+
+  <div class="art-viewer" id="artViewer" aria-hidden="true">
+    <button id="artClose" aria-label="Fechar">×</button>
+    <img id="artImage" alt="">
+    <a id="artDownload" href="#" target="_blank" rel="noopener">BAIXAR ARTE ↓</a>
+  </div>
+  <script src="./artes.js" defer></script>
+</body>
+</html>
