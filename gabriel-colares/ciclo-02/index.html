@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#090909">
+  <title>Aprovação · Gabriel Colares</title>
+  <link rel="icon" type="image/png" href="/roteiros/gabriel/ciclo-2026-09/nth-favicon-v2.png">
+  <link rel="apple-touch-icon" href="/roteiros/gabriel/ciclo-2026-09/nth-apple-touch-v2.png">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="NORTHE">
+      <img src="/roteiros/gabriel/ciclo-2026-09/nth-favicon-v2.png" alt="">
+      <span>MADE IN THE NORTH.</span>
+    </a>
+    <div class="review-progress" aria-live="polite">
+      <strong id="reviewCount">0/12</strong>
+      <span>revisados</span>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">GABRIEL COLARES · ENTREGA PARA APROVAÇÃO</p>
+        <h1>12 conteúdos<br>para revisar.</h1>
+        <p class="hero-copy">Assista ao vídeo, confira a legenda e marque como aprovado ou peça o ajuste necessário.</p>
+      </div>
+      <div class="hero-summary">
+        <div><small>Conteúdos</small><strong>12 Reels</strong></div>
+        <div><small>Aprovados</small><strong id="approvedCount">0</strong></div>
+        <div><small>Ajustes</small><strong id="changesCount">0</strong></div>
+      </div>
+    </section>
+
+    <section class="content-list" id="contentList" aria-label="Conteúdos para aprovação"></section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <footer>
+    <span>NORTHE</span>
+    <span>MADE IN THE NORTH.</span>
+  </footer>
+
+  <script src="./data.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
