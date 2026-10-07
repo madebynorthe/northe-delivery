@@ -8,10 +8,10 @@
   const state = new Map();
 
   const esc = (value="") => String(value).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
-  const driveView = id => \`https://drive.google.com/file/d/\${id}/view\`;
-  const drivePreview = id => \`https://drive.google.com/file/d/\${id}/preview\`;
-  const driveThumb = (id, size=1600) => \`https://drive.google.com/thumbnail?id=\${id}&sz=w\${size}\`;
-  const folderView = id => \`https://drive.google.com/drive/folders/\${id}\`;
+  const driveView = id => `https://drive.google.com/file/d/${id}/view`;
+  const drivePreview = id => `https://drive.google.com/file/d/${id}/preview`;
+  const driveThumb = (id, size=1600) => `https://drive.google.com/thumbnail?id=${id}&sz=w${size}`;
+  const folderView = id => `https://drive.google.com/drive/folders/${id}`;
 
   function showToast(message) {
     toast.textContent = message;
@@ -24,13 +24,13 @@
     const values = [...state.values()];
     const approved = values.filter(v => v.status === "approved").length;
     const changes = values.filter(v => v.status === "changes").length;
-    reviewCount.textContent = \`\${approved + changes}/\${data.items.length}\`;
+    reviewCount.textContent = `${approved + changes}/${data.items.length}`;
     approvedCount.textContent = approved;
     changesCount.textContent = changes;
   }
 
   function renderState(itemId) {
-    const card = document.getElementById(\`content-\${itemId}\`);
+    const card = document.getElementById(`content-${itemId}`);
     if (!card) return;
     const box = card.querySelector(".state");
     const review = state.get(itemId);
@@ -44,66 +44,66 @@
       box.textContent = "✓ Conteúdo aprovado.";
     } else {
       box.className = "state changes is-visible";
-      box.textContent = review.comment ? \`Ajuste solicitado: \${review.comment}\` : "Ajuste solicitado.";
+      box.textContent = review.comment ? `Ajuste solicitado: ${review.comment}` : "Ajuste solicitado.";
       const text = card.querySelector("textarea");
       if (text && review.comment) text.value = review.comment;
     }
   }
 
   function reelPreview(item) {
-    return \`
+    return `
       <div class="preview preview-reel">
-        <iframe class="video-frame" loading="lazy" src="\${drivePreview(item.driveId)}" title="Preview do conteúdo \${esc(item.title)}" allow="autoplay; fullscreen" allowfullscreen></iframe>
-      </div>\`;
+        <iframe class="video-frame" loading="lazy" src="${drivePreview(item.driveId)}" title="Preview do conteúdo ${esc(item.title)}" allow="autoplay; fullscreen" allowfullscreen></iframe>
+      </div>`;
   }
 
   function carouselPreview(item) {
-    const thumbs = item.slides.map((slide, index) => \`
-      <button class="thumb \${index === 0 ? "is-active" : ""}" type="button" data-slide-index="\${index}" aria-label="Abrir \${esc(slide.label)}">
-        <img loading="lazy" src="\${driveThumb(slide.id, 400)}" alt="\${esc(slide.label)}">
-        <span>\${String(index + 1).padStart(2,"0")}</span>
-      </button>\`).join("");
+    const thumbs = item.slides.map((slide, index) => `
+      <button class="thumb ${index === 0 ? "is-active" : ""}" type="button" data-slide-index="${index}" aria-label="Abrir ${esc(slide.label)}">
+        <img loading="lazy" src="${driveThumb(slide.id, 400)}" alt="${esc(slide.label)}">
+        <span>${String(index + 1).padStart(2,"0")}</span>
+      </button>`).join("");
 
-    return \`
+    return `
       <div class="preview preview-carousel">
         <div class="carousel-shell" data-carousel>
           <div class="carousel-stage">
-            <img class="carousel-main" src="\${driveThumb(item.slides[0].id, 1600)}" alt="\${esc(item.title)} — Slide 1">
+            <img class="carousel-main" src="${driveThumb(item.slides[0].id, 1600)}" alt="${esc(item.title)} — Slide 1">
             <button class="carousel-arrow prev" type="button" data-prev aria-label="Slide anterior">‹</button>
             <button class="carousel-arrow next" type="button" data-next aria-label="Próximo slide">›</button>
-            <div class="carousel-counter"><strong data-current>01</strong><span>/ \${String(item.slides.length).padStart(2,"0")}</span></div>
+            <div class="carousel-counter"><strong data-current>01</strong><span>/ ${String(item.slides.length).padStart(2,"0")}</span></div>
           </div>
-          <div class="thumbs">\${thumbs}</div>
+          <div class="thumbs">${thumbs}</div>
           <div class="carousel-links">
-            <a href="\${driveView(item.slides[0].id)}" data-open-slide target="_blank" rel="noopener">Abrir slide no Drive ↗</a>
-            <a href="\${folderView(item.folderId)}" target="_blank" rel="noopener">Abrir pasta completa ↗</a>
+            <a href="${driveView(item.slides[0].id)}" data-open-slide target="_blank" rel="noopener">Abrir slide no Drive ↗</a>
+            <a href="${folderView(item.folderId)}" target="_blank" rel="noopener">Abrir pasta completa ↗</a>
           </div>
         </div>
-      </div>\`;
+      </div>`;
   }
 
   function captionBlock(item) {
     if (!item.caption) return "";
-    return \`
+    return `
       <div class="caption-block">
         <div class="section-head"><h3>Legenda</h3><button class="copy-btn" type="button" data-copy>Copiar legenda</button></div>
-        <div class="caption-text">\${esc(item.caption)}</div>
-      </div>\`;
+        <div class="caption-text">${esc(item.caption)}</div>
+      </div>`;
   }
 
   function card(item) {
     const mediaLink = item.type === "reel"
-      ? \`<a class="drive-link" href="\${driveView(item.driveId)}" target="_blank" rel="noopener">Abrir vídeo no Drive ↗</a>\`
-      : \`<div class="media-note">Use as setas ou miniaturas para revisar os \${item.slides.length} slides.</div>\`;
+      ? `<a class="drive-link" href="${driveView(item.driveId)}" target="_blank" rel="noopener">Abrir vídeo no Drive ↗</a>`
+      : `<div class="media-note">Use as setas ou miniaturas para revisar os ${item.slides.length} slides.</div>`;
 
-    return \`
-      <article class="content-card \${item.type === "carousel" ? "is-carousel" : "is-reel"}" id="content-\${item.id}">
-        \${item.type === "carousel" ? carouselPreview(item) : reelPreview(item)}
+    return `
+      <article class="content-card ${item.type === "carousel" ? "is-carousel" : "is-reel"}" id="content-${item.id}">
+        ${item.type === "carousel" ? carouselPreview(item) : reelPreview(item)}
         <div class="content-body">
-          <div class="meta"><span class="index">\${item.id}</span><span class="format">\${esc(item.format)}</span></div>
-          <h2>\${esc(item.title)}</h2>
-          \${mediaLink}
-          \${captionBlock(item)}
+          <div class="meta"><span class="index">${item.id}</span><span class="format">${esc(item.format)}</span></div>
+          <h2>${esc(item.title)}</h2>
+          ${mediaLink}
+          ${captionBlock(item)}
 
           <div class="review-box">
             <div class="review-label">Sua revisão</div>
@@ -118,11 +118,11 @@
             <div class="state"></div>
           </div>
         </div>
-      </article>\`;
+      </article>`;
   }
 
   async function submit(item, status, comment="") {
-    const card = document.getElementById(\`content-\${item.id}\`);
+    const card = document.getElementById(`content-${item.id}`);
     const buttons = card.querySelectorAll(".review-box button");
     buttons.forEach(btn => btn.disabled = true);
     try {
@@ -164,7 +164,7 @@
       active = (index + item.slides.length) % item.slides.length;
       const slide = item.slides[active];
       main.src = driveThumb(slide.id, 1600);
-      main.alt = \`\${item.title} — \${slide.label}\`;
+      main.alt = `${item.title} — ${slide.label}`;
       current.textContent = String(active + 1).padStart(2,"0");
       openSlide.href = driveView(slide.id);
       thumbs.forEach((thumb, i) => thumb.classList.toggle("is-active", i === active));
@@ -177,7 +177,7 @@
   }
 
   function bind(item) {
-    const card = document.getElementById(\`content-\${item.id}\`);
+    const card = document.getElementById(`content-${item.id}`);
     bindCarousel(item, card);
 
     const copy = card.querySelector("[data-copy]");
@@ -200,7 +200,7 @@
 
   async function loadReviews() {
     try {
-      const url = \`\${data.endpoint}?deliveryKey=\${encodeURIComponent(data.deliveryKey)}\`;
+      const url = `${data.endpoint}?deliveryKey=${encodeURIComponent(data.deliveryKey)}`;
       const res = await fetch(url, {method:"GET"});
       const payload = await res.json();
       if (!res.ok || !payload.ok) return;
