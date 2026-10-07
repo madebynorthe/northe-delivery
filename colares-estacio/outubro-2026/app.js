@@ -53,14 +53,18 @@
   function reelPreview(item) {
     return `
       <div class="preview preview-reel">
-        <iframe class="video-frame" loading="lazy" src="${drivePreview(item.driveId)}" title="Preview do conteúdo ${esc(item.title)}" allow="autoplay; fullscreen" allowfullscreen></iframe>
+        <button class="video-poster" type="button" data-load-video aria-label="Reproduzir ${esc(item.title)}">
+          <img loading="lazy" decoding="async" fetchpriority="low" src="${driveThumb(item.driveId, 720)}" alt="">
+          <span class="video-play" aria-hidden="true">▶</span>
+          <span class="video-load-label">Carregar vídeo</span>
+        </button>
       </div>`;
   }
 
   function carouselPreview(item) {
     const thumbs = item.slides.map((slide, index) => `
       <button class="thumb ${index === 0 ? "is-active" : ""}" type="button" data-slide-index="${index}" aria-label="Abrir ${esc(slide.label)}">
-        <img loading="lazy" src="${driveThumb(slide.id, 400)}" alt="${esc(slide.label)}">
+        <img loading="lazy" decoding="async" fetchpriority="low" src="${driveThumb(slide.id, 240)}" alt="${esc(slide.label)}">
         <span>${String(index + 1).padStart(2,"0")}</span>
       </button>`).join("");
 
@@ -68,7 +72,7 @@
       <div class="preview preview-carousel">
         <div class="carousel-shell" data-carousel>
           <div class="carousel-stage">
-            <img class="carousel-main" src="${driveThumb(item.slides[0].id, 1600)}" alt="${esc(item.title)} — Slide 1">
+            <img class="carousel-main" loading="lazy" decoding="async" fetchpriority="low" src="${driveThumb(item.slides[0].id, 900)}" alt="${esc(item.title)} — Slide 1">
             <button class="carousel-arrow prev" type="button" data-prev aria-label="Slide anterior">‹</button>
             <button class="carousel-arrow next" type="button" data-next aria-label="Próximo slide">›</button>
             <div class="carousel-counter"><strong data-current>01</strong><span>/ ${String(item.slides.length).padStart(2,"0")}</span></div>
@@ -151,6 +155,22 @@
     }
   }
 
+  function bindReel(item, card) {
+    if (item.type !== "reel") return;
+    const poster = card.querySelector("[data-load-video]");
+    if (!poster) return;
+    poster.addEventListener("click", () => {
+      const iframe = document.createElement("iframe");
+      iframe.className = "video-frame";
+      iframe.src = drivePreview(item.driveId);
+      iframe.title = `Preview do conteúdo ${item.title}`;
+      iframe.allow = "autoplay; fullscreen";
+      iframe.allowFullscreen = true;
+      iframe.loading = "lazy";
+      poster.replaceWith(iframe);
+    }, {once:true});
+  }
+
   function bindCarousel(item, card) {
     if (item.type !== "carousel") return;
     const root = card.querySelector("[data-carousel]");
@@ -163,7 +183,7 @@
     function show(index) {
       active = (index + item.slides.length) % item.slides.length;
       const slide = item.slides[active];
-      main.src = driveThumb(slide.id, 1600);
+      main.src = driveThumb(slide.id, 1000);
       main.alt = `${item.title} — ${slide.label}`;
       current.textContent = String(active + 1).padStart(2,"0");
       openSlide.href = driveView(slide.id);
@@ -178,6 +198,7 @@
 
   function bind(item) {
     const card = document.getElementById(`content-${item.id}`);
+    bindReel(item, card);
     bindCarousel(item, card);
 
     const copy = card.querySelector("[data-copy]");
@@ -213,5 +234,6 @@
   list.innerHTML = data.items.map(card).join("");
   data.items.forEach(bind);
   renderCounts();
-  loadReviews();
+  if ("requestIdleCallback" in window) requestIdleCallback(loadReviews, {timeout:1200});
+  else setTimeout(loadReviews, 250);
 })();
