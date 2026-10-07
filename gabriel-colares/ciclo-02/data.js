@@ -36,7 +36,7 @@ Existem decisões do cotidiano e existem decisões que podem afetar de forma imp
 Saber diferenciar essas duas coisas evita muito conflito desnecessário.`
     },
     {
-      id:"05", format:"Contraste", title:"Isso prova o que está acontecendo?", driveId:"19HOJZnMelg9H27aFSDaYs22luyOyuoEO",
+      id:"05", format:"Contraste", title:"Isso prova o que está acontecendo?", driveId:"11nJzH7S-OaRSq3w7TChZhmjKDa2V30ZB", previousFeedback:"O segundo ta uma guitarra. É erro proposital, para engajamento?",
       caption:`Ter um print é diferente de conseguir demonstrar uma situação.
 
 Data, contexto, sequência dos acontecimentos e outros registros podem mudar completamente a leitura daquele material.
@@ -84,7 +84,7 @@ Mas partilha de patrimônio não funciona como prêmio ou punição pelo comport
 Questão emocional e questão patrimonial nem sempre caminham juntas.`
     },
     {
-      id:"11", format:"Fundo verde", title:"Recebeu uma mensagem assim?", driveId:"1XFHqmJtGXV2zVQki413ekM6j6VR0ig6h",
+      id:"11", format:"Fundo verde", title:"Recebeu uma mensagem assim?", driveId:"1YdlM3gzeuF1dmtPKskEh3x81DgG7aNWW", previousFeedback:"Cara, se possível muda o nome da mulher e do filho. Eu tenho um casal de amigos que ela se chama MARIANA e o filho se chama MIGUEL. Bota fé? hahahahahaha",
       caption:`Quando uma conversa vira conflito, a vontade de responder na mesma intensidade pode ser grande.
 
 Mas, em vez de transformar o WhatsApp em uma guerra, pode ser muito mais importante preservar a conversa, o contexto e observar se aquela situação está se repetindo.
@@ -92,7 +92,7 @@ Mas, em vez de transformar o WhatsApp em uma guerra, pode ser muito mais importa
 Reagir menos e registrar melhor pode fazer diferença.`
     },
     {
-      id:"12", format:"Fundo verde", title:"Quando um problema começa a virar padrão", driveId:"1wjuZ9Air8yNsFy75_BqNQQF3hYMHUHEp",
+      id:"12", format:"Fundo verde", title:"Quando um problema começa a virar padrão", driveId:"1K7rs53NYYICxZDc_Q8Bmq-mOS0FJOa1H", previousFeedback:"tá bugado",
       caption:`Um atraso pode ser um atraso. Uma mudança pode ser uma mudança.
 
 Mas quando situações semelhantes começam a acontecer repetidamente, olhar apenas para cada episódio separadamente pode esconder o contexto completo.
