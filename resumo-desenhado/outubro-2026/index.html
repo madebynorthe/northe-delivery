@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#090909">
+<meta name="robots" content="noindex,nofollow">
+<title>Resumo Desenhado · Aprovação de conteúdos | NORTHE</title>
+<link rel="icon" type="image/png" href="/roteiros/gabriel/ciclo-2026-09/nth-favicon-v2.png">
+<link rel="stylesheet" href="/colares-estacio/outubro-2026/style.css">
+<style>
+:root{--accent:#dc2727}html{scroll-behavior:smooth}
+.topbar .brand span{letter-spacing:.12em}
+.hero h1{letter-spacing:-.06em}
+.hero .eyebrow{color:#b91c1c}
+.content-card{scroll-margin-top:90px}
+.carousel-shell:has(.thumb:only-child) .carousel-arrow,.carousel-shell:has(.thumb:only-child) .thumbs,.carousel-shell:has(.thumb:only-child) .carousel-counter{display:none}
+.carousel-shell:has(.thumb:only-child) .carousel-main{cursor:zoom-in}
+.carousel-shell:has(.thumb:only-child) .carousel-stage{padding-bottom:0}
+.legend-warning{display:flex;align-items:center;gap:10px;margin-top:18px;color:#666;font-size:12px;line-height:1.5}
+.legend-warning:before{content:"i";width:20px;height:20px;display:grid;place-items:center;border:1px solid #888;border-radius:50%;font-size:11px;font-weight:700;flex-shrink:0}
+@media(max-width:720px){.hero h1{font-size:clamp(44px,10vw,72px)}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#top" aria-label="NORTHE"><img src="/roteiros/gabriel/ciclo-2026-09/nth-favicon-v2.png" alt=""><span>MADE IN THE NORTH.</span></a>
+  <div class="review-progress" aria-live="polite"><strong id="reviewCount">0/13</strong><span>revisados</span></div>
+</header>
+<main id="top">
+  <section class="hero"><div><p class="eyebrow">RESUMO DESENHADO · ENTREGA PARA APROVAÇÃO</p><h1>13 conteúdos<br>para revisar.</h1><p class="hero-copy">Confira as artes, assista aos vídeos e revise as legendas. Em cada conteúdo, aprove ou envie um pedido de ajuste. Suas decisões são salvas e ficam visíveis para a equipe NORTHE.</p><p class="legend-warning">As datas e informações de editais devem ser reconfirmadas nas fontes oficiais antes da publicação. Um carrossel contém 5 slides enviados.</p></div>
+    <div class="hero-summary"><div><small>Vídeos</small><strong>5</strong></div><div><small>Carrosséis</small><strong>4</strong></div><div><small>Estáticos</small><strong>4</strong></div><div><small>Aprovados</small><strong id="approvedCount">0</strong></div><div><small>Ajustes</small><strong id="changesCount">0</strong></div></div>
+  </section>
+  <section class="content-list" id="contentList" aria-label="Conteúdos do Resumo Desenhado para aprovação"></section>
+</main>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<footer><span>NORTHE</span><span>MADE IN THE NORTH.</span></footer>
+<script src="./data.js"></script>
+<script src="/colares-estacio/outubro-2026/app.js"></script>
+</body>
+</html>
