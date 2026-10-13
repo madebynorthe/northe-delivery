@@ -32,7 +32,7 @@ window.COLARES_ESTACIO_DELIVERY = {
     {
       "id": "02",
       "type": "carousel",
-      "format": "Carrossel · 16/10 · 5 slides disponíveis",
+      "format": "Carrossel · 5 slides",
       "title": "Acertou com dúvida?",
       "folderId": "1nL1MAPjK86L8PerJD_mQKVv3l2XYU_g8",
       "slides": [
@@ -188,21 +188,21 @@ window.COLARES_ESTACIO_DELIVERY = {
     {
       "id": "11",
       "type": "reel",
-      "format": "Vídeo · Reel",
-      "title": "MEME 01",
+      "format": "Reel · Humor concurseiro",
+      "title": "A falsa tranquilidade na véspera da prova",
       "driveId": "1SeLDP0snxo8wohBM4H7IoV4tKWwbImh7",
-      "caption": ""
+      "caption": "Eu antes de dormir: “Tá tudo dominado, amanhã eu lembro.” 😎📚\n\nMeu cérebro na hora da prova: “A gente estudou isso?” 🤡😂\n\nQuem nunca se enganou só pra conseguir dormir em paz? 😭\n\n#ResumoDesenhado #VidaDeConcurseiro #HumorConcurseiro #ConcursosPublicos"
     },
     {
       "id": "12",
       "type": "carousel",
-      "format": "Estático · imagem",
-      "title": "MEME 03 — Você sumiu, tá tudo bem?",
+      "format": "Imagem · Humor concurseiro",
+      "title": "O concurseiro desapareceu do mapa",
       "folderId": "1mgb3w9lBWzH3yTx62aXX3rVQlGc57wSe",
       "slides": [
         {
-          "id": "1ZTw5XWQkUM5Zw3U-bnehTu7lNtflkz3n",
-          "label": "Arte"
+          "id": "12yn6ccrAylJLkCIGp_E0tmO4xdxtEC0t",
+          "label": "Arte final"
         }
       ],
       "caption": "“Você sumiu, tá tudo bem?”\n\nO concurseiro tentando sobreviver entre PDFs, videoaulas, simulados e aquela matéria que parece nunca acabar. 🫠📚\n\nA vida social fica em segundo plano, o café vira companhia e o descanso parece até matéria optativa. 😂\n\nMas ó: estudar é importante, descansar também. Afinal, ninguém consegue render no limite o tempo todo.\n\n😂 Marca aquele amigo que desapareceu do mapa depois que decidiu estudar pra concurso!\n\n#ResumoDesenhado #VidaDeConcurseiro #ConcursosPublicos #HumorConcurseiro #RotinaDeEstudos"
@@ -210,10 +210,38 @@ window.COLARES_ESTACIO_DELIVERY = {
     {
       "id": "13",
       "type": "reel",
-      "format": "Vídeo · Reel",
-      "title": "Templates Reels — arquivo complementar",
+      "format": "Reel · Material complementar",
+      "title": "Formato para Reels — vídeo complementar",
       "driveId": "1opqnTR7nDhjfHhf_yAvcMEmRSJhN-D-a",
-      "caption": ""
+      "caption": "Material em vídeo para revisão de formato e linguagem. Confira a execução e sinalize qualquer ajuste necessário antes da publicação."
+    },
+    {
+      "id": "14",
+      "type": "carousel",
+      "format": "Imagem · Humor concurseiro",
+      "title": "O plano de estudar depois do expediente",
+      "folderId": "1mgb3w9lBWzH3yTx62aXX3rVQlGc57wSe",
+      "slides": [
+        {
+          "id": "152y_bgPNtPVkrcqUSgygqSUp4iqOiaVt",
+          "label": "Arte final"
+        }
+      ],
+      "caption": "Eu chegando do trabalho: “Hoje vou colocar TODA a matéria atrasada em dia!” 📚💪\n\nEu 5 minutos depois: 😴💤\n\nO planejamento é de aprovado, mas o corpo já pediu exoneração. 😂\n\nQuem mais vive essa luta diária? 👇\n\n#ResumoDesenhado #VidaDeConcurseiro #HumorConcurseiro #ConcursosPublicos"
+    },
+    {
+      "id": "15",
+      "type": "carousel",
+      "format": "Imagem · Humor concurseiro",
+      "title": "O primeiro salário já está comprometido",
+      "folderId": "1mgb3w9lBWzH3yTx62aXX3rVQlGc57wSe",
+      "slides": [
+        {
+          "id": "1bpORKf4GFpOZP4x6zRRaFn_SjFyYOsIp",
+          "label": "Arte final"
+        }
+      ],
+      "caption": "Eu depois de passar no concurso, imaginando meu primeiro salário caindo na conta. 💸😂\n\nA aprovação ainda não veio, mas os planos de milionário já estão prontos. 🤣\n\nQuem mais já gastou o salário de concursado antes mesmo de passar? 👀\n\n#ResumoDesenhado #VidaDeConcurseiro #ConcursosPublicos #HumorConcurseiro"
     }
   ]
 };
