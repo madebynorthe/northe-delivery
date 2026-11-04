@@ -87,35 +87,35 @@ window.NORTHE_SCRIPT_DATA = {
     },
     {
       "id": "04",
-      "title": "Entrou dinheiro extra. A pensão aumenta?",
+      "title": "Dinheiro extra também entra na pensão?",
       "role": "Pensão · Quebra de crença",
       "format": "Contraste",
-      "idea": "Começar pela experiência real de receber uma verba extra e transformar a dúvida sobre pensão em classificação rápida.",
-      "text": "Você recebeu um dinheiro extra e já veio a dúvida:\n\n“A pensão também aumenta?”\n\nSe ela foi fixada sobre os rendimentos, isso EM REGRA ENTRA ou NÃO É AUTOMÁTICO?\n\nCaiu o décimo terceiro: em regra entra ou não é automático?\n\nEM REGRA ENTRA.\n\nRecebeu o terço de férias: em regra entra ou não é automático?\n\nEM REGRA ENTRA.\n\nFez horas extras e recebeu mais naquele mês: em regra entra ou não é automático?\n\nEM REGRA ENTRA.\n\nRecebeu PLR, participação nos lucros: em regra entra ou não é automático?\n\nNÃO É AUTOMÁTICO.\n\nÉ aí que muita gente se confunde.\n\nNem todo dinheiro que entra na conta recebe o mesmo tratamento.\n\nAlgumas verbas remuneratórias podem integrar a base quando a pensão foi fixada sobre os rendimentos.\n\nA PLR tem tratamento diferente e não entra automaticamente.\n\nEntão antes de olhar só para o valor que caiu na conta, você precisa saber que verba é aquela e como a pensão foi fixada."
+      "idea": "Pergunta principal forte na tela; depois quatro verbas rápidas para Gabriel classificar antes da explicação jurídica.",
+      "text": "PERGUNTA NA TELA:\nDINHEIRO EXTRA TAMBÉM ENTRA NA PENSÃO?\n\nPERGUNTA:\nDécimo terceiro. Entra ou não entra?\n\nGABRIEL:\nENTRA.\n\nPERGUNTA:\nTerço de férias. Entra ou não entra?\n\nGABRIEL:\nENTRA.\n\nPERGUNTA:\nHoras extras. Entra ou não entra?\n\nGABRIEL:\nENTRA.\n\nPERGUNTA:\nPLR, participação nos lucros. Entra ou não entra?\n\nGABRIEL:\nNÃO AUTOMATICAMENTE.\n\nEXPLICAÇÃO:\nQuando a pensão é fixada em percentual sobre os rendimentos, algumas verbas remuneratórias também podem entrar nessa base.\n\nMas nem todo dinheiro extra recebe o mesmo tratamento.\n\nA PLR, por exemplo, não entra automaticamente.\n\nEntão não basta olhar para o valor que caiu na conta. É preciso saber que verba é aquela e como a pensão foi fixada."
     },
     {
       "id": "05",
-      "title": "Isso já significa união estável?",
+      "title": "Isso prova união estável?",
       "role": "União estável · Quebra de crença",
       "format": "Contraste",
-      "idea": "Abrir com uma relação que já parece família aos olhos de quem vive e observa, para depois mostrar o peso de cada elemento.",
-      "text": "Vocês moram juntos, têm filho e todo mundo apresenta vocês como casal.\n\nIsso, sozinho, já prova união estável?\n\nVamos ver o que AJUDA A DEMONSTRAR e o que SOZINHO NÃO BASTA.\n\nVocês têm um filho juntos: ajuda a demonstrar ou sozinho não basta?\n\nSOZINHO NÃO BASTA.\n\nVocês ficaram noivos: ajuda a demonstrar ou sozinho não basta?\n\nSOZINHO NÃO BASTA.\n\nVocês dividem contas e despesas da vida em comum: ajuda a demonstrar ou sozinho não basta?\n\nAJUDA A DEMONSTRAR.\n\nVocês se apresentam socialmente como uma família: ajuda a demonstrar ou sozinho não basta?\n\nAJUDA A DEMONSTRAR.\n\nVocês moram na mesma casa: ajuda a demonstrar ou sozinho não basta?\n\nAJUDA A DEMONSTRAR.\n\nMas nenhum desses elementos, isoladamente, resolve a questão.\n\nUnião estável é analisada pelo conjunto da relação: convivência pública, contínua, duradoura e intenção de constituir família.\n\nUm sinal pode ajudar.\n\nO conjunto é que conta a história."
+      "idea": "Pergunta principal na tela sobre uma experiência muito comum; depois quatro sinais do relacionamento para Gabriel classificar.",
+      "text": "PERGUNTA NA TELA:\nISSO PROVA UNIÃO ESTÁVEL?\n\nPERGUNTA:\nTer um filho juntos. Ajuda a provar ou sozinho não prova?\n\nGABRIEL:\nSOZINHO NÃO PROVA.\n\nPERGUNTA:\nEstar noivo. Ajuda a provar ou sozinho não prova?\n\nGABRIEL:\nSOZINHO NÃO PROVA.\n\nPERGUNTA:\nDividir contas e despesas da vida em comum. Ajuda a provar ou sozinho não prova?\n\nGABRIEL:\nAJUDA A PROVAR.\n\nPERGUNTA:\nSe apresentar publicamente como uma família. Ajuda a provar ou sozinho não prova?\n\nGABRIEL:\nAJUDA A PROVAR.\n\nEXPLICAÇÃO:\nUnião estável não é reconhecida por um único sinal.\n\nO que se analisa é o conjunto da relação: convivência pública, contínua, duradoura e a intenção de constituir família.\n\nTer filho, morar junto ou até estar noivo pode fazer parte desse contexto.\n\nMas sozinho, nenhum desses elementos conta a história inteira."
     },
     {
       "id": "06",
-      "title": "Separou. Pode fazer isso ou não?",
+      "title": "Se ela não deixa ver o filho, posso parar de pagar pensão?",
       "role": "Pensão + convivência · Reação",
       "format": "Contraste",
-      "idea": "Começar pela reação impulsiva mais reconhecível de quem enfrenta conflito de convivência e depois classificar outras decisões.",
-      "text": "Ela não deixa você ver seu filho e você pensa:\n\n“Então também não vou pagar pensão.”\n\nPODE ou NÃO PODE?\n\nParar de pagar pensão porque a convivência está sendo dificultada: pode ou não pode?\n\nNÃO PODE.\n\nVocê comprou roupa para a criança e quer descontar sozinho esse valor da pensão: pode ou não pode?\n\nNÃO PODE.\n\nVocê perdeu o emprego e quer pedir revisão do valor da pensão: pode ou não pode?\n\nPODE.\n\nA convivência não está sendo cumprida e você quer buscar uma regularização pela via adequada: pode ou não pode?\n\nPODE.\n\nVocê começa a guardar comprovantes e registros do que está acontecendo: pode ou não pode?\n\nPODE.\n\nConvivência com o filho e pagamento de pensão são questões diferentes.\n\nUm problema não autoriza você a criar o outro.\n\nSe sua renda mudou, existe caminho para pedir revisão.\n\nSe a convivência não está sendo cumprida, isso também precisa ser tratado da forma correta.\n\nO pior caminho normalmente é decidir tudo sozinho no impulso."
+      "idea": "Pergunta principal altamente reconhecível na tela; depois quatro reações comuns pós-separação para Gabriel dizer PODE ou NÃO PODE.",
+      "text": "PERGUNTA NA TELA:\nSE ELA NÃO DEIXA VER O FILHO, POSSO PARAR DE PAGAR PENSÃO?\n\nPERGUNTA:\nParar de pagar porque a convivência está sendo dificultada. Pode ou não pode?\n\nGABRIEL:\nNÃO PODE.\n\nPERGUNTA:\nComprar roupa e descontar esse valor da pensão por conta própria. Pode ou não pode?\n\nGABRIEL:\nNÃO PODE.\n\nPERGUNTA:\nPerdeu o emprego e pedir revisão do valor da pensão. Pode ou não pode?\n\nGABRIEL:\nPODE.\n\nPERGUNTA:\nBuscar judicialmente o cumprimento da convivência. Pode ou não pode?\n\nGABRIEL:\nPODE.\n\nEXPLICAÇÃO:\nPensão e convivência são questões diferentes.\n\nSe estão impedindo o contato com seu filho, isso precisa ser resolvido pela via adequada.\n\nE se sua renda mudou, você também pode pedir a revisão da pensão.\n\nO que não funciona é decidir sozinho parar de cumprir uma obrigação porque a outra parte está descumprindo outra."
     },
     {
       "id": "07",
-      "title": "O carro está no nome dela, mas quem pagou foi você",
+      "title": "O carro está no nome dela. Entra na partilha?",
       "role": "Partilha · Reconhecimento",
       "format": "Contraste",
-      "idea": "Abrir com o conflito concreto do carro pago por um e registrado no nome do outro antes de entrar nas regras da comunhão parcial.",
-      "text": "O carro está no nome dela.\n\nMas durante o casamento era você quem pagava as parcelas.\n\nNa separação, esse carro entra ou não entra na partilha?\n\nSe o regime é comunhão parcial, vamos comparar algumas situações.\n\nO carro foi comprado durante o casamento, mas ficou só no nome dela: entra ou não entra?\n\nENTRA.\n\nO apartamento já era seu antes de vocês casarem: entra ou não entra?\n\nNÃO ENTRA.\n\nVocê recebeu uma herança só para você durante o casamento: entra ou não entra?\n\nNÃO ENTRA.\n\nO imóvel foi comprado durante o casamento, mas registrado apenas no nome dele: entra ou não entra?\n\nENTRA.\n\nUm dos dois recebeu um bem em doação exclusivamente para si: entra ou não entra?\n\nNÃO ENTRA.\n\nNa comunhão parcial, o nome no documento não é o único critério.\n\nImporta quando o bem foi adquirido, como foi adquirido e a origem daquele patrimônio.\n\nPor isso, antes de perguntar “está no nome de quem?”, a pergunta mais importante costuma ser:\n\n“Como esse bem entrou na vida do casal?”"
+      "idea": "Pergunta principal reconhecível na tela; depois quatro bens rápidos para Gabriel responder ENTRA ou NÃO ENTRA, considerando comunhão parcial.",
+      "text": "PERGUNTA NA TELA:\nO CARRO ESTÁ NO NOME DELA. ENTRA NA PARTILHA?\n\nCONSIDERANDO COMUNHÃO PARCIAL:\n\nPERGUNTA:\nCarro comprado durante o casamento, mas só no nome dela. Entra ou não entra?\n\nGABRIEL:\nENTRA.\n\nPERGUNTA:\nApartamento que você já tinha antes de casar. Entra ou não entra?\n\nGABRIEL:\nNÃO ENTRA.\n\nPERGUNTA:\nHerança recebida somente por você durante o casamento. Entra ou não entra?\n\nGABRIEL:\nNÃO ENTRA.\n\nPERGUNTA:\nImóvel comprado durante o casamento, mas registrado só no nome dele. Entra ou não entra?\n\nGABRIEL:\nENTRA.\n\nEXPLICAÇÃO:\nNa comunhão parcial, o nome que aparece no documento não decide tudo.\n\nImporta quando o bem foi adquirido e de que forma ele entrou no patrimônio.\n\nPor isso, um bem comprado durante o casamento pode entrar na partilha mesmo estando registrado apenas no nome de um dos dois."
     },
     {
       "id": "08",
