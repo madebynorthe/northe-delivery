@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Galeria de entrega da Northe para Vanildo.">
+  <meta name="theme-color" content="#151514">
+  <meta name="referrer" content="no-referrer">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Vanildo · Galeria Northe</title>
+  <link rel="preconnect" href="https://drive.google.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,700;1,900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      font-family: Poppins, Arial, sans-serif;
+      background: #151514;
+      color: #e8e4d6;
+      --muted: #aaa79e;
+      --line: rgb(232 228 214 / 14%);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    a { color: inherit; }
+    button { font: inherit; cursor: pointer; }
+
+    .wrap {
+      width: min(1264px, calc(100% - 2 * clamp(18px, 5vw, 72px)));
+      margin-inline: auto;
+    }
+
+    .masthead { border-bottom: 1px solid var(--line); }
+    .masthead .wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 69px;
+      gap: 12px;
+    }
+
+    .wordmark { font-size: 24px; letter-spacing: -.05em; font-style: italic; font-weight: 900; }
+
+    .original {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 8px 13px;
+      font-size: .875rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    :focus-visible { outline: 2px solid #ff725e; outline-offset: 4px; }
+    .intro { padding-block: clamp(28px, 5vw, 55px) 23px; }
+    .eyebrow { margin: 0 0 6px; color: var(--muted); font-size: .9375rem; }
+    .album-title {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    h1 {
+      margin: 0;
+      font-size: clamp(2.6rem, 6.5vw, 4.25rem);
+      line-height: 1;
+      font-weight: 700;
+      letter-spacing: -.065em;
+    }
+    .count { margin: 0; color: var(--muted); font-size: .875rem; white-space: nowrap; }
+
+    .gallery {
+      --columns: 4;
+      display: grid;
+      position: relative;
+      column-gap: clamp(8px, 1vw, 14px);
+      list-style: none;
+      padding: 0;
+      margin: 0 0 55px;
+    }
+    .tile { position: absolute; }
+
+    .photo {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      width: 100%;
+      padding: 0;
+      border: 0;
+      overflow: hidden;
+      border-radius: 8px;
+      background: #242422;
+      color: var(--muted);
+    }
+    .photo:focus-visible { z-index: 1; }
+    .photo img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    .photo-fallback { padding: 12px; text-align: center; font-size: .8125rem; }
+    .tile-download {
+      position: absolute;
+      z-index: 2;
+      right: 8px;
+      bottom: 8px;
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #fff;
+      color: #22221f;
+      box-shadow: 0 1px 5px rgb(0 0 0 / 24%);
+      text-decoration: none;
+    }
+    .tile-download:hover { background: #efede8; }
+    .download-icon {
+      width: 16px;
+      height: 19px;
+      border-bottom: 1.5px solid;
+      font: 20px/16px system-ui, sans-serif;
+      text-align: center;
+    }
+
+    .viewer {
+      width: min(1080px, calc(100vw - 32px));
+      max-width: none;
+      max-height: none;
+      margin: auto;
+      padding: 0;
+      border: 1px solid #47443e;
+      border-radius: 9px;
+      background: #171715;
+      color: #fff;
+    }
+    .viewer::backdrop { background: rgb(14 13 12 / 84%); }
+    html:has(.viewer[open]) { overflow: hidden; }
+    .viewer-inner { display: grid; grid-template-rows: auto minmax(0, 1fr) auto; }
+    .viewer-bar, .viewer-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 9px 13px;
+    }
+    .viewer-bar { border-bottom: 1px solid #3b3935; }
+    .viewer-footer { border-top: 1px solid #3b3935; }
+    .viewer-name { margin: 0; font-size: .9375rem; font-weight: 600; }
+    .position { margin: 0; font-size: .875rem; color: #d4d1ca; white-space: nowrap; }
+
+    .stage {
+      height: min(68dvh, 760px);
+      display: grid;
+      grid-template-columns: 44px minmax(0, 1fr) 44px;
+      align-items: center;
+      gap: 8px;
+      padding: 8px;
+    }
+    .frame { display: grid; place-items: center; min-width: 0; height: 100%; overflow: hidden; }
+    .frame img { display: block; width: 100%; height: 100%; min-height: 0; object-fit: contain; }
+    .frame p { text-align: center; color: #e1ded8; }
+
+    .icon-button {
+      width: 44px;
+      height: 44px;
+      background: transparent;
+      color: #fff;
+      border: 1px solid transparent;
+      border-radius: 6px;
+      font-size: 1.35rem;
+    }
+    .icon-button:hover, .original:hover { background: #32312c; }
+    .icon-button:disabled { opacity: .35; cursor: default; }
+    .icon-button:disabled:hover { background: transparent; }
+    .viewer :focus-visible { outline-color: #c6dff5; outline-offset: 1px; }
+    .original { border-color: #68645b; }
+    [hidden] { display: none !important; }
+
+    @media (max-width: 920px) {
+      .gallery { --columns: 3; }
+    }
+    @media (max-width: 590px) {
+      .gallery { --columns: 2; }
+      .masthead .wrap { min-height: 62px; }
+      .viewer { width: calc(100vw - 16px); }
+      .stage { grid-template-columns: 42px minmax(0, 1fr) 42px; gap: 0; padding-inline: 0; height: 62dvh; }
+      .stage .icon-button { width: 42px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="masthead">
+    <div class="wrap">
+      <span class="wordmark">NORTHE</span>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="intro">
+      <p class="eyebrow">Galeria de entrega</p>
+      <div class="album-title">
+        <h1>Vanildo</h1>
+        <p class="count" id="photo-count"></p>
+      </div>
+    </div>
+
+    <ul class="gallery" aria-label="Fotos da entrega"></ul>
+    <noscript>Ative o JavaScript para ver a galeria.</noscript>
+  </main>
+
+  <dialog class="viewer" aria-labelledby="viewer-name">
+    <div class="viewer-inner">
+      <div class="viewer-bar">
+        <h2 class="viewer-name" id="viewer-name"></h2>
+        <form method="dialog">
+          <button class="icon-button" aria-label="Fechar foto" autofocus>×</button>
+        </form>
+      </div>
+      <div class="stage">
+        <button type="button" class="icon-button" id="previous" aria-label="Foto anterior">‹</button>
+        <div class="frame"></div>
+        <button type="button" class="icon-button" id="next" aria-label="Próxima foto">›</button>
+      </div>
+      <div class="viewer-footer">
+        <p class="position" aria-live="polite"></p>
+        <a class="original">Baixar original <span aria-hidden="true">↓</span></a>
+      </div>
+    </div>
+  </dialog>
+
+  <script id="photos-data" type="application/json">[["1cc34d3lihpiAYMnpDASOI-554oYjG1VB", "DSC02661.jpg", 360, 540], ["18NIVIU4r8rEwQNvsuWOO9o__a0GkNhGQ", "DSC03766.jpg", 360, 240], ["1alHi5B3wqDHOg205mCCrgI8_b7QxBmvb", "DSC03604.jpg", 360, 240], ["1gRRcdHKEsF-nkQE5Hi-XD43Wh0CQOGh3", "DSC02250.jpg", 360, 540], ["1oAmla_h1A3Y0U9GO-XgfjJuufLs9jeJS", "DSC02826.jpg", 360, 540], ["1N4YFQI-ygQ7sm7EC4RxNyuP3Rg2SiJqy", "DSC02303.jpg", 360, 240], ["1ndUcpOJ3RZpSegvtzrNz9pGjQDKS6rth", "DSC02030.jpg", 360, 540], ["1hfR77CidKS2et_lND45HIF7mruET_5PI", "DSC02885.jpg", 360, 240], ["1Vz4_AjssCodOEDzIwtlL9yZclb_u6SjF", "DSC02523.jpg", 360, 240], ["146fuZr51DuHl0fpEtpHpZwItc_a2H_qJ", "DSC03406.jpg", 360, 540], ["11ZiOJGHQA1KJmaHb0xmC6VFimIq9khU-", "DSC02183.jpg", 360, 240], ["1546NJ8lHk1f5mCLucSwREjrNOV_2lTRx", "DSC02324.jpg", 360, 240], ["17ne_LCSmzvylfeB7_iJBneXInz4qMG_B", "DSC02732.jpg", 360, 240], ["1PTbMBs0L1iKOj4vsEDg-kJGfj9DDxPa9", "DSC02791.jpg", 360, 540], ["1VcyCbNex8voUzzIPrATsPPkGPJSYU1Hg", "DSC02298.jpg", 360, 240], ["1_KQJAuSQc58VEdZkem6b1wbJ3qyOtaHd", "DSC03340.jpg", 360, 240], ["1ncTQ04MxSRR_i5UtIj9iD_eWqonJMw7_", "DSC02123.jpg", 360, 240], ["1gOLtHLaTQEKMEC6SE_a7xr3S7f3xDWvA", "DSC02937.jpg", 360, 540], ["1ov2VPZOFsvrwD78dWBi6Gp3UCRuWe4bc", "DSC02015.jpg", 360, 540], ["1gWpNHDHm4FKyVoKMEkB6-XQAWgJWnzcW", "DSC03564.jpg", 360, 540], ["1Y3Qe5dvfD4mNKwjFzCOeYv2f3bKuFs7D", "DSC02539.jpg", 360, 540], ["13Q_mcQvoYiW0_5e9ifZjT4Q0nv-VEFWP", "DSC02171.jpg", 360, 540], ["1g7DWfijaYk5dyFFkqYXqj9oDL4kyUV7f", "DSC02033.jpg", 360, 540], ["1c49dmQDef8FESdMYniuHiouU3iJcD9tD", "DSC03302.jpg", 360, 240], ["1MTt919zUWNfA6-ce6j24Hmly_ZrJnZCb", "DSC02360.jpg", 360, 540], ["10NQl0CX9hnObtZPi5-r0lPEFiGIPWWDx", "DSC03110.jpg", 360, 240], ["1hUCvrVeqvwKxjJEZoxR6wh0eYAUgBQiz", "DSC03550.jpg", 360, 540], ["1J7QsIw78fdZgj2RMuDJABGM_S3PbC68q", "DSC02083.jpg", 360, 540], ["1jZwN5KEYaqylm6aoDO59rHOmLiBDfcO2", "DSC03388.jpg", 360, 540], ["1-Lr5hlFYOi4DEd-7UMUREfWJ00GId2nx", "DSC02883.jpg", 360, 240], ["1IKIlYlkJDyeAH2_kSR8o22_G3K6SREZI", "DSC02271.jpg", 360, 540], ["1okTUbxu8g6_oVymqTsk3ZlUNQnnEi3As", "DSC02058.jpg", 360, 240], ["1UdtexsyCiqXrW9OW_QBlLlKByxtKmsji", "DSC03200.jpg", 360, 240], ["1MVX1Q0MVsIeHaZ2RProzDN9MaClXprTb", "DSC02219.jpg", 360, 240], ["1BYVXwPrr5W4-bf3AU107tTG5KVumNsa4", "DSC02764.jpg", 360, 540], ["15d2ygkM77aRChX2cDR8hb2tCYzY9Djo1", "DSC03394.jpg", 360, 540], ["1sIaJm9VDfuHIXaJaGMNnuZH4lJxBTKDp", "DSC02019.jpg", 360, 540], ["1HHZOwGy_skHHE8FCZy7Tz8kqSWtbvqxF", "DSC02021.jpg", 360, 540], ["1OWgtcTL2FLubBMJ1ZoUUOGAHQI9jkKEp", "DSC02021 (1).jpg", 360, 540], ["1pJnqCD0GzB3Pk73sTeD0L_yhc9zx5TqS", "DSC02023.jpg", 360, 540], ["1AEzTJMuuQPeuXyTYnGPl2xgkeJIlFKMR", "DSC02024.jpg", 360, 540], ["1jlPBqBfLZCzMdlmhdOcl-uq_ldydDOEG", "DSC02024.jpg", 360, 540], ["1QVcePpYdHpFgcL3BsEvOlud_HWc6tZz1", "DSC02025.jpg", 360, 540], ["1LQpqzJxyYlzQOKhoaFPsXlXCM68OWh83", "DSC02026.jpg", 360, 540], ["1HvNcGHglwvADjgURFkQ6fiYaRwfBwhcZ", "DSC02027.jpg", 360, 540], ["1SpRcUD_LF_RUl6Om6dIZlGK_7428DKjO", "DSC02027.jpg", 360, 540], ["1pQO1tVbyYhLsY9F5bI2hpYXixg8dTkD_", "DSC02029.jpg", 360, 540], ["1v4OmWiJSCfOQXsy9zudSdLpar0vRUIE_", "DSC02030.jpg", 360, 240], ["1GuQOY2nqtbdF4SZUaD5UktGeW25XrtVx", "DSC02034.jpg", 360, 540], ["15t2QOeJH79P22955srbrB8_R4loTF3Jk", "DSC02036.jpg", 360, 540], ["1Ee1Nckbe8ZlqUl40S7d0U30ooG9fOb6k", "DSC02038.jpg", 360, 540], ["1CIVdlAfAo66qeSe_XtEjZlVYBT-lRU2y", "DSC02040.jpg", 360, 540], ["1n68FjoS2q6q7VL3zqeQLQ1Ee83BNuvU2", "DSC02042.jpg", 360, 540], ["1zzn7nVvCswmq5kog-jRvWnDiWw-x7J-8", "DSC02044.jpg", 360, 240], ["18oG9xti00Ig5rfTHMdLKpD_Yx9oMKf8j", "DSC02047.jpg", 360, 540], ["1_lBsByTioSnPa-7c3d1AX4LS1XKsY5_L", "DSC02047.jpg", 360, 540], ["1EK9B6-1P1cbqj5Nle1G9S4Ins7BGQ4bv", "DSC02048.jpg", 360, 540], ["18LYCBgwZWgRaNRrcfd_jb2gfyecs_5Kl", "DSC02049.jpg", 360, 540], ["13xMF5iJZ3PS-BDkxUXr-C8FKrUf8uflc", "DSC02051.jpg", 360, 240], ["16qU2VaqZWjc_86tpwj_7_1zdeu2z2-V6", "DSC02052.jpg", 360, 240], ["1Cq7cYXVCkpZyTTSWnga3VldAhVoebor0", "DSC02056.jpg", 360, 240], ["1ZArSgOqcsqm0Fm1X-7RbLNNOnOixmhy6", "DSC02059.jpg", 360, 540], ["1_YxGzRSGHkA8fWcTO4qkPLACLyThO_oM", "DSC02062.jpg", 360, 540], ["1h0x-IANWU1xnl-yRQRAtPoctaFFqfnDO", "DSC02064.jpg", 360, 540], ["1gH9YySjokyramybhl56ZtpDdmNLwwlRh", "DSC02067.jpg", 360, 540], ["1_NeItXsWOi0IvaKBnqO-qLluivjJnMkM", "DSC02069.jpg", 360, 540], ["18bMz9NxPvwx20OEge8FFaJUQz4_uWZeL", "DSC02071.jpg", 360, 540], ["1ouxwMmLjWDiU7xxK-1vJ97XaQ5CW31Op", "DSC02071.jpg", 360, 540], ["1Qa3XsoY3SIysBlgkpi4BaVcMiy6-hLID", "DSC02073.jpg", 360, 540], ["1uxE1BjuTgyhPcVrvleXOej1Q4sIsnNuA", "DSC02075.jpg", 360, 540], ["14RwkAbiApV7IIT-6HrUuCzDJunQKLKwL", "DSC02512.jpg", 360, 240], ["1YDiXpKCGTX_02mbLe5LvOMRtFgWAmhPT", "DSC02039.jpg", 360, 540], ["1z0WnKNeHr0ArNuUWBDnsjF1hdYzNFEf5", "DSC02079.jpg", 360, 540], ["1WgqN5stBp5tHqJan7K3H9QUbqd7pmsBC", "DSC02080.jpg", 360, 540], ["11LDAAR_lN8_WpiyMmjqcJLngjMSZSI6q", "DSC02082.jpg", 360, 540], ["1jpwvgDXQN9gEY6Jzwk75pfRECUML5ekD", "DSC02085.jpg", 360, 540], ["1AELZ-RQLIPx2xerdxfgH1bzpilEOpi7A", "DSC02086.jpg", 360, 540], ["1USszi9i4pbFeSm05VlgTfymYyGGGDeG5", "DSC02090.jpg", 360, 540], ["1b2rNehKzOQ3h8pakUcZT0_Ehoja_SPXx", "DSC02092.jpg", 360, 540], ["1TbsXPF5XEXzgMSxv4PFK6yCHAv7dS7Cw", "DSC02093.jpg", 360, 240], ["1uuiBfDh8-iuQntD3kQrf6Wk2iGPaXcAE", "DSC02094.jpg", 360, 540], ["1RcveWnIZJHgXqW6bPB8GEL7qDEE7B4Z4", "DSC02095.jpg", 360, 240], ["1pSC0T2kbEvST_PBFIex0vV9boc8MR7I1", "DSC02100.jpg", 360, 240], ["1Vjr0Atp0-LjwYQ_Tl6JAlMBsLJzro-44", "DSC02103.jpg", 360, 540], ["1hWz-NJq2yotI_5XNnMnYYGBLdfpwDElj", "DSC02105.jpg", 360, 540], ["192K_NR-SZfDf08LMjI0xzuXg6AbUMNke", "DSC02111.jpg", 360, 240], ["14iU63aOzvTLUWMTGy5zs0uzaA3RGHDLE", "DSC02120.jpg", 360, 240], ["11X4uzdz8dkgT-8OHgbZCN5cZ6mVimFRZ", "DSC02124.jpg", 360, 240], ["1Apft6zHgTDBeftH68MkeEMYvDKSg53cy", "DSC02129.jpg", 360, 540], ["1s8wJu9XxCnWwa9git6LKw0ruwkXh9CrX", "DSC02130.jpg", 360, 540], ["1Mnkqsc-q-V-QuwGoDu35-8ASL_XgLvwO", "DSC02131.jpg", 360, 540], ["1R0W6VFYicr2sqADi5RRRzy1dJrHZpmQK", "DSC02136.jpg", 360, 540], ["12_5N6d-b-IRGmdgqnuG0vxhS1yrpEJjC", "DSC02145.jpg", 360, 540], ["1VuVNTgadRV3TfgOvPHdtQPH9aLo7o0EU", "DSC02147.jpg", 360, 540], ["1QksUI-L3aCfZOfxUVm2uoKc8Q3pFOwoI", "DSC02148.jpg", 360, 240], ["1y2_3JotEQeVXS801b2KKX5eWTqMqxMK_", "DSC02150.jpg", 360, 240], ["1TVFgzWJ9eGvqTrC10mph1HWdc2EvcdaQ", "DSC02154.jpg", 360, 240], ["1xedkXx5X0mHBpdirIoaRhaFqxb_4icae", "DSC02162.jpg", 360, 240], ["1R3xoPVHeWwEJfanUR4PB3d3i8Zc_35eU", "DSC02164.jpg", 360, 240], ["12LBzAOqJtuQMdFVzP6tPJEqe_OZwxana", "DSC02169.jpg", 360, 540], ["1xGZ5zx6p3RV5-tcefBVHJD8GkZnoGqwn", "DSC02177.jpg", 360, 240], ["1WR3hLApwcaumSRJd3qC3010xsDmbWxds", "DSC02178.jpg", 360, 240], ["1JJkuv2HUNuFnTp5MfJ3YHZ4axW2_U0oo", "DSC02180.jpg", 360, 240], ["1heXE32cNupBJmbzcaQBoFNQp9wRXNAXg", "DSC02180.jpg", 360, 540], ["10SrfbIRBYfF_94U_aSm9kS8n9s8uOuJb", "DSC02185.jpg", 360, 540], ["18zrtMsCw1H72AmsHXjFo8UolToJY5Jsf", "DSC02190.jpg", 360, 540], ["1GW5-Zav6EZip6M6sPpuY531xlp0yxNZQ", "DSC02677.jpg", 360, 540], ["1I35m042oR_sG991YbztMUoBoW2MbZ9QM", "DSC03390.jpg", 360, 540], ["1oBIhYX6RP-nEaFgLb57WDO2hMadaYKjo", "DSC02201.jpg", 360, 240], ["19uaeQbvoi49G8-2mpcqJ6pHCNO-w7MRg", "DSC02205.jpg", 360, 240], ["1GAwZcmmprGudcQb2NxKx7aBEyuIH0iwc", "DSC02208.jpg", 360, 540], ["1E8AcL52Z3ROBGw6P957WTAr_8k6Ypjtz", "DSC02212.jpg", 360, 540], ["1ZXFXqNjIGuR67pUQpInio9pCwORXMddy", "DSC02212.jpg", 360, 240], ["1xEDZMBnLYFawLguHAH5c2HAjDqdvY8sT", "DSC02214.jpg", 360, 240], ["1wRfSUzNU2Rg3Z86NnRo845nC9JayQwf0", "DSC02224.jpg", 360, 540], ["1g6ks9tcjp4pb2FnwqtCQHiaR9i5ieIqy", "DSC02240.jpg", 360, 540], ["1h0MccQnYdbqTqgFur1bOi8tQycpqGU0e", "DSC02248.jpg", 360, 540], ["14-Z-CT8vEZmu6pKJPuVbnVR4OMUawAii", "DSC02254.jpg", 360, 240], ["1v6EYJNVksBeeKACXxbHk7RSfSkeMIyNh", "DSC02257.jpg", 360, 240], ["1Pbu-Th9DSeCA5v7BF8VU32qE-uFqGlGB", "DSC02272.jpg", 360, 540], ["1mmNDJpUmJTB6buHfyG5THmGHJV61EJqU", "DSC02276.jpg", 360, 240], ["1xngRbQs--X4mzG7y8byFL9gqxOIkrgRE", "DSC02277.jpg", 360, 240], ["1l9o1YTjz6RF5TN4Bgm94_Bz9WFhR-Lmu", "DSC02279.jpg", 360, 240], ["1-pc_B1PXkHeuuJkmgrDgKkEULNbF1XsD", "DSC02281.jpg", 360, 540], ["1-BogBlDQX9AoUZnRnkZUKfuzrUcAOY2k", "DSC02288.jpg", 360, 240], ["12yrgPkLkZNhsKdNSHvyhW7kQUj-cN_Um", "DSC02289.jpg", 360, 240], ["18GsPKDUGycvTVNtH6jy8jH4_VEJYdNY-", "DSC02290.jpg", 360, 240], ["1Tml2gHubVXJV92Erew7o-llQ4UItmHnH", "DSC02293.jpg", 360, 240], ["1mZ55ESa4ciUcv4ce-H0sEIL4yc6ridnv", "DSC02303.jpg", 360, 240], ["1W2_pgnzHuLOlmkykl3QJOF8lGDLMkwDC", "DSC02304.jpg", 360, 240], ["16JsuSATDFLI4hHLGFnZTbqX2bPqkhzJn", "DSC02306.jpg", 360, 240], ["1BHbN3lmL8egNcEVb5X7bxkiuUDK6Alv5", "DSC02312.jpg", 360, 240], ["1ULDWm3VQEH-9hzjUZ7T9SidYUxOJtUDi", "DSC02319.jpg", 360, 240], ["1i9n9-97nsqjmu8xL1FNweUZ1m9JW6aYC", "DSC02320.jpg", 360, 540], ["13EQofuCtYdbuPY_6h09Jznm0t5ZcfUMv", "DSC02321.jpg", 360, 540], ["1D6snRybAw_XJEGMpm2cphMvwx6PH5h0S", "DSC02329.jpg", 360, 540], ["1hSr0h06loJHbslkotCTHbRxqafh0MBOy", "DSC02330.jpg", 360, 540], ["1otY4RJyTho9Gc4_vCPkZDP_SXOQXZvO9", "DSC02336.jpg", 360, 240], ["17UA4_ZcLMCv8wQ0WtAP8BxbYZRdgbaNj", "DSC02337.jpg", 360, 540], ["10mOfyhOCdBndMBy5S9ZcNsrb_vmJJB80", "DSC02338.jpg", 360, 540], ["1CIIYJVKqeIAFGX3VpSagWdS7d0lDKTB7", "DSC02352.jpg", 360, 540], ["1d873e4wZaZFEQtV8URDD_7u1k4w_hlIY", "DSC02355.jpg", 360, 240], ["1F8WV_5NcqbfIRzx8_dZFdpxlNcSXZxmv", "DSC03355.jpg", 360, 540], ["1ZlZQOKbL69rSAxbrVFqLYj2xMtMt4Jqo", "DSC02172.jpg", 360, 540], ["1BqJuceoN_2fUQccdpXjMKPs8MSLO3_Kg", "DSC02356.jpg", 360, 540], ["1TGhMffri7cWV4Bjln5fmywaxpQr8F37R", "DSC02359.jpg", 360, 540], ["1CDtJj7Lmm6vwWcHoK3lxb0DX_cjIUSX_", "DSC02361.jpg", 360, 240], ["1rBzOaW1Iddxxc9LGfRsG6WRtlHbJaaY3", "DSC02362.jpg", 360, 540], ["1PQ5FDcw_hOrX9pACWS2aAPCh_JPdwj3f", "DSC02404.jpg", 360, 540], ["1TcPpUOAWqmM6dSj-SIiDS7PlPcauVqjl", "DSC02410.jpg", 360, 540], ["1CAN-uog0_S-MqTTUDS2-ECGbzYBuS6Oe", "DSC02423.jpg", 360, 240], ["1ZdQhghhEcmYMw4m2GAmZMEIAfkiDN0-P", "DSC02433.jpg", 360, 240], ["1CGNZ-XSlU6bhGQzNr7AmmxK50RZz_R6r", "DSC02441.jpg", 360, 540], ["1U-Kh1oyh_tk2xK5MD-V_wlxozfBMDPvR", "DSC02444.jpg", 360, 540], ["1jRSSTUWhCnJgXSAabI7e57mmSKMNym1_", "DSC02497.jpg", 360, 540], ["1cdIoO3WUBZ020OtTF32P3L5eFeIwZPDU", "DSC02501.jpg", 360, 540], ["1kiOl5Q47o60s4l_y_h6DddVtnyGKS9-o", "DSC02502.jpg", 360, 540], ["1jbizzfnJ29BywN-PiHlXOO3Fy0SyQUw8", "DSC02516.jpg", 360, 240], ["1rh6GCTZkPi3Rh4IJ1NJhtni218inB5F2", "DSC02522.jpg", 360, 240], ["1gOM-xL_Kc6C7oA_Vfedx_EY9fpnSas_h", "DSC02525.jpg", 360, 240], ["1Tn8itGxVEYowMek8pIBzU-EolY-UVDlH", "DSC02535.jpg", 360, 540], ["1rD9pRtl1gNYNL4fqy11nY-pN_-z_RJkm", "DSC02569.jpg", 360, 240], ["132zb4G-d6fqmrgomnT-Uk_MoRyLK0DiO", "DSC02574.jpg", 360, 540], ["1DZ-fqKJTZhJIFAX_T988ZsLuZrF7dQD3", "DSC02583.jpg", 360, 540], ["13xzGbz7911gtSOL9XDhbnscGz_N98FE1", "DSC02589.jpg", 360, 540], ["1QosLRolArb7g8oAu5UYk4ZX2xso8xLPd", "DSC02592.jpg", 360, 540], ["1Wom91-q2Gj2XJHwver076mtuHOEclmn3", "DSC02609.jpg", 360, 240], ["1OgmESZhxmKaGpkCoEytZbFHg2BYBu8x-", "DSC02620.jpg", 360, 540], ["1DWJaNrvRdhwpjsYs9JMRNevQ5vpc0OEJ", "DSC02623.jpg", 360, 240], ["1MHvNP2_XAeVbgHMuHsrETZLDZkYzbcb0", "DSC02625.jpg", 360, 240], ["1SqHEQrqyzYBInMk-rMLtkfBFvMf0cqIx", "DSC02631.jpg", 360, 240], ["1J-cMUnOhopwIoskRPs_1pMg6zLlUG3d0", "DSC02641.jpg", 360, 540], ["1Ba_jsEwj65GuiMZZuTaoOzKYLv5HX1mf", "DSC02642.jpg", 360, 540], ["1ePTEPM2FK9-IJfQ5FsN_JEO78t3RIOsO", "DSC02647.jpg", 360, 540], ["1QX6MoA4hM4Jf3Pm4TJwcOE4NtmocYF-J", "DSC02648.jpg", 360, 540], ["1HZ7WACSBX3g7tvq0H8QpU2ASyUVXIOpC", "DSC02649.jpg", 360, 540], ["1ePoegaQMH3RFY3JGMo_WtQ7UFLiP1fZj", "DSC02656.jpg", 360, 540], ["1mi6EmahejVjJBKZx45Lo-hT1roDZvO_i", "DSC02657.jpg", 360, 540], ["1FqnlVtT9xQf1aQ-zkdz07XB-o9T0sbP7", "DSC02851.jpg", 360, 240], ["1jXLWzK8-8i_x6MZ16brhhst2LxWvAsQQ", "DSC02046.jpg", 360, 540], ["1Gigg063l3MkkvlEfcPISBDRnJhBZ9_B0", "DSC02659.jpg", 360, 540], ["1niP_nmbgkgu1q4uYeeavxncA6vXg7mCH", "DSC02660.jpg", 360, 540], ["1NYQW7M6wAjTyR--m55-2_SKdvXePJRbu", "DSC02663.jpg", 360, 540], ["1ncUCXnMOcrQkbp80Df33qDOaLhlks5hm", "DSC02664.jpg", 360, 540], ["1Yqh4FskgY64X-jQeB6OuwNHPMZRLdngm", "DSC02679.jpg", 360, 540], ["1SfGZZ4AS8bOxOsIP4lEDkZbvsg59C8-z", "DSC02681.jpg", 360, 540], ["19e90ayx_S21FsYka1RkHGGpn_Zn9tOu3", "DSC02683.jpg", 360, 540], ["1SP00hz-cl4QfC8yV4yNaYG525HUtpqYX", "DSC02685.jpg", 360, 540], ["1OW0ACuStVG1EqEQR6lvcpJ-STNRQ5HmG", "DSC02689.jpg", 360, 540], ["1dwVIGlcypa637A6qub_DJg0LIbkrd3J2", "DSC02689-2.jpg", 360, 540], ["1ndqNkA3lFbZtLY0YKmbzqoHhjkDs7wuv", "DSC02693.jpg", 360, 540], ["1zijtW8UunQjBfXzdEKeHiKh3WtXkxJYL", "DSC02694.jpg", 360, 540], ["11QVjAWAWR4Lfjdj7mg1Q_Iztipn11q2b", "DSC02696.jpg", 360, 540], ["1L66zzDg-zZo8004rT0BzGSxMwrLbB1d6", "DSC02698.jpg", 360, 540], ["10vOaIhuND7Eh2Xc4TrLgECyuyCPgq5xy", "DSC02702.jpg", 360, 540], ["1_XI4IJ3CqsHrEJ-801jPhRD_u2IevA73", "DSC02712.jpg", 360, 540], ["1NqS-5yOEIiVwgeYVeeZNPpuOKv5javT5", "DSC02723.jpg", 360, 540], ["1xTyF2qvUdyMSB7I5Xq5sv-3DByWMufnd", "DSC02727.jpg", 360, 540], ["1YjCEF3mIpCxZaIo6l44KALSxBleU5D3p", "DSC02736.jpg", 360, 540], ["17fWXMH-9pN7E6ZYeTGwNbx7Qpd8Xh2r_", "DSC02741.jpg", 360, 540], ["1r9xswU1b0JVox5bnTVp3OI9xjiaroa2Q", "DSC02746.jpg", 360, 540], ["1pQOpu1XUkErWlGNGAC8XOkrZhCfgApNg", "DSC02750.jpg", 360, 540], ["1yCP47nKoVJEzQvtV2mcl_5CQlz_Qx183", "DSC02753.jpg", 360, 540], ["1rsx4phoOeKGZU2Mq26KsD4j5JZlXwdNP", "DSC02756.jpg", 360, 540], ["1_jHFaDpB73wTFjvav5NBneBjrCNWVXqg", "DSC02760.jpg", 360, 540], ["1vqPkKnbvso057im4MlAH_yg4gSFUGNTd", "DSC02763.jpg", 360, 540], ["1GsM2GhR-QqI0CSDWMdAWDiz3qEL8BK-J", "DSC02774.jpg", 360, 540], ["1WiYodBKpvGlJ5MX05Dq1hNs61BSYuDkK", "DSC02779.jpg", 360, 540], ["1MO5gqyaOGHYB3R-M2-6Z-5YWngQMt19S", "DSC02787.jpg", 360, 540], ["1rtvkq8DBVEnJM4DnzSb4709nE2QNk2in", "DSC02794.jpg", 360, 540], ["1mLBraoplaa6TbUighI0kTILkqjjhHgk1", "DSC02797.jpg", 360, 540], ["1K2gu1JMdraHbTP5_95EoWjfxKAQF4PUq", "DSC02798.jpg", 360, 540], ["1S5yyZk0zkFMP2E_IQeCggBdvAKp5x3XM", "DSC02800.jpg", 360, 540], ["1SJ2XHFD6zNeTE0qT9PXKDlX_eyZrt2aV", "DSC02802.jpg", 360, 240], ["1HSYmgAPFbdHXbjyX9PJagaj39SPtx72E", "DSC02340.jpg", 360, 240], ["1SAyNpZoWa0ej7GtrfDEThBCdPaeTwIr0", "DSC02898.jpg", 360, 540], ["12hJ76LOBl8ZQgAsP9-7G5_qANEwxggGV", "DSC02805.jpg", 360, 240], ["1looKzr9NhXwVCctL-g9Xssf_XT2Y1pEW", "DSC02817.jpg", 360, 540], ["1-x81tWpaUTMHE-6iWt98Thf9zUo1Vjvx", "DSC02823.jpg", 360, 540], ["1fQ05ScTW5K7_a9n4bYAdNDWey3YcMEhc", "DSC02825.jpg", 360, 540], ["1tj45ugqoIpD8zrUDptbzewiFtE8xQaYb", "DSC02828.jpg", 360, 240], ["1Ug53Q8ynmaDoPnKvCdbmsSaL-3mEmLzK", "DSC02834.jpg", 360, 540], ["1KA8QaEQIa6QEp9vlLizQcO0GAjxoGxcn", "DSC02837.jpg", 360, 540], ["1cIpt1SSh8q4rdT4OKFHg8XqtjmjwXLaq", "DSC02838.jpg", 360, 540], ["1SvZ4Oe60A6c0Pz69-kwVfbwXeo0uHyPF", "DSC02841.jpg", 360, 540], ["1TigGBmGo8So8g0c5iBU-Mt4OnaRb8aoh", "DSC02846.jpg", 360, 540], ["1HNMpxWCRo76P5pbiuB2aXn8o4U72y4C8", "DSC02847.jpg", 360, 540], ["1YYqPJ9yDTxpT_XWzSNnWciT4SvA35VQB", "DSC02849.jpg", 360, 240], ["19fOjMlQpV9XvsR8aQPQZ2c7pUGgib-hh", "DSC02850.jpg", 360, 240], ["1hQ75QcfYlwhf45qOYycnx7knjR9xv21d", "DSC02854.jpg", 360, 540], ["1CP8R56NTD1kGB30R-xBLbFCMeg79iASI", "DSC02857.jpg", 360, 540], ["1JwCJOBmEkU-p8vr_vMAvDJxrTQgcS0Lh", "DSC02860.jpg", 360, 240], ["1QXv1JrYSQM9ACl71KS8upjWkeRYZQjm6", "DSC02864.jpg", 360, 240], ["1eHSQ5N4jnhkJMfXaWIKhU_AANBTMzt90", "DSC02866.jpg", 360, 240], ["1b6bhht2k5RjsmI5WXX0pTuARZIJzk6q1", "DSC02870.jpg", 360, 540], ["1oM78XK14ViV-QHrVPYlo0nRtqR6qxBCB", "DSC02872.jpg", 360, 240], ["1erlMm_ayQCJnHnRKAjBxbyuu7uuK2Sob", "DSC02876.jpg", 360, 540], ["1cmWFluj21VJlDN1qcdUWR3aHS0Hmt0Jm", "DSC02877.jpg", 360, 540], ["1F5iZ7lMc_EQs4xWfi9I2YTyIR2XYNNBO", "DSC02878.jpg", 360, 540], ["12eYK2SJTA3Ju0K-nAcLY_6JFoaMwH_ua", "DSC02880.jpg", 360, 540], ["1zcWkvvbFbQDKFWcRo5N6WjewjDpUkeQR", "DSC02888.jpg", 360, 540], ["1MstdjSmugJZc50MVW7xYfuiiNRQbjjO3", "DSC02890.jpg", 360, 540], ["1-eKVKWKi6-KEljjL7_xvh7_BY0gH79jE", "DSC02895.jpg", 360, 540], ["1O0Univj-c32uGeInVgtq82QBf8heOZud", "DSC02901.jpg", 360, 540], ["1tyDCWW1KIQXD3IBmwg8VSGHoHyZPUg-m", "DSC02902.jpg", 360, 540], ["1yrQxadnTln5SygpstQQLJaKvSstYy0kS", "DSC02904.jpg", 360, 540], ["1DX2E4vhIGws-A52ll63p9CvQ6YiAZ4A2", "DSC02905.jpg", 360, 540], ["1pLatorqr4hZn_9mK-Nz2Y7oRj3dkv100", "DSC02908.jpg", 360, 540], ["1jFje0GhFRwmWRNIAMWR6b1L1--pWlmeI", "DSC02909.jpg", 360, 540], ["1RU6yZahnJ8PnErw_vQ8hRe9x5JQU0Mmw", "DSC02912.jpg", 360, 540], ["1dqlgm8F9Z1qQvORmr1EUNRwhj0QrRD7o", "DSC02151.jpg", 360, 240], ["1bbmfTTbAMX16YURVHSIL7miFG0vhYxom", "DSC02952.jpg", 360, 240], ["1sIkxzPvRM5RY6yPOCiOSEB2VcofBYhdW", "DSC02918.jpg", 360, 540], ["1wXUQnVbabrhuQciF1yWNhYQguPk8KH1C", "DSC02919.jpg", 360, 540], ["1-eN-RdMvCH9n68rvZsMET5n0rlTnxdx-", "DSC02926.jpg", 360, 540], ["1HntRAFkfU7-wpRLWQxLlbPiBkLCMtSbX", "DSC02934.jpg", 360, 540], ["1O_iHb9M-r0sOiyddPirTnvjltT-LeJth", "DSC02946.jpg", 360, 540], ["1VbI5wOSDMX9EvtRC-ZxYmftpLQVimHTb", "DSC02948.jpg", 360, 540], ["1FIgRzvnSWn18kZcOz_5hv3wf8fBP6P2v", "DSC02949.jpg", 360, 540], ["1BcOWv1Aydu-JUILT9UD0bLyJCy_QjZZi", "DSC02954.jpg", 360, 540], ["1Y_-arEWrDwUngL6i_gHOVoVgdzYjsJLO", "DSC02956.jpg", 360, 540], ["1l6ETJXT5_5_wiHg_WOAUB1239lvwBZuq", "DSC02958.jpg", 360, 540], ["1ZcS0O8j5MTDs9O0QacZawdtvrSdJ3RGU", "DSC02964.jpg", 360, 240], ["11eNMbyZshpHzNSk-LTfzi53YlcU46YXd", "DSC02965.jpg", 360, 540], ["1j0uz6ooUYsRQP8aejv51MIf6ruxari6a", "DSC02969.jpg", 360, 240], ["1byQ7mfBZ0V-RmEKFEGgNDHLmbkE6pobW", "DSC02975.jpg", 360, 240], ["1YjOO0BgsltiP56knM0wfMMSgVmXGtW51", "DSC03053.jpg", 360, 240], ["1ZgrpLhitU_0cNXkLfqMsDH0lEScNDYno", "DSC03054.jpg", 360, 240], ["1b5CBO0j4nIPuAS7HDcFJiqcpmEnSRYk0", "DSC03055.jpg", 360, 540], ["1o3XmlXC0tsg3jjAuf0DoUF7-rwFhRE6W", "DSC03060.jpg", 360, 540], ["10zLhtlPWw9YCN0M4St1HJ_Kx1AdIhr4C", "DSC03061.jpg", 360, 540], ["1U1lgk5wPwbzdzVL11IoTyKRuJn0n0NrD", "DSC03070.jpg", 360, 540], ["1G4NcspIEhqX8C3W-ZDMTwyFaJY1-UJUa", "DSC03073.jpg", 360, 540], ["1rKnj8Yd-5VlHY90wrObjNM-4i9BwJuTb", "DSC03077.jpg", 360, 540], ["10ruqARm3dy5thGVKD-VkcrOB8clGSNyP", "DSC03079.jpg", 360, 540], ["1bFVbbTz93ZdQzuS0fGoAvEqyOOdCq9E9", "DSC03085.jpg", 360, 540], ["1VCaF4Jv71CGBSbapgY4EmedhrDa31YXn", "DSC03090.jpg", 360, 540], ["12WJgsqYHRf-0D-_5u1WJCCcq9EBC4FK7", "DSC03091.jpg", 360, 540], ["1LnYyX1wndJnV8sKStK4gYv5rJqbtaNGG", "DSC03097.jpg", 360, 540], ["1FYveu8whUwvPUdP52NI6PSCW1S1P1yJ5", "DSC03099.jpg", 360, 540], ["1sMRmLPajBGg11JyjwIj_CBNvpOvp2npW", "DSC03109.jpg", 360, 240], ["1u7LfPlzaoMnYQnkoQRCGyOVoUPtzNjfl", "DSC03118.jpg", 360, 240], ["1XFKpFpyBFB2kY5aYbrp0haKW4iIN1OAD", "DSC03127.jpg", 360, 240], ["1xwnHMKvBBJECkhRwqkKza_DJMTf-QHpU", "DSC03132.jpg", 360, 240], ["1kdFuExRKxf3LablMIJjfTRRpt7ek6vhj", "DSC03137.jpg", 360, 240], ["1zAmqzEmIAST3wcTAAN6U48ssmROEnrB2", "DSC03141.jpg", 360, 240], ["1duXB_y-Y5cGzGsv_0zzEBSz47Yr53946", "DSC02906.jpg", 360, 540], ["1lqAWVSL5QHn8WS0OG7e5FygGGCSyoIP4", "DSC02188.jpg", 360, 240], ["1u7Mz-bm85iQ367j5hi27UBaMPH2trwiW", "DSC03151.jpg", 360, 540], ["1I102vhvfWQ0GHiunE8VQOP93sVTPBkyB", "DSC03155.jpg", 360, 540], ["1sI-7LSeYSsCQQXpWvmSF0LlOjpFm99XU", "DSC03158.jpg", 360, 240], ["15n8TGQbvfXzbqCpNMHYfYfko47GqgyaU", "DSC03167.jpg", 360, 240], ["1lpreUpxji04Ap0NZdi0B_Ova_yTyo9lj", "DSC03169.jpg", 360, 240], ["1y4xjRo0d1cf-V7o4S7bagWN_6GuwnCR_", "DSC03176.jpg", 360, 240], ["1_Xl7H-fpmU8YQseiIcyEADKjBVEoJf7B", "DSC03182.jpg", 360, 540], ["1A86TsJpEadaWRnzgLeQiWMuYoadMbEk5", "DSC03184.jpg", 360, 540], ["1_gz-K9wUXXbo8jdtXK-vI-9cH_cxsv7P", "DSC03188.jpg", 360, 540], ["11Y_nNVjJ0YVi9hXuZcJ6sME2r0FDVBoc", "DSC03192.jpg", 360, 240], ["1qSCiA7FYdQnaEVce9gPClTUjZWMokaDN", "DSC03195.jpg", 360, 540], ["1xztI68Vtzic253SVt1F5dnBuwMb2xudQ", "DSC03202.jpg", 360, 240], ["1tFIdPyiy0zS_ZI8pWPUP-YrsjEzpShsa", "DSC03208.jpg", 360, 540], ["1wIA81UykDGPo5Gi8y1S3d4UCmzy7gRb0", "DSC03209.jpg", 360, 540], ["1M77OLDtYheI0XTv31k9KaZHOSagdvmlI", "DSC03225.jpg", 360, 540], ["1LevCFUao-R66ace73gn5GioTQNCCrc8A", "DSC03274.jpg", 360, 540], ["12ToUE_mhpnLk9vTjmUEZYYLIHI07OgEh", "DSC03286.jpg", 360, 540], ["1cRjFPGxmFCk7REt78XwPyp_zrUBYzyXk", "DSC03290.jpg", 360, 240], ["135iCfr0CtUkJQEQ2-oVXIyz56LED73Zc", "DSC03300.jpg", 360, 240], ["1jeScI6itFMtx_i3v5uMwzPsP97nao7um", "DSC03313.jpg", 360, 540], ["1r3Di3Y6h6g4HLRvpgUAFhjtd4h_Zu0vr", "DSC03342.jpg", 360, 240], ["1f8NytoajIA5KMqBOHrnh-l3OgPMv5ait", "DSC03343.jpg", 360, 240], ["1lbDnqM8EUmjcu-reLT4LoTBH5kM5HEQ5", "DSC03347.jpg", 360, 540], ["1zxEjExjfo9wheDAKLa_AVn867vP5M9Cx", "DSC03353.jpg", 360, 540], ["1goD5pZczuvAcA4BxeXv3Bn9nLa_RSDqc", "DSC03358.jpg", 360, 540], ["1XBXjQtJz4P9XPXgj3LNejROT5AFrdiim", "DSC03361.jpg", 360, 540], ["1cBVqjS1WYhScA1VWGxJvsP4ZYaTk8SGC", "DSC03368.jpg", 360, 540], ["1ZoUB-OAexKkamWOdsLq3iIrOhub1OI7U", "DSC03371.jpg", 360, 540], ["1U_13fSFCCCp8Upg4pIf6GPJDiRtNsY0J", "DSC03372.jpg", 360, 540], ["13Ye-DQ-4rF4EwbOgueEBMKqhe_6TAhIb", "DSC03404.jpg", 360, 540], ["1ziZYnNAjAScp8s6TPHjbYVaS8Hb2ANnK", "DSC03421.jpg", 360, 540], ["1SnLU-RElIez_zP9IV9Zu8bktC-3iY1nq", "DSC03437.jpg", 360, 540], ["1_kPJ8DyNW-LKY9wG1T7w7v3nC2-1TUc4", "DSC03443.jpg", 360, 540], ["1tERoHIq7MVTUVHGG0_wosZCMfSoJaf_H", "DSC03458.jpg", 360, 540], ["1D4Bm-wBRfT_tGrwkGgzR1O2hulAposIW", "DSC03430.jpg", 360, 540], ["1fiR7XzrURYCytE2tukE8VpDL6pTBE44c", "DSC03102.jpg", 360, 540], ["1Aw0wv5Z4DOzQzfkufsK-_2D_FyTpBXKW", "DSC03460.jpg", 360, 540], ["1BUR1LU5e4dDrG0F2ttBEXxQEvW7f5_NX", "DSC03463.jpg", 360, 540], ["1CB6NE9SSfZJ23tVaUE4JWU4SAkzga7qw", "DSC03505.jpg", 360, 540], ["1BGYZBNtG_MB79ShZNlQ41-TAcNW2Iyh4", "DSC03509.jpg", 360, 540], ["1tPcDwXMiLLKhE4Con88cNYcHuVtOLCSS", "DSC03517.jpg", 360, 540], ["1FGsCPn_IkkkDAI_Jdk9jYx2Ud05bezQX", "DSC03521.jpg", 360, 540], ["1zGLl0fG1MBoQjPbrrcSk5__1WWJezkIz", "DSC03523.jpg", 360, 540], ["1ZaBZTDlBjuTkVDw-cEfU5QUvNBBtAXd5", "DSC03527.jpg", 360, 540], ["1YkOcrHwFlDb18BqLNe-I6DaeSrbYDene", "DSC03539.jpg", 360, 540], ["1wucl0ET300EdsNhKhYlOTrXJthuPnTVd", "DSC03567.jpg", 360, 240], ["1ebhpWaCyBcc-CBTvdu5bsfVCPhBLhMmN", "DSC03582.jpg", 360, 240], ["1kPZTCitfZJ3tKMX5VA97dcnidxUPjNJz", "DSC03600.jpg", 360, 240], ["1YGwXcnj-Cyy8XR2EOG4IVhgo7Ah_i8gQ", "DSC03614.jpg", 360, 540], ["1eL1dpXY1e_MSVSrZq-ZGohCQbWbP9neg", "DSC03617.jpg", 360, 540], ["17oRYnQuh3mNsZATz_D2KtDCApOr27Cz6", "DSC03624.jpg", 360, 540], ["1AKPZbQcgpXzTr0zVKbZbNKCLfkamW6g8", "DSC03626.jpg", 360, 540], ["1cKGPN76_dz4pYBspCL3gQ12K3ZCPRdbG", "DSC03643.jpg", 360, 540], ["1OQwyxp7VtMZ05_f9fwZzYDng07jC28Hd", "DSC03646.jpg", 360, 240], ["1kjVsOuTmqMosReTFvu8per7s50l67wvF", "DSC03649.jpg", 360, 240], ["1ElTeUddEY6THiruDdtsTWYZdnOMFdEvH", "DSC03651.jpg", 360, 240], ["1J_D19o1GrRQg2XjUnhJBJu8zLsyoGDAs", "DSC03653.jpg", 360, 240], ["14D6YBs2StzTQmC6clY2aF9UT-0ad_5_m", "DSC03662.jpg", 360, 240], ["1gTT09UYbvNKwQ9XTOrX76pX1keHiEzBI", "DSC03672.jpg", 360, 240], ["1qa9cUnWuNa87rtShl7ppPcTIe84K77cJ", "DSC03674.jpg", 360, 240], ["1RaynVKXgyMF7KtKNcM5lqR4KmtC39XB7", "DSC03687.jpg", 360, 240], ["11FRRsotmwdlhEkNgCRkXD70EDdjH3vcr", "DSC03689.jpg", 360, 240], ["1W0swfnyaFdkye8bUbrYb-nkwuR8XNrnX", "DSC03694.jpg", 360, 240], ["1PqQGCY4E5CB6GEvRAa77_ivKRbtQhnli", "DSC03695.jpg", 360, 240], ["1RuIph9f3Y5zaBORLhp8oJGr20j2dCU4E", "DSC03697.jpg", 360, 240], ["1kQ2w4UG9g5msyNeo5wk5gBWbZfpdurXc", "DSC03711.jpg", 360, 240], ["1duEBg47F8IQlygJOqaW6KY3GuKudJmNy", "DSC03712.jpg", 360, 240], ["197OeycRh-T052bxDjPTr6kqX9Wuy7uVR", "DSC03722.jpg", 360, 240], ["1PyzB9D1AAflYP39IoYI9CObf3vWxno-w", "DSC03723.jpg", 360, 240], ["18HV0B0yjQgkDOZsQt2Srwi99VtmMaqbR", "DSC03725.jpg", 360, 240], ["1Stvr1YNGaEfbr42rRREdJC54Z2eRizsD", "DSC03749.jpg", 360, 240], ["1UAG4qNBTz4XVl4HFP8lUR6Cthv8jclbG", "DSC03769.jpg", 360, 240], ["1uyrH03CD3geZ1k4jwf_YzZIWsBJM6dpH", "DSC02362-2.jpg", 360, 540], ["1dzGy7yOjZ51zv0qzYq2TUx-16zWbzDbz", "DSC02415.jpg", 360, 240], ["1biHVGbyABzdlzcYsY9m7mjB1Mr_OiJBz", "DSC02839.jpg", 360, 540], ["1KeS3AfbO08MWdIqWTDROUXHABwtyqSC0", "DSC02284.jpg", 360, 540], ["1_bkzeobaiepEUQqNypdCazAgL9-h5NA9", "DSC02690.jpg", 360, 540], ["1sKTjWBd0j-gTiPztzgqEaPOyiU9u8qXg", "DSC02273.jpg", 360, 240], ["10kXGj5kMmacec-b9YRLfMlRCob9wSK-k", "DSC02134.jpg", 360, 240], ["1vk8LXyiFGsToJauJ332PZ6QEKTZgkGHX", "DSC03012.jpg", 360, 240], ["1-v1mzJvX_eOlher9yThBPuV9Ft94JV2A", "DSC03351.jpg", 360, 540], ["16MdGOQ4SY3RMsPuhgeXFTVZRXC0Orjdy", "DSC03177.jpg", 360, 240], ["1scDAo3Xx_k6upkow7_sDLdQHr2fa9Olb", "DSC03365.jpg", 360, 540], ["1R1L8NHAyXX5A8M6mDRI5uHWpkuOUwpfx", "DSC02821.jpg", 360, 540], ["1FejhJMV62ixHPavM126R5uTSdJfjoDXU", "DSC02793.jpg", 360, 540], ["1H6ftU8m1W7Wzl5BCkH6_SA2D7RGXiI9B", "DSC03402.jpg", 360, 540], ["1EhFnOTno8KFBZ7A24m6ZAPpbWeqH_oC7", "DSC02606.jpg", 360, 240], ["1tmw8B3LAXp2Lfh-bpa92xZ81RjOZB0cd", "DSC02966.jpg", 360, 240], ["1f3Rc2zqgpc7u7-pfGiVGcL-wPW0N2vo6", "DSC02929.jpg", 360, 540], ["1YHgwMz_n97SoF7iCEzIgl4BeQqe0iNXR", "DSC02335.jpg", 360, 240], ["1UDrEim1NwrMqW4AfYDwg1iYyFgB_vMH8", "DSC03548.jpg", 360, 540], ["1FZhfeTeAagISseZqULBmz_ruCRYRqwlH", "DSC02309.jpg", 360, 240], ["1g_Ns4G5TENqPAo-i8UimsplCUtNnEVN4", "DSC02831.jpg", 360, 240], ["1NPU-lGQrC6yVnzd4Jbwghhcpl02HQxU4", "DSC02306.jpg", 360, 240], ["1-FLjab2Znywj61RpEJXvAP-1cTwqGoqg", "DSC02891.jpg", 360, 540], ["10744r99n63cE3GGTwbt_lR7n53X-RLGp", "DSC03598.jpg", 360, 240], ["1swqwMmi28ipWHbWdSPYEB93JOGJN6GoC", "DSC03761.jpg", 360, 240], ["1PKToiutkaGze-5ylKOirQbBtEH0TckZo", "DSC03721.jpg", 360, 240], ["11hJC44wDcXv5Id_3dBkAZYUemOFbORel", "DSC02354.jpg", 360, 240], ["1tV5VATIneLZ8OCaie166JspMKx5g5o4X", "DSC03774.jpg", 360, 240]]</script>
+  <script>
+    const photos = JSON.parse(document.querySelector('#photos-data').textContent);
+    const gallery = document.querySelector('.gallery');
+    const viewer = document.querySelector('.viewer');
+    const frame = viewer.querySelector('.frame');
+    const name = viewer.querySelector('.viewer-name');
+    const position = viewer.querySelector('.position');
+    const original = viewer.querySelector('.original');
+    const previous = viewer.querySelector('#previous');
+    const next = viewer.querySelector('#next');
+    let current = 0;
+
+    const thumbnail = (id, width) => `https://drive.google.com/thumbnail?id=${id}&sz=w${width}`;
+    const download = id => `https://drive.usercontent.google.com/download?id=${id}&export=download`;
+
+    document.querySelector('#photo-count').textContent = `${photos.length} fotos`;
+
+    function makeCard([id, filename, width, height], index) {
+      const item = document.createElement('li');
+      const button = document.createElement('button');
+      const image = document.createElement('img');
+      const fallback = document.createElement('span');
+      const file = document.createElement('a');
+      const icon = document.createElement('span');
+
+      item.className = 'tile';
+      item.style.aspectRatio = `${width} / ${height}`;
+      button.type = 'button';
+      button.className = 'photo';
+      button.setAttribute('aria-label', `Ampliar foto ${index + 1}, ${filename}`);
+      fallback.className = 'photo-fallback';
+      fallback.textContent = `${filename} · Abrir foto`;
+      fallback.hidden = true;
+
+      image.alt = '';
+      image.width = width;
+      image.height = height;
+      image.decoding = 'async';
+      image.loading = index < 8 ? 'eager' : 'lazy';
+      image.addEventListener('error', () => {
+        image.hidden = true;
+        fallback.hidden = false;
+      }, { once: true });
+      image.src = thumbnail(id, 640);
+
+      button.addEventListener('click', () => {
+        showPhoto(index);
+        viewer.showModal();
+      });
+      file.className = 'tile-download';
+      file.href = download(id);
+      file.download = filename;
+      file.title = 'Baixar original';
+      file.setAttribute('aria-label', `Baixar original de ${filename}, foto ${index + 1}`);
+      icon.className = 'download-icon';
+      icon.setAttribute('aria-hidden', 'true');
+      icon.textContent = '↓';
+      file.append(icon);
+      button.append(fallback, image);
+      item.append(button, file);
+      return item;
+    }
+
+    function placeTiles() {
+      const styles = getComputedStyle(gallery);
+      const columnCount = Number(styles.getPropertyValue('--columns'));
+      const gap = parseFloat(styles.columnGap);
+      const width = (gallery.clientWidth - gap * (columnCount - 1)) / columnCount;
+      if (width <= 0 || width === lastTileWidth) return;
+      lastTileWidth = width;
+      const bottoms = Array(columnCount).fill(0);
+      tiles.forEach((tile, index) => {
+        const column = bottoms.indexOf(Math.min(...bottoms));
+        const [, , photoWidth, photoHeight] = photos[index];
+        tile.style.width = `${width}px`;
+        tile.style.left = `${column * (width + gap)}px`;
+        tile.style.top = `${bottoms[column]}px`;
+        bottoms[column] += width * photoHeight / photoWidth + gap;
+      });
+      gallery.style.height = `${Math.max(...bottoms) - gap}px`;
+    }
+
+    function showPhoto(index) {
+      current = index;
+      const [id, filename] = photos[index];
+      const image = document.createElement('img');
+      const error = document.createElement('p');
+      image.alt = `Foto ${index + 1} da entrega, ${filename}`;
+      error.textContent = 'Prévia indisponível. Use o link para baixar o original.';
+      error.hidden = true;
+      image.addEventListener('error', () => {
+        image.hidden = true;
+        error.hidden = false;
+      }, { once: true });
+      frame.replaceChildren(image, error);
+      name.textContent = filename;
+      position.textContent = `${index + 1} de ${photos.length}`;
+      original.href = download(id);
+      original.download = filename;
+      previous.disabled = index === 0;
+      next.disabled = index === photos.length - 1;
+      image.src = thumbnail(id, 1600);
+    }
+
+    function step(direction) {
+      const index = current + direction;
+      if (index >= 0 && index < photos.length) showPhoto(index);
+    }
+
+    const tiles = photos.map(makeCard);
+    let lastTileWidth = 0;
+    gallery.replaceChildren(...tiles);
+    placeTiles();
+    new ResizeObserver(placeTiles).observe(gallery);
+    previous.addEventListener('click', () => step(-1));
+    next.addEventListener('click', () => step(1));
+    viewer.addEventListener('click', event => {
+      if (event.target === viewer) viewer.close();
+    });
+    viewer.addEventListener('keydown', event => {
+      if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+        event.preventDefault();
+        step(event.key === 'ArrowLeft' ? -1 : 1);
+      }
+    });
+  </script>
+</body>
+</html>
