@@ -218,3 +218,29 @@ dialog::backdrop{background:#0b1f37cb;backdrop-filter:blur(4px)}
 .slide-thumbnail:hover{background:#eff5fa}
 @media(max-width:740px){.slide-workspace{grid-template-columns:1fr}.slide-art-background{width:240px}.slide-art-container{padding:17px}.slide-instructions{padding:20px}.slide-thumbnail{flex-basis:72px}}
 @media(max-width:490px){.slide-section-head{display:block}.slides-total{display:inline-block;margin-top:12px}.slide-instructions h4{font-size:21px}.slide-speaking p{font-size:12px}.slide-navigation button{font-size:11px}.slide-art-background{width:235px}.slide-thumbnails{gap:6px}}
+
+
+/* Slides finais horizontais 16:9, 1920x1080: destaque na arte real, não em mockups. */
+.slide-workspace{grid-template-columns:minmax(0,1.35fr) minmax(0,1fr)}
+.slide-art-container{padding:18px 15px 10px}
+.slide-art-background{width:100%;max-width:570px;aspect-ratio:16/9}
+.slide-art-background img{aspect-ratio:16/9;object-fit:contain}
+.slide-thumbnails{gap:10px;padding-top:15px}
+.slide-thumbnail{flex:0 0 132px;padding:5px}
+.slide-thumbnail img{aspect-ratio:16/9;object-fit:cover}
+.slide-instructions{padding:22px}
+.scene-body{grid-template-columns:minmax(220px,1fr) minmax(0,1.05fr)}
+.whiteboard-sample.scene-actual{padding:0;max-width:none;min-height:0;border:1px solid #cbd9e7;transform:none;box-shadow:0 3px 10px #132c4912;overflow:hidden}
+.whiteboard-sample.scene-actual img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
+@media(max-width:740px){
+.slide-workspace{grid-template-columns:1fr}
+.slide-art-container{padding:14px}
+.slide-art-background{width:100%;max-width:610px}
+.slide-instructions{padding:18px}
+.slide-thumbnail{flex-basis:105px}
+}
+@media(max-width:490px){
+.slide-art-background{width:100%}
+.slide-thumbnail{flex-basis:103px}
+.scene-body{grid-template-columns:1fr}
+}
