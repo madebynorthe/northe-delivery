@@ -1,313 +1,318 @@
-(function () {
-  'use strict';
+(() => {
+  "use strict";
 
-  var scripts = []
-    .concat(window.LAVAREDA_DECEMBER || [])
-    .concat(window.LAVAREDA_JANUARY || []);
+  const scripts = [...(window.LAVAREDA_DECEMBER || []), ...(window.LAVAREDA_JANUARY || [])];
   if (!scripts.length) return;
 
-  var $ = function (selector) { return document.querySelector(selector); };
-  var $$ = function (selector) { return Array.prototype.slice.call(document.querySelectorAll(selector)); };
-  var escapeHtml = function (str) {
-    return String(str == null ? '' : str).replace(/[&<>"']/g, function (s) {
-      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[s];
-    });
+  const modelData = {
+    palestrinha: {
+      name: "Palestrinha",
+      detail: "O advogado explica o assunto em etapas, ao lado de slides. Cada quadro apresenta uma nova informação.",
+      direction: "Falar diretamente para a câmera, apontando para o slide quando necessário. Vamos utilizar os desenhos de quadro branco previstos no roteiro.",
+      drive: "https://drive.google.com/file/d/1nGe7W7t0sLoLbNI863F6PCoPkN3phIQP/view?usp=drivesdk",
+      embed: "https://drive.google.com/file/d/1nGe7W7t0sLoLbNI863F6PCoPkN3phIQP/preview"
+    },
+    contraste: {
+      name: "Contraste",
+      detail: "Um único apresentador compara duas situações, identificadas na tela por textos, imagens ou elementos gráficos.",
+      direction: "A fala apresenta cada situação e a edição destaca as diferenças. Não é necessário gravar com duas pessoas.",
+      drive: "https://drive.google.com/file/d/14E7HH_PdHTSvKS8hNZ1YgKhziyk4W45a/view?usp=drivesdk",
+      embed: "https://drive.google.com/file/d/14E7HH_PdHTSvKS8hNZ1YgKhziyk4W45a/preview"
+    },
+    pergunta: {
+      name: "Pergunta e resposta",
+      detail: "Uma pergunta aparece em destaque. O advogado responde de forma objetiva para a câmera.",
+      direction: "Falar como se estivesse respondendo uma dúvida de alguém. A pergunta pode aparecer em texto ou vir de uma pessoa fora do quadro.",
+      drive: "https://drive.google.com/file/d/1Ij0vU4Sy4L99Qyd2CnM95nI-Nz9yW0X4/view?usp=drivesdk",
+      embed: "https://drive.google.com/file/d/1Ij0vU4Sy4L99Qyd2CnM95nI-Nz9yW0X4/preview"
+    },
+    conversa: {
+      name: "Conversa",
+      detail: "Duas pessoas no mesmo ambiente. Uma pergunta, a outra responde e a conversa avança naturalmente.",
+      direction: "Gravar os dois participantes no mesmo cenário, com réplicas curtas e cortes que acompanhem o diálogo.",
+      drive: "https://drive.google.com/file/d/1TRBWfhcIxivAtDUeVUPScpq1TMpmdJmS/view?usp=drivesdk",
+      embed: "https://drive.google.com/file/d/1TRBWfhcIxivAtDUeVUPScpq1TMpmdJmS/preview"
+    }
   };
-  var modelInfo = {
-    palestrinha: {label:'Palestrinha',help:'O advogado apresenta um tema por quadros sucessivos. Desenhos de marcador, calendários e números aparecem no momento da explicação.',prepare:'Gravar em pé, com espaço lateral para os slides. Apontar para as informações e voltar o olhar à câmera.'},
-    contraste: {label:'Contraste',help:'O vídeo coloca dois cenários lado a lado para deixar a diferença jurídica evidente. Cada bloco revela um novo detalhe.',prepare:'Gravar dois lados/enquadramentos no mesmo ambiente; uma situação em cada posição. O corte sustenta a comparação.'},
-    pergunta: {label:'Pergunta e resposta',help:'Alguém apresenta uma dúvida real e o advogado responde diretamente. A identificação com a pergunta é o ponto de entrada.',prepare:'O advogado inicia em uma ação natural. Outra pessoa faz uma pergunta fora do quadro; a câmera aproxima na resposta.'},
-    conversa: {label:'Conversa no mesmo ambiente',help:'Um diálogo com perguntas, objeções e esclarecimentos progressivos. O ritmo é determinado pelas réplicas.',prepare:'Gravar duas posições no mesmo escritório; alternar plano e contraplano, evitando uma encenação exagerada.'}
-  };
-  var month = 'dezembro';
-  var active = null;
-  var frame = 0;
-  var playing = null;
-  var toastTimer = null;
-  var readingFont = 28;
-  var storageKey = 'northe-lavareda-dez26-jan27-review-v1';
-  var review = {};
-  try { review = JSON.parse(localStorage.getItem(storageKey) || '{}') || {}; } catch (e) { review = {}; }
 
-  function persist() {
+  const lawyers = ["Victoria", "Felipe", "Letícia", "Herberth", "Elisa Santos", "Keyvson Pimentel", "Leonardo Quaresma"];
+  const $ = (q) => document.querySelector(q);
+  const $$ = (q) => [...document.querySelectorAll(q)];
+  const escapeHTML = (value) => String(value ?? "").replace(/[&<>"']/g, (m) => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;"
+  })[m]);
+
+  const storageKey = "northe-lavareda-dez26-jan27-review-v1";
+  let review;
+  try { review = JSON.parse(localStorage.getItem(storageKey) || "{}") || {}; } catch (_) { review = {}; }
+  let month = "dezembro";
+  let selectedLawyer = "todos";
+  let activeId = "";
+  let toastTimeout;
+  let readingSize = 27;
+
+  function save() {
     try { localStorage.setItem(storageKey, JSON.stringify(review)); }
-    catch (e) { notify('Não foi possível salvar neste navegador. Copie sua revisão.'); }
+    catch (_) { announce("Seu navegador não conseguiu salvar. Copie o resumo antes de sair."); }
   }
-  function stateOf(script) { return review[script.id] || {}; }
-  function statusText(v) { return v === 'approved' ? '✓ Aprovado' : v === 'adjust' ? '✎ Ajuste solicitado' : 'Aguardando revisão'; }
-  function notify(text) {
-    var el = $('#toast'); el.textContent = text; el.classList.add('show');
-    clearTimeout(toastTimer); toastTimer = setTimeout(function () { el.classList.remove('show'); }, 3000);
+  function announce(message) {
+    const toast = $("#toast"); toast.textContent = message; toast.classList.add("visible");
+    clearTimeout(toastTimeout);
+    toastTimeout = setTimeout(() => toast.classList.remove("visible"), 2900);
   }
-  function copy(text) {
+  async function copy(value) {
     if (navigator.clipboard && window.isSecureContext) {
-      return navigator.clipboard.writeText(text).then(function () { notify('Texto copiado!'); }).catch(function () { fallbackCopy(text); });
+      try { await navigator.clipboard.writeText(value); announce("Copiado!"); return; } catch (_) {}
     }
-    fallbackCopy(text); return Promise.resolve();
+    const t = document.createElement("textarea"); t.value = value;
+    document.body.appendChild(t); t.select();
+    try {
+      const ok = document.execCommand("copy");
+      announce(ok ? "Copiado!" : "Não foi possível copiar automaticamente.");
+    } catch (_) { announce("Não foi possível copiar automaticamente."); }
+    t.remove();
   }
-  function fallbackCopy(text) {
-    var temp = document.createElement('textarea'); temp.value = text; document.body.appendChild(temp);
-    temp.select();
-    try { document.execCommand('copy'); notify('Texto copiado!'); }
-    catch (e) { notify('Selecione e copie o texto manualmente.'); }
-    temp.remove();
+
+  const findScript = (id) => scripts.find((script) => script.id === id);
+  const current = () => findScript(activeId);
+  const stored = (script) => review[script.id] || {};
+  const statusText = (status) => status === "approved" ? "Aprovado" : status === "adjust" ? "Ajuste solicitado" : "Pendente";
+  const scriptText = (script) => {
+    if (script.slides) return script.slides.map((s) => s.talk).join("\n\n");
+    if (script.turns) return script.turns.map((line) => line[0] + ": " + line[1]).join("\n\n");
+    return script.text || "";
+  };
+  const inMonth = () => scripts.filter((s) => s.month === month).sort((a, b) => a.number - b.number);
+
+  function renderReferences() {
+    const keys = ["palestrinha", "contraste", "pergunta", "conversa"];
+    const quantities = Object.fromEntries(keys.map((key) => [key, scripts.filter((s) => s.model === key).length]));
+    $("#video-library").innerHTML = keys.map((key) => {
+      const ref = modelData[key];
+      return '<article class="format-video">' +
+        '<div class="video-frame"><iframe loading="lazy" title="Vídeo de referência: ' + escapeHTML(ref.name) +
+        '" src="' + ref.embed + '" allow="autoplay; fullscreen; encrypted-media" allowfullscreen></iframe></div>' +
+        '<div class="format-description"><div class="format-title-row"><h3>' + escapeHTML(ref.name) +
+        '</h3><span>' + quantities[key] + ' vídeos</span></div><p>' + escapeHTML(ref.detail) + '</p>' +
+        '<a target="_blank" rel="noopener noreferrer" href="' + ref.drive + '">Ver no Google Drive ↗</a></div></article>';
+    }).join("");
   }
-  function scriptText(script) {
-    if (script.slides) return script.slides.map(function (s) { return s.talk; }).join('\n\n');
-    if (script.turns) return script.turns.map(function (t) { return t[0] + ': ' + t[1]; }).join('\n\n');
-    return script.text || '';
-  }
-  function monthScripts() { return scripts.filter(function (s) { return s.month === month; }).sort(function(a,b){return a.number-b.number;}); }
-  function monthSwitch(next, scroll) {
-    month = next;
-    $$('[data-month]').forEach(function (button) {
-      var selected = button.getAttribute('data-month') === month;
-      button.classList.toggle('active', selected);
-      if (button.getAttribute('role') === 'tab') button.setAttribute('aria-selected', selected ? 'true' : 'false');
+
+  function selectMonth(value, scroll = false) {
+    month = value;
+    $$("[data-month]").forEach((tab) => {
+      const active = tab.dataset.month === value;
+      tab.classList.toggle("active", active);
+      tab.setAttribute("aria-selected", String(active));
     });
-    $('#month-eyebrow').textContent = month === 'dezembro' ? 'DEZEMBRO DE 2026' : 'JANEIRO DE 2027';
-    $('#month-title').textContent = month === 'dezembro' ? 'Seu primeiro ciclo de vídeos' : 'O segundo ciclo já está planejado';
-    $('#month-description').textContent = month === 'dezembro'
-      ? '10 vídeos jurídicos. Natal e Ano-Novo são duas peças institucionais separadas.'
-      : '12 vídeos jurídicos com temas atuais e conteúdos de orientação.';
-    renderCards();
-    if (scroll) $('#cycle-section').scrollIntoView({behavior:'smooth',block:'start'});
+    $("#month-summary").textContent = value === "dezembro"
+      ? "Dezembro · 10 roteiros jurídicos. Natal e Ano-Novo são peças institucionais à parte."
+      : "Janeiro · 12 roteiros jurídicos.";
+    renderLawyers();
+    if (scroll) $("#roteiros").scrollIntoView({ behavior: "smooth", block: "start" });
   }
-  function stageHTML(script, step) {
-    var title = step && (step.board || step.title) || script.title;
-    var model = script.model;
-    if (model === 'palestrinha') {
-      return '<div class="sample-stage stage-palestrinha"><div class="stage-board">'
-        + '<small>QUADRO BRANCO / PILOTO AZUL</small><h4>' + escapeHtml(title) + '</h4>'
-        + '<div class="stage-ink"></div><small>✎ ' + escapeHtml((step && step.draw) || 'Desenhos aparecem conforme a fala.') + '</small>'
-        + '</div><span class="stage-marker">✎</span></div>';
+
+  function renderLawyers() {
+    const currentMonth = inMonth();
+    const names = ["todos", ...lawyers];
+    $("#lawyer-filter").innerHTML = names.map((name) => {
+      const count = name === "todos" ? currentMonth.length : currentMonth.filter((s) => s.lawyer === name).length;
+      const label = name === "todos" ? "Todos" : name === "Keyvson Pimentel" ? "Keyvson" : name;
+      return '<button type="button" data-lawyer="' + escapeHTML(name) + '" class="lawyer-chip ' +
+        (name === selectedLawyer ? "active" : "") + '" aria-pressed="' + (name === selectedLawyer) +
+        '">' + escapeHTML(label) + ' <small>' + count + '</small></button>';
+    }).join("");
+
+    const visibleNames = selectedLawyer === "todos" ? lawyers : [selectedLawyer];
+    const html = visibleNames.map((name) => {
+      const list = currentMonth.filter((script) => script.lawyer === name);
+      if (!list.length) return "";
+      const initials = name.split(" ").map((s) => s[0]).slice(0, 2).join("").toUpperCase();
+      const area = list.map((s) => s.area).filter(Boolean)[0] || "Advocacia";
+      return '<section class="lawyer-group" aria-label="Roteiros de ' + escapeHTML(name) + '">' +
+        '<div class="lawyer-heading"><div class="avatar">' + escapeHTML(initials) + '</div>' +
+        '<div class="lawyer-info"><h3>' + escapeHTML(name) + '</h3><span>' + escapeHTML(area) + '</span></div>' +
+        '<span class="group-count">' + list.length + ' ' + (list.length === 1 ? "roteiro" : "roteiros") + '</span></div>' +
+        '<div class="script-list">' + list.map(scriptCard).join("") + '</div></section>';
+    }).join("");
+    $("#lawyer-groups").innerHTML = html;
+    $("#no-results").hidden = !!html.trim();
+    updateProgress();
+  }
+
+  function scriptCard(script) {
+    const result = stored(script).status;
+    const format = modelData[script.model];
+    return '<button type="button" class="script-row" data-script="' + escapeHTML(script.id) +
+      '" aria-label="Abrir roteiro ' + script.number + ': ' + escapeHTML(script.title) + '">' +
+      '<span class="script-index">' + String(script.number).padStart(2, "0") + '</span>' +
+      '<span class="script-main"><strong>' + escapeHTML(script.title) + '</strong>' +
+      '<small>' + escapeHTML(format.name) + ' <span class="middot">·</span> ' + escapeHTML(script.duration) + '</small></span>' +
+      '<span class="script-status ' + (result || "") + '">' + statusText(result) + '</span>' +
+      '<span class="script-arrow">↗</span></button>';
+  }
+
+  function updateProgress() {
+    const n = scripts.filter((s) => !!stored(s).status).length;
+    $("#review-total").textContent = n + "/" + scripts.length;
+    $("#review-progress").style.width = (n * 100 / scripts.length) + "%";
+  }
+
+  function speechHTML(script) {
+    if (script.slides) {
+      return script.slides.map((slide, index) =>
+        '<div class="speech-slide"><small>QUADRO ' + String(index + 1).padStart(2, "0") +
+        ' — ' + escapeHTML(slide.title) + '</small><p>' + escapeHTML(slide.talk) + '</p></div>').join("");
     }
-    if (model === 'contraste') {
-      var l = script.shots && script.shots[0] ? script.shots[0][0] : 'SITUAÇÃO 01';
-      var r = script.shots && script.shots[1] ? script.shots[1][0] : 'SITUAÇÃO 02';
-      return '<div class="sample-stage stage-contraste">'
-        + '<div class="stage-half"><b>01</b><span>' + escapeHtml(l) + '</span><small>PRIMEIRO CENÁRIO</small></div>'
-        + '<div class="stage-half"><b>02</b><span>' + escapeHtml(r) + '</span><small>SEGUNDO CENÁRIO</small></div></div>';
-    }
-    if (model === 'pergunta') {
-      var question = script.turns && script.turns[0] ? script.turns[0][1] : script.hook;
-      if (question.length > 90) question = question.slice(0,87) + '...';
-      return '<div class="sample-stage stage-pergunta"><div class="stage-face"></div>'
-        + '<div class="stage-bubble">? ' + escapeHtml(question) + '</div>'
-        + '<div class="mini-answer">' + (step && step.title && step.title !== 'A PERGUNTA' ? 'RESPOSTA CLARA ✓' : 'PERGUNTA REAL') + '</div></div>';
-    }
-    return '<div class="sample-stage stage-conversa"><div class="duo-face"></div><div class="duo-face second"></div>'
-      + '<div class="stage-dialogue">' + escapeHtml(step && step.title || 'PERGUNTA → RESPOSTA') + '</div></div>';
-  }
-  function formatGallery() {
-    var models = ['palestrinha','contraste','pergunta','conversa'];
-    var examples = {
-      palestrinha:'Quadro branco + desenhos que explicam o assunto por etapas.',
-      contraste:'Dois cenários em tela para entender o que muda.',
-      pergunta:'Uma pergunta do público com resposta direta do advogado.',
-      conversa:'Diálogo natural, com objeções e respostas no mesmo espaço.'
-    };
-    $('#format-gallery').innerHTML = models.map(function (m) {
-      var sample = scripts.find(function (s) { return s.model === m; });
-      var amount = scripts.filter(function(s){return s.model===m;}).length;
-      return '<button type="button" class="format-card" data-model-example="' + m + '" aria-label="Ver exemplo de ' + escapeHtml(modelInfo[m].label) + '">'
-        + '<div class="format-preview">' + stageHTML(sample, sample.slides && sample.slides[0]) + '</div>'
-        + '<div class="format-text"><h3>' + escapeHtml(modelInfo[m].label) + '</h3><p>' + examples[m] + '</p>'
-        + '<div class="format-foot"><span>' + amount + ' ROTEIROS</span><span>VER EXEMPLO ↗</span></div></div></button>';
-    }).join('');
-  }
-  function cardHTML(script) {
-    var st = stateOf(script);
-    var result = st.status || '';
-    return '<button type="button" class="script-card" data-open="' + script.id + '" aria-label="Abrir roteiro ' + script.number + ', ' + escapeHtml(script.title) + '">'
-      + '<div class="card-top" data-type="' + script.model + '"><span class="card-label">' + escapeHtml(modelInfo[script.model].label).toUpperCase() + '</span>'
-      + '<span class="card-index">' + String(script.number).padStart(2,'0') + '</span>' + stageHTML(script,script.slides && script.slides[0]) + '</div>'
-      + '<div class="card-body"><div class="card-who">' + escapeHtml(script.lawyer) + ' / ' + escapeHtml(script.area) + '</div>'
-      + '<h3>' + escapeHtml(script.title) + '</h3><p class="card-status ' + result + '">' + statusText(result) + '</p>'
-      + '<div class="card-footer"><span>' + escapeHtml(script.duration) + '</span><span>VER COMO SERÁ ↗</span></div></div></button>';
-  }
-  function renderCards() {
-    var q = ($('#search').value || '').toLocaleLowerCase('pt-BR').trim();
-    var lawyer = $('#lawyer-filter').value;
-    var model = $('#model-filter').value;
-    var list = monthScripts().filter(function (s) {
-      return (!q || (s.title + ' ' + s.lawyer + ' ' + s.area).toLocaleLowerCase('pt-BR').includes(q))
-        && (!lawyer || s.lawyer === lawyer)
-        && (!model || s.model === model);
-    });
-    $('#script-grid').innerHTML = list.map(cardHTML).join('');
-    $('#empty').hidden = !!list.length;
-    $('#visible-count').textContent = list.length;
-    refreshProgress();
-  }
-  function refreshProgress() {
-    var n = scripts.filter(function(s){return stateOf(s).status;}).length;
-    $('#progress-text').textContent = n + ' de ' + scripts.length;
-    $('#progress-fill').style.width = (100 * n / scripts.length) + '%';
-  }
-  function scenes(script) {
-    if (script.slides) return script.slides.map(function(slide){return slide;});
-    var shots = script.shots || [['ABERTURA','Mostrar a situação'],['EXPLICAÇÃO','Explicar o ponto jurídico'],['CONCLUSÃO','Fechar a dúvida']];
-    var segments = [];
     if (script.turns) {
-      if (script.model === 'pergunta') {
-        var answer = script.turns[1] && script.turns[1][1] || '';
-        var sentences = answer.match(/[^.!?]+[.!?]+|[^.!?]+$/g) || [answer];
-        var half = Math.ceil(sentences.length / 2);
-        segments = [script.turns[0][0] + ': ' + script.turns[0][1], sentences.slice(0,half).join(' ').trim(), sentences.slice(half).join(' ').trim()];
-      } else {
-        var turns = script.turns.map(function(t){return t[0] + ': ' + t[1];});
-        var size = Math.ceil(turns.length / shots.length);
-        segments = shots.map(function(_,i){return turns.slice(i*size,(i+1)*size).join('\n\n');});
-      }
-    } else {
-      var blocks = (script.text || '').split(/\n\s*\n/).filter(Boolean);
-      var bs = Math.ceil(blocks.length/shots.length);
-      segments = shots.map(function(_,i){return blocks.slice(i*bs,(i+1)*bs).join('\n\n');});
+      return script.turns.map((turn) =>
+        '<div class="speech-turn ' + (turn[0] === "Interlocutor" ? "speech-question" : "") + '">' +
+        '<span>' + escapeHTML(turn[0]) + '</span><p>' + escapeHTML(turn[1]) + '</p></div>').join("");
     }
-    return shots.map(function(shot,i){
-      return {title:shot[0],board:shot[0],draw:shot[1],
-        gesture:script.model==='contraste'?'Trocar o enquadramento conforme o lado da comparação.':
-          script.model==='conversa'?'Alternar os dois personagens em plano e contraplano.':
-          'Pergunta fora de quadro; resposta em plano médio, com aproximação no principal.',
-        talk:segments[i] || segments[segments.length-1] || scriptText(script)};
-    });
+    return (script.text || "").split(/\n\s*\n/).map((part) => '<p>' + escapeHTML(part) + '</p>').join("");
   }
-  function currentScript() { return scripts.find(function(s){return s.id===active;}); }
-  function stopPlaying() { if (playing) { clearInterval(playing); playing=null; } $('#play-story').textContent='▶ Reproduzir sequência'; }
-  function renderFrame() {
-    var script = currentScript(); if (!script) return;
-    var ss = scenes(script);
-    frame = Math.max(0,Math.min(frame,ss.length-1));
-    var item = ss[frame];
-    $('#frame-counter').textContent = String(frame+1).padStart(2,'0') + ' / ' + String(ss.length).padStart(2,'0');
-    $('#storyboard-screen').innerHTML = stageHTML(script,item);
-    $('#frame-draw').textContent = item.draw || item.title;
-    $('#frame-action').textContent = item.gesture || 'Plano médio, olhar direto para a câmera.';
-    $('#scene-talk').textContent = item.talk;
-    $('#frame-dots').innerHTML=ss.map(function(_,i){return '<span class="'+(i===frame?'active':'')+'"></span>';}).join('');
-    $('#frame-prev').disabled=frame===0; $('#frame-next').disabled=frame===ss.length-1;
+
+  function scenesHTML(script) {
+    if (script.slides) {
+      $("#scene-title").textContent = "Slides do Palestrinha";
+      return '<p class="scene-explain">Quadro branco e desenhos de piloto: cada slide aparece na edição quando o advogado chega àquele ponto da fala.</p>' +
+        script.slides.map((slide, i) =>
+          '<details class="scene-item" ' + (i === 0 ? "open" : "") + '><summary><span>SLIDE ' + String(i + 1).padStart(2,"0") +
+          '</span><strong>' + escapeHTML(slide.title) + '</strong><span class="scene-open">⌄</span></summary>' +
+          '<div class="scene-body"><div class="whiteboard-sample"><span class="whiteboard-label">QUADRO BRANCO</span>' +
+          '<strong>' + escapeHTML(slide.board || slide.title) + '</strong><span class="marker-line"></span>' +
+          '<p>✎ ' + escapeHTML(slide.draw) + '</p></div>' +
+          '<div class="scene-directions"><small>DESENHO</small><p>' + escapeHTML(slide.draw) + '</p>' +
+          '<small>APRESENTAÇÃO / EDIÇÃO</small><p>' + escapeHTML(slide.gesture) + '</p></div></div></details>'
+        ).join("");
+    }
+    $("#scene-title").textContent = "Como será gravado";
+    return '<div class="scene-steps">' + (script.shots || []).map((shot, i) =>
+      '<div class="scene-step"><span>' + String(i + 1).padStart(2,"0") + '</span><div><strong>' +
+      escapeHTML(shot[0]) + '</strong><p>' + escapeHTML(shot[1]) + '</p></div></div>'
+    ).join("") + '</div>';
   }
-  function showFullScript(script) {
-    var html = '';
-    if (script.slides) html=script.slides.map(function(s,i){
-      return '<span class="slide-break">QUADRO '+String(i+1).padStart(2,'0')+' / '+escapeHtml(s.title)+'</span>'
-        + '<p>'+escapeHtml(s.talk)+'</p>';
-    }).join('');
-    else if (script.turns) html=script.turns.map(function(t){
-      return '<div class="speech-turn '+(t[0]==='Interlocutor'?'interlocutor':'')+'"><span class="speaker">'+escapeHtml(t[0])+'</span><p>'+escapeHtml(t[1])+'</p></div>';
-    }).join('');
-    else html=script.text.split(/\n\s*\n/).map(function(p){return '<p>'+escapeHtml(p)+'</p>';}).join('');
-    $('#full-script-content').innerHTML=html;
+
+  function updateReviewUI() {
+    const script = current(); if (!script) return;
+    const state = stored(script);
+    $("#review-note").value = state.note || "";
+    $("#review-current").textContent = statusText(state.status);
+    $("#review-current").className = "review-state " + (state.status || "");
+    $("#approve").classList.toggle("selected", state.status === "approved");
+    $("#adjust").classList.toggle("selected", state.status === "adjust");
   }
-  function updateReviewControls() {
-    var st=stateOf(currentScript()); $('#review-note').value=st.note||'';
-    $$('.review-buttons [data-review]').forEach(function(b){b.classList.toggle('active',b.dataset.review===st.status);});
-    $('#review-state').textContent=statusText(st.status);
-  }
+
   function openScript(id) {
-    var script=scripts.find(function(s){return s.id===id;}); if(!script)return;
-    if(script.month!==month)monthSwitch(script.month,false);
-    stopPlaying();active=id;frame=0;
-    $('#dialog-number').textContent='ROTEIRO '+String(script.number).padStart(2,'0');
-    $('#dialog-model').textContent=modelInfo[script.model].label.toUpperCase();
-    $('#dialog-month').textContent=script.month==='dezembro'?'DEZEMBRO 2026':'JANEIRO 2027';
-    $('#detail-title').textContent=script.title;
-    $('#detail-lawyer').textContent=script.lawyer+' · '+script.area;
-    $('#detail-duration').textContent=script.duration;
-    $('#detail-goal').textContent=script.goal;
-    $('#detail-model-name').textContent=modelInfo[script.model].label;
-    $('#detail-model-help').textContent=modelInfo[script.model].help;
-    $('#detail-prepare').textContent=modelInfo[script.model].prepare+(script.legalReview?' ATENÇÃO: '+script.legalReview:' Todos os conteúdos precisam de validação jurídica antes de publicar.');
-    showFullScript(script); renderFrame(); updateReviewControls();
-    var list=monthScripts();var index=list.findIndex(function(s){return s.id===id;});
-    $('#previous-script').disabled=index<=0;$('#next-script').disabled=index>=list.length-1;
-    if (!$('#detail-dialog').open) $('#detail-dialog').showModal();
-    $('#detail-dialog').scrollTop=0;
+    const script = findScript(id); if (!script) return;
+    const dialog = $("#script-dialog");
+    if (script.month !== month) selectMonth(script.month);
+    activeId = id;
+    const ref = modelData[script.model];
+    $("#dialog-number").textContent = String(script.number).padStart(2, "0");
+    $("#dialog-lawyer").textContent = script.lawyer;
+    $("#dialog-month").textContent = script.month === "dezembro" ? "DEZEMBRO 2026" : "JANEIRO 2027";
+    $("#dialog-title").textContent = script.title;
+    $("#dialog-format").textContent = ref.name;
+    $("#dialog-duration").textContent = script.duration;
+    $("#model-name").textContent = ref.name;
+    $("#model-explanation").textContent = ref.detail;
+    $("#model-instruction").textContent = ref.direction;
+    $("#model-goal").textContent = script.goal;
+    $("#reference-iframe").src = ref.embed;
+    $("#reference-link").href = ref.drive;
+    $("#script-text").innerHTML = speechHTML(script);
+    $("#scene-list").innerHTML = scenesHTML(script);
+    updateReviewUI();
+    const list = inMonth();
+    const index = list.findIndex((s) => s.id === id);
+    $("#previous-script").disabled = index === 0;
+    $("#next-script").disabled = index === list.length - 1;
+    if (!dialog.open) dialog.showModal();
+    dialog.scrollTop = 0;
   }
-  function moveScript(delta) {
-    var list=monthScripts();var index=list.findIndex(function(s){return s.id===active;});
-    var next=list[index+delta];if(!next)return;
-    openScript(next.id);
+
+  function closeScript() {
+    const dialog = $("#script-dialog");
+    if (dialog.open) dialog.close();
   }
+
+  function moveScript(direction) {
+    const list = inMonth();
+    const index = list.findIndex((s) => s.id === activeId);
+    const next = list[index + direction];
+    if (next) openScript(next.id);
+  }
+
+  function setReview(status) {
+    if (!current()) return;
+    review[activeId] = { ...stored(current()), status, note: $("#review-note").value };
+    save(); updateReviewUI(); updateProgress(); renderLawyers();
+    announce(status === "approved" ? "Roteiro marcado como aprovado." : "Ajuste solicitado. Não esqueça de enviar o resumo.");
+  }
+
   function exportReview() {
-    var lines=['LAVAREDA × NORTHE | REVISÃO DE ROTEIROS','DEZEMBRO 2026 + JANEIRO 2027','Revisão anotada no navegador do cliente.',''];
-    ['dezembro','janeiro'].forEach(function(m){
-      lines.push(m.toUpperCase()+(m==='dezembro'?' 2026':' 2027'));
-      scripts.filter(function(s){return s.month===m;}).sort(function(a,b){return a.number-b.number;}).forEach(function(s){
-        var st=stateOf(s);lines.push(String(s.number).padStart(2,'0')+'. '+s.lawyer+' — '+s.title);
-        lines.push('Formato: '+modelInfo[s.model].label+' | Situação: '+statusText(st.status));
-        if(st.note)lines.push('Observação: '+st.note);
-        lines.push('');
+    const lines = ["LAVAREDA × NORTHE | REVISÃO DOS ROTEIROS", "Dezembro 2026 + Janeiro 2027", ""];
+    for (const m of ["dezembro", "janeiro"]) {
+      lines.push(m === "dezembro" ? "DEZEMBRO 2026" : "JANEIRO 2027");
+      scripts.filter((s) => s.month === m).sort((a,b) => a.number - b.number).forEach((script) => {
+        const st = stored(script);
+        lines.push(String(script.number).padStart(2,"0") + " · " + script.lawyer + " · " + script.title);
+        lines.push("Formato: " + modelData[script.model].name + " | " + statusText(st.status));
+        if (st.note) lines.push("Observações: " + st.note);
+        lines.push("");
       });
-    });
-    copy(lines.join('\n'));
+      lines.push("");
+    }
+    copy(lines.join("\n"));
   }
-  function setupFilters() {
-    var names=Array.from(new Set(scripts.map(function(s){return s.lawyer;})));
-    $('#lawyer-filter').innerHTML='<option value="">Todos os advogados</option>'+names.map(function(n){
-      return '<option value="'+escapeHtml(n)+'">'+escapeHtml(n)+'</option>';
-    }).join('');
-    ['#search','#lawyer-filter','#model-filter'].forEach(function(sel){
-      $(sel).addEventListener(sel==='#search'?'input':'change',renderCards);
+
+  function init() {
+    renderReferences();
+    renderLawyers();
+    $$("[data-month]").forEach((tab) => tab.addEventListener("click", () => selectMonth(tab.dataset.month)));
+    $("#lawyer-filter").addEventListener("click", (event) => {
+      const target = event.target.closest("[data-lawyer]");
+      if (!target) return;
+      selectedLawyer = target.dataset.lawyer;
+      renderLawyers();
     });
-  }
-  function initEvents(){
-    $$('[data-month]').forEach(function(b){b.addEventListener('click',function(){monthSwitch(b.dataset.month,true);});});
-    $('#start-review').addEventListener('click',function(){$('#cycle-section').scrollIntoView({behavior:'smooth'});});
-    $('#see-formats').addEventListener('click',function(){$('#formats-section').scrollIntoView({behavior:'smooth'});});
-    $('#side-guide').addEventListener('click',function(){$('#formats-section').scrollIntoView({behavior:'smooth'});});
-    $('#side-export').addEventListener('click',exportReview);
-    $('#format-gallery').addEventListener('click',function(e){
-      var b=e.target.closest('[data-model-example]');if(!b)return;
-      var list=scripts.filter(function(s){return s.model===b.dataset.model;});
-      if(list.length)openScript(list[0].id);
+    $("#lawyer-groups").addEventListener("click", (event) => {
+      const target = event.target.closest("[data-script]");
+      if (target) openScript(target.dataset.script);
     });
-    $('#script-grid').addEventListener('click',function(e){
-      var b=e.target.closest('[data-open]');if(b)openScript(b.dataset.open);
+    $("#close-dialog").addEventListener("click", closeScript);
+    $("#script-dialog").addEventListener("close", () => {
+      $("#reference-iframe").removeAttribute("src"); // stops video playback
+      activeId = "";
     });
-    $('#close-dialog').addEventListener('click',function(){$('#detail-dialog').close();});
-    $('#detail-dialog').addEventListener('close',function(){stopPlaying();active=null;renderCards();});
-    $('#frame-prev').addEventListener('click',function(){stopPlaying();frame--;renderFrame();});
-    $('#frame-next').addEventListener('click',function(){stopPlaying();frame++;renderFrame();});
-    $('#play-story').addEventListener('click',function(){
-      if(playing){stopPlaying();return;}
-      if(frame>=scenes(currentScript()).length-1)frame=0;
-      renderFrame();$('#play-story').textContent='Ⅱ Pausar prévia';
-      playing=setInterval(function(){
-        if(frame>=scenes(currentScript()).length-1){stopPlaying();return;}
-        frame++;renderFrame();
-      },2600);
+    $("#copy-script").addEventListener("click", () => current() && copy(scriptText(current())));
+    $("#approve").addEventListener("click", () => setReview("approved"));
+    $("#adjust").addEventListener("click", () => setReview("adjust"));
+    $("#review-note").addEventListener("input", (event) => {
+      if (!current()) return;
+      review[activeId] = { ...stored(current()), note: event.target.value };
+      save();
     });
-    $('#copy-scene').addEventListener('click',function(){copy($('#scene-talk').textContent);});
-    $('#copy-script').addEventListener('click',function(){copy(scriptText(currentScript()));});
-    $('#open-full-script').addEventListener('click',function(){$('#full-script').scrollIntoView({behavior:'smooth',block:'start'});});
-    $('#previous-script').addEventListener('click',function(){moveScript(-1);});
-    $('#next-script').addEventListener('click',function(){moveScript(1);});
-    $$('.review-buttons [data-review]').forEach(function(b){
-      b.addEventListener('click',function(){
-        var script=currentScript();var st=stateOf(script);st.status=b.dataset.review;st.note=$('#review-note').value;
-        review[script.id]=st;persist();updateReviewControls();refreshProgress();
-        notify(b.dataset.review==='approved'?'Roteiro marcado como aprovado neste navegador.':'Pedido de ajuste marcado neste navegador.');
-      });
+    $("#copy-review").addEventListener("click", exportReview);
+    $("#previous-script").addEventListener("click", () => moveScript(-1));
+    $("#next-script").addEventListener("click", () => moveScript(1));
+    $("#reading-mode").addEventListener("click", () => {
+      if (!current()) return;
+      $("#reading-lawyer").textContent = current().lawyer;
+      $("#reading-text").textContent = scriptText(current());
+      $("#reading-text").style.fontSize = readingSize + "px";
+      $("#reading-dialog").showModal();
     });
-    $('#review-note').addEventListener('input',function(){
-      var script=currentScript();if(!script)return;
-      var st=stateOf(script);st.note=this.value;review[script.id]=st;persist();
+    $("#close-reading").addEventListener("click", () => $("#reading-dialog").close());
+    $("#font-less").addEventListener("click", () => {
+      readingSize = Math.max(17, readingSize - 3);
+      $("#reading-text").style.fontSize = readingSize + "px";
     });
-    $('#copy-review').addEventListener('click',exportReview);
-    $('#teleprompter').addEventListener('click',function(){
-      $('#read-body').textContent=scriptText(currentScript());$('#read-body').style.fontSize=readingFont+'px';$('#read-dialog').showModal();
-    });
-    $('#close-read').addEventListener('click',function(){$('#read-dialog').close();});
-    $('#font-up').addEventListener('click',function(){readingFont=Math.min(54,readingFont+3);$('#read-body').style.fontSize=readingFont+'px';});
-    $('#font-down').addEventListener('click',function(){readingFont=Math.max(18,readingFont-3);$('#read-body').style.fontSize=readingFont+'px';});
-    document.addEventListener('keydown',function(e){
-      if(!$('#detail-dialog').open || $('#read-dialog').open)return;
-      if(e.target && /INPUT|TEXTAREA|SELECT/.test(e.target.tagName))return;
-      if(e.key==='ArrowRight'){e.preventDefault();if(frame<scenes(currentScript()).length-1){stopPlaying();frame++;renderFrame();}}
-      if(e.key==='ArrowLeft'){e.preventDefault();if(frame>0){stopPlaying();frame--;renderFrame();}}
+    $("#font-more").addEventListener("click", () => {
+      readingSize = Math.min(58, readingSize + 3);
+      $("#reading-text").style.fontSize = readingSize + "px";
     });
   }
-  setupFilters();formatGallery();initEvents();monthSwitch('dezembro',false);
-}());
+  init();
+})();
