@@ -51,7 +51,6 @@
   let toastTimeout;
   let readingSize = 27;
   let activeSlide = 0;
-  let slideAssets = null;
   const palestrinhaFolders = { LV01: "victoria", LV05: "felipe", LV10: "leticia" };
 
   function save() {
@@ -182,9 +181,8 @@
         script.slides.map((slide, i) =>
           '<details class="scene-item" ' + (i === 0 ? "open" : "") + '><summary><span>SLIDE ' + String(i + 1).padStart(2,"0") +
           '</span><strong>' + escapeHTML(slide.title) + '</strong><span class="scene-open">⌄</span></summary>' +
-          '<div class="scene-body"><div class="whiteboard-sample"><span class="whiteboard-label">QUADRO BRANCO</span>' +
-          '<strong>' + escapeHTML(slide.board || slide.title) + '</strong><span class="marker-line"></span>' +
-          '<p>✎ ' + escapeHTML(slide.draw) + '</p></div>' +
+          '<div class="scene-body"><div class="whiteboard-sample scene-actual"><img src="' + escapeHTML(slide.asset || "") +
+          '" loading="lazy" alt="Slide final ' + (i + 1) + ': ' + escapeHTML(slide.title) + '"></div>' +
           '<div class="scene-directions"><small>DESENHO</small><p>' + escapeHTML(slide.draw) + '</p>' +
           '<small>APRESENTAÇÃO / EDIÇÃO</small><p>' + escapeHTML(slide.gesture) + '</p></div></div></details>'
         ).join("");
@@ -196,80 +194,59 @@
     ).join("") + '</div>';
   }
 
-  function svgAsImage(svg) {
-    return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
-  }
-
   function slidePackage() {
     const script = current();
-    if (!script || !script.slides || !slideAssets) return null;
+    if (!script || !script.slides) return null;
     const folder = palestrinhaFolders[script.id];
     if (!folder) return null;
+    const cue = script.slides[activeSlide];
+    if (!cue || !cue.asset) return null;
     const name = "slide-" + String(activeSlide + 1).padStart(2, "0");
-    const svg = slideAssets[folder] && slideAssets[folder][name];
-    if (!svg) return null;
-    return { script, folder, name, svg, cue: script.slides[activeSlide] };
+    return { script, folder, name, imageUrl: cue.asset, cue };
   }
 
   function paintSlides() {
     const data = slidePackage();
     if (!data) return;
-    const { script, folder, svg, cue } = data;
-    $("#slide-count").textContent = "SLIDE " + String(activeSlide + 1).padStart(2,"0") + " DE " + String(script.slides.length).padStart(2,"0");
+    const { script, imageUrl, cue } = data;
+    $("#slide-count").textContent = "SLIDE " + String(activeSlide + 1).padStart(2, "0") + " DE " + String(script.slides.length).padStart(2, "0");
     $("#slide-heading").textContent = cue.title;
-    $("#slide-art").src = svgAsImage(svg);
-    $("#slide-art").alt = cue.title + ". Arte final com desenhos no estilo quadro branco.";
-    $("#slide-speaking-text").textContent = cue.talk;
+    const img = $("#slide-art");
+    img.src = imageUrl;
+    img.alt = "Arte final do slide " + (activeSlide + 1) + ": " + cue.title;
+    $("#slide-speaking-text").textContent = cue.talk || "";
     $("#slide-direction-text").textContent = cue.gesture || "Apresentar este quadro de maneira natural.";
     $("#slides-total").textContent = script.slides.length + " slides";
     $("#slide-prev").disabled = activeSlide === 0;
     $("#slide-next").disabled = activeSlide >= script.slides.length - 1;
-    $("#slide-thumbnails").innerHTML = script.slides.map((item, i) => {
-      const key = "slide-" + String(i + 1).padStart(2,"0");
-      const asset = slideAssets[folder][key] || "";
-      return '<button type="button" data-slide="' + i + '" class="slide-thumbnail ' +
-        (i === activeSlide ? "selected" : "") + '" aria-current="' + (i === activeSlide) +
-        '" aria-label="Ver slide ' + (i + 1) + ': ' + escapeHTML(item.title) + '">' +
-        '<img src="' + svgAsImage(asset) + '" loading="lazy" alt="Miniatura slide ' + (i + 1) + '">' +
-        '<span>' + String(i + 1).padStart(2,"0") + '</span></button>';
-    }).join("");
+    $("#slide-thumbnails").innerHTML = script.slides.map((item, i) =>
+      '<button type="button" data-slide="' + i + '" class="slide-thumbnail ' +
+      (i === activeSlide ? "selected" : "") + '" aria-current="' + (i === activeSlide) +
+      '" aria-label="Ver slide ' + (i + 1) + ': ' + escapeHTML(item.title) + '">' +
+      '<img src="' + escapeHTML(item.asset) + '" loading="lazy" alt="Miniatura slide ' + (i + 1) + '">' +
+      '<span>' + String(i + 1).padStart(2, "0") + '</span></button>'
+    ).join("");
+    const selected = $("#slide-thumbnails").querySelector(".selected");
+    if (selected && selected.scrollIntoView && activeSlide !== 0) {
+      selected.scrollIntoView({block: "nearest", inline: "nearest", behavior: "smooth"});
+    }
   }
 
-  async function activateSlideGallery(script) {
+  function activateSlideGallery(script) {
     const gallery = $("#palestrinha-gallery");
-    const folder = palestrinhaFolders[script.id];
-    if (!folder || !script.slides) {
+    if (!palestrinhaFolders[script.id] || !script.slides || !script.slides.every(s => !!s.asset)) {
       gallery.hidden = true;
       $("#slide-art").removeAttribute("src");
       return;
     }
     gallery.hidden = false;
     activeSlide = 0;
-    $("#slides-total").textContent = script.slides.length + " slides";
-    $("#slide-heading").textContent = "Preparando os slides...";
-    $("#slide-count").textContent = "SLIDES DA GRAVAÇÃO";
-    $("#slide-speaking-text").textContent = "Carregando a sequência visual...";
-    $("#slide-direction-text").textContent = "";
-    $("#slide-thumbnails").innerHTML = "";
-    $("#slide-art").removeAttribute("src");
-    try {
-      if (!window.LAVAREDA_SLIDES_READY) throw new Error("Pacote de artes indisponível.");
-      slideAssets = slideAssets || await window.LAVAREDA_SLIDES_READY;
-      if (activeId !== script.id) return;
-      if (!slideAssets[folder] || Object.keys(slideAssets[folder]).length !== script.slides.length) {
-        throw new Error("Número de slides diferente do roteiro.");
-      }
-      paintSlides();
-    } catch (error) {
-      console.error("Falha ao exibir slides:", error);
-      $("#slide-heading").textContent = "Não foi possível abrir os slides";
-      $("#slide-speaking-text").textContent = "A referência em vídeo e o roteiro falado continuam disponíveis.";
-    }
+    paintSlides();
   }
 
   function moveSlide(step) {
     const script = current();
-    if (!script || !script.slides || !slideAssets) return;
+    if (!script || !script.slides) return;
     const next = Math.max(0, Math.min(script.slides.length - 1, activeSlide + step));
     if (next === activeSlide) return;
     activeSlide = next;
@@ -287,38 +264,33 @@
     setTimeout(() => URL.revokeObjectURL(url), 3000);
   }
 
-  function downloadCurrentSVG() {
+  function openCurrentImage() {
     const data = slidePackage();
-    if (!data) return;
-    saveBlob(new Blob([data.svg], { type: "image/svg+xml;charset=utf-8" }),
-      "lavareda-" + data.folder + "-" + data.name + ".svg");
+    if (data) window.open(data.imageUrl, "_blank", "noopener,noreferrer");
   }
 
   async function downloadCurrentPNG() {
     const data = slidePackage();
     if (!data) return;
-    const svgUrl = URL.createObjectURL(new Blob([data.svg], { type: "image/svg+xml;charset=utf-8" }));
     const image = new Image();
     try {
       await new Promise((resolve, reject) => {
         image.onload = resolve;
         image.onerror = reject;
-        image.src = svgUrl;
+        image.src = data.imageUrl;
       });
       const canvas = document.createElement("canvas");
-      canvas.width = 1080;
-      canvas.height = 1920;
+      canvas.width = 1920;
+      canvas.height = 1080;
       const ctx = canvas.getContext("2d");
-      if (!ctx) throw new Error("Canvas indisponível.");
-      ctx.drawImage(image, 0, 0, 1080, 1920);
+      if (!ctx) throw new Error("Canvas indisponível");
+      ctx.drawImage(image, 0, 0, 1920, 1080);
       const png = await new Promise(resolve => canvas.toBlob(resolve, "image/png"));
-      if (!png) throw new Error("Não foi possível converter o slide.");
-      saveBlob(png, "lavareda-" + data.folder + "-" + data.name + ".png");
+      if (!png) throw new Error("Falha de conversão");
+      saveBlob(png, "lavareda-" + data.folder + "-" + data.name + "-1920x1080.png");
     } catch (error) {
-      console.error("Falha ao baixar PNG:", error);
-      announce("Não foi possível converter em PNG. Baixe o SVG.");
-    } finally {
-      URL.revokeObjectURL(svgUrl);
+      console.error("Falha ao baixar o slide:", error);
+      announce("Não foi possível converter. Abra a imagem para salvar.");
     }
   }
 
@@ -424,7 +396,7 @@
       activeSlide = Number(button.dataset.slide);
       paintSlides();
     });
-    $("#download-slide-svg").addEventListener("click", downloadCurrentSVG);
+    $("#download-slide-svg").addEventListener("click", openCurrentImage);
     $("#download-slide-png").addEventListener("click", downloadCurrentPNG);
     $("#copy-script").addEventListener("click", () => current() && copy(scriptText(current())));
     $("#approve").addEventListener("click", () => setReview("approved"));
