@@ -139,45 +139,51 @@ window.LAVAREDA_JANUARY = [
     "slides": [
       {
         "title": "IA NAS ELEIÇÕES",
-        "board": "PODE OU NÃO PODE?",
-        "draw": "Dois rostos: um real e outro composto por pixels e balão de fala.",
-        "gesture": "Apontar para os rostos e olhar para câmera.",
-        "talk": "Uma inteligência artificial pode criar um vídeo de um candidato dizendo algo que ele nunca disse. Mas será que todo uso de IA em campanha é proibido? A resposta não é tão simples. Existe uma diferença enorme entre utilizar uma ferramenta e fabricar uma manifestação falsa."
+        "board": "IA NAS ELEIÇÕES",
+        "draw": "Celular com chip IA, documento do TSE e título 'IA nas eleições'.",
+        "gesture": "Apresentar o tema olhando para a câmera e apontar para os elementos centrais.",
+        "talk": "Uma inteligência artificial pode criar um vídeo de um candidato dizendo algo que ele nunca disse. Mas será que todo uso de IA em campanha é proibido? A resposta não é tão simples. Existe uma diferença enorme entre utilizar uma ferramenta e fabricar uma manifestação falsa.",
+        "asset": "./assets/palestrinhas/leticia-01.webp"
       },
       {
-        "title": "IA NÃO É UMA COISA SÓ",
+        "title": "FERRAMENTA ≠ FRAUDE",
         "board": "FERRAMENTA ≠ FRAUDE",
-        "draw": "Lápis, tela de computador e balão de fala; linha separa ferramenta e manipulação.",
-        "gesture": "Letícia apresenta as duas situações.",
-        "talk": "A inteligência artificial pode ser usada em diferentes etapas de produção de conteúdo. O problema jurídico depende de como ela é utilizada, do conteúdo produzido e do contexto eleitoral."
+        "draw": "Comparação entre uso de IA como ferramenta e fraude fabricada.",
+        "gesture": "Indicar os dois lados da comparação sem misturar ferramenta e fraude.",
+        "talk": "A inteligência artificial pode ser usada em diferentes etapas de produção de conteúdo. O problema jurídico depende de como ela é utilizada, do conteúdo produzido e do contexto eleitoral.",
+        "asset": "./assets/palestrinhas/leticia-02.webp"
       },
       {
-        "title": "TRANSPARÊNCIA",
+        "title": "IDENTIFICAÇÃO CLARA",
         "board": "IDENTIFICAÇÃO CLARA",
-        "draw": "Publicação com etiqueta PRODUZIDO COM IA e lupa.",
-        "gesture": "Circular a etiqueta no quadro.",
-        "talk": "Nas regras de propaganda eleitoral de 2026, quando determinado conteúdo multimídia é produzido ou manipulado com inteligência artificial, existe obrigação de informar essa utilização de maneira clara e acessível, conforme os casos previstos na regulamentação."
+        "draw": "Publicação com etiqueta informando conteúdo produzido com IA.",
+        "gesture": "Revelar o selo de identificação no momento em que ele é mencionado.",
+        "talk": "Nas regras de propaganda eleitoral de 2026, quando determinado conteúdo multimídia é produzido ou manipulado com inteligência artificial, existe obrigação de informar essa utilização de maneira clara e acessível, conforme os casos previstos na regulamentação.",
+        "asset": "./assets/palestrinhas/leticia-03.webp"
       },
       {
-        "title": "DEEPFAKE",
-        "board": "DEEPFAKE PROIBIDO",
-        "draw": "Dois rostos, um real e outro com fala fabricada e um X.",
-        "gesture": "Revelar a segunda fala no final e aproximar.",
-        "talk": "Mas existe uma situação muito mais grave: o deepfake. Imagine um vídeo realista em que a imagem ou a voz de alguém foi artificialmente criada ou alterada para favorecer ou prejudicar uma candidatura. Esse tipo de manipulação é proibido na propaganda eleitoral, mesmo quando a pessoa informa que usou inteligência artificial."
+        "title": "DEEPFAKE ELEITORAL: PROIBIDO",
+        "board": "DEEPFAKE ELEITORAL: PROIBIDO",
+        "draw": "Imagem real comparada com voz ou imagem falsa, marcando a proibição.",
+        "gesture": "Usar uma breve pausa no termo PROIBIDO e apontar para a simulação falsa.",
+        "talk": "Mas existe uma situação muito mais grave: o deepfake. Imagine um vídeo realista em que a imagem ou a voz de alguém foi artificialmente criada ou alterada para favorecer ou prejudicar uma candidatura. Esse tipo de manipulação é proibido na propaganda eleitoral, mesmo quando a pessoa informa que usou inteligência artificial.",
+        "asset": "./assets/palestrinhas/leticia-04.webp"
       },
       {
-        "title": "NEM TUDO É DEEPFAKE",
-        "board": "REALISMO · VOZ · CONTEXTO",
-        "draw": "Fluxograma com perguntas: REALISTA? ALTERA VOZ/IMAGEM? PROPAGANDA?",
-        "gesture": "Apontar para cada pergunta em sequência.",
-        "talk": "E aqui está uma distinção importante: nem toda imagem editada ou produzida com tecnologia é automaticamente um deepfake eleitoral. O Tribunal Superior Eleitoral considera fatores como realismo, manipulação de imagem ou voz e a caracterização da mensagem como propaganda eleitoral. É a análise do contexto que permite identificar a infração."
+        "title": "NEM TODA IA É DEEPFAKE",
+        "board": "NEM TODA IA É DEEPFAKE",
+        "draw": "Três perguntas visuais: realismo, manipulação de voz/imagem e propaganda.",
+        "gesture": "Percorrer as três perguntas visualmente, uma de cada vez.",
+        "talk": "E aqui está uma distinção importante: nem toda imagem editada ou produzida com tecnologia é automaticamente um deepfake eleitoral. O Tribunal Superior Eleitoral considera fatores como realismo, manipulação de imagem ou voz e a caracterização da mensagem como propaganda eleitoral. É a análise do contexto que permite identificar a infração.",
+        "asset": "./assets/palestrinhas/leticia-05.webp"
       },
       {
         "title": "ANTES DE COMPARTILHAR",
-        "board": "ORIGEM → CONTEXTO → VERIFICAR",
-        "draw": "Três caixas ligadas a uma lupa e checklist.",
-        "gesture": "Letícia encerra em close na câmera.",
-        "talk": "Então a questão não é simplesmente proibir tecnologia. É impedir que a inteligência artificial seja utilizada para enganar o eleitor e comprometer a integridade da disputa. Antes de acreditar em um vídeo político impressionante, verifique sua origem e o contexto. Porque uma imagem convincente não é necessariamente uma imagem verdadeira."
+        "board": "ANTES DE COMPARTILHAR",
+        "draw": "Fluxo de verificação: origem → contexto → verificar.",
+        "gesture": "Encerrar com os três passos aparecendo em sequência.",
+        "talk": "Então a questão não é simplesmente proibir tecnologia. É impedir que a inteligência artificial seja utilizada para enganar o eleitor e comprometer a integridade da disputa. Antes de acreditar em um vídeo político impressionante, verifique sua origem e o contexto. Porque uma imagem convincente não é necessariamente uma imagem verdadeira.",
+        "asset": "./assets/palestrinhas/leticia-06.webp"
       }
     ],
     "legalReview": "Roteiro com referência às regras eleitorais de 2026. Confirmar eventuais atualizações do TSE."
