@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#081428">
+  <meta name="description" content="Lavareda: experiência interativa para visualizar, revisar e aprovar os roteiros de dezembro de 2026 e janeiro de 2027.">
+  <title>Lavareda | Pré-produção de vídeos — NORTHE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Navegação do projeto">
+      <div class="brand">
+        <div class="brandmark">L<span>/</span></div>
+        <div><strong>LAVAREDA</strong><small>Apresentação de roteiros</small></div>
+      </div>
+      <div class="side-label">SEU PROJETO</div>
+      <div class="side-current"><span class="dot"></span><span>Conteúdos jurídicos<strong>Dez 2026 — Jan 2027</strong></span></div>
+      <div class="side-label">NAVEGAR POR MÊS</div>
+      <div class="side-months">
+        <button class="side-month active" data-month="dezembro"><span class="month-icon">12</span><span>Dezembro <small>2026</small></span><b id="side-dec">10</b></button>
+        <button class="side-month" data-month="janeiro"><span class="month-icon">01</span><span>Janeiro <small>2027</small></span><b id="side-jan">12</b></button>
+      </div>
+      <div class="side-label">GUIA DE GRAVAÇÃO</div>
+      <button class="side-plain" id="side-guide">◩ &nbsp; Conheça os 4 formatos</button>
+      <button class="side-plain" id="side-export">⇩ &nbsp; Copiar revisão</button>
+      <div class="side-bottom">
+        <div class="side-tip"><span>✦</span><p>Não é só um roteiro. Aqui você vê <strong>como o vídeo vai acontecer</strong>, cena por cena.</p></div>
+        <div class="signature"><strong>NORTHE<span>®</span></strong><small>MADE IN THE NORTH.</small></div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="breadcrumb">CLIENTES <span>/</span> LAVAREDA <span>/</span> ROTEIROS</div>
+        <div class="topright"><span class="top-dot"></span> Ciclo em pré-produção <span class="top-ver">V1.0</span></div>
+      </header>
+
+      <div class="main-content">
+        <section class="hero">
+          <div class="hero-left">
+            <span class="eyebrow">NORTHE STUDIO <span class="star">✳</span> DIREÇÃO DE CONTEÚDO</span>
+            <h1>Antes da câmera.<br><em>O vídeo já ganha forma.</em></h1>
+            <p>Escolha um mês, abra um conteúdo e visualize <strong>como ele será gravado</strong>. Você encontra a dinâmica, as cenas, os desenhos, as falas e o espaço para aprovar ou pedir ajustes.</p>
+            <div class="hero-actions"><button class="btn btn-light" id="start-review">Explorar roteiros <span>↗</span></button><button class="btn btn-ghost" id="see-formats">Entender os formatos <span>↗</span></button></div>
+          </div>
+          <div class="hero-art" aria-hidden="true">
+            <div class="hero-record"><span class="rec-dot"></span> REC · PRÉVIA DE GRAVAÇÃO <b>00:24</b></div>
+            <div class="hero-portrait"><div class="hero-head"></div><div class="hero-body"></div><div class="hero-mouth"></div></div>
+            <div class="hero-floating"><div class="draw-line"></div><div class="draw-quote">COMO O<br>VÍDEO VAI<br><strong>FUNCIONAR?</strong></div><div class="draw-arrow">↘</div></div>
+            <div class="hero-film"><span></span><span></span><span></span><span></span></div>
+          </div>
+        </section>
+
+        <section class="how-to" aria-label="Como usar este portal">
+          <div class="how-head"><div><span class="eyebrow dark">COMECE AQUI</span><h2>Como funciona a revisão?</h2></div><span class="how-counter">3 PASSOS</span></div>
+          <div class="how-grid">
+            <div class="how-step"><span class="step-num">01</span><div><h3>Escolha um mês</h3><p>Dezembro e janeiro estão separados para ficar fácil de encontrar o que cada advogado vai gravar.</p></div></div>
+            <div class="how-step"><span class="step-num">02</span><div><h3>Veja o vídeo antes de gravar</h3><p>Abra o roteiro para conhecer os enquadramentos, a sequência visual e a fala do advogado.</p></div></div>
+            <div class="how-step"><span class="step-num">03</span><div><h3>Aprove ou peça ajustes</h3><p>Marque sua decisão em cada vídeo. Ao final, copie o resumo da revisão para enviar à NORTHE.</p></div></div>
+          </div>
+        </section>
+
+        <section class="formats-section" id="formats-section">
+          <div class="section-title"><div><span class="eyebrow dark">01 / COMO VAMOS GRAVAR</span><h2>Quatro formatos. <span>Quatro maneiras de contar.</span></h2></div><p>Esses são exemplos ilustrados de montagem. <strong>Clique em um modelo</strong> para ver a dinâmica aplicada a um roteiro real.</p></div>
+          <div class="format-gallery" id="format-gallery"></div>
+        </section>
+
+        <section class="cycle-section" id="cycle-section">
+          <div class="section-title cycle-title"><div><span class="eyebrow dark">02 / CONTEÚDOS DO CICLO</span><h2>Roteiros para <span>gravação.</span></h2></div><div class="review-progress"><div class="progress-line"><span>Revisados</span><strong id="progress-text">0 de 22</strong></div><div class="progress-track"><span id="progress-fill"></span></div></div></div>
+          <div class="month-switch" role="tablist" aria-label="Selecionar mês">
+            <button role="tab" aria-selected="true" class="month-tab active" data-month="dezembro"><span class="month-no">12 / 26</span><strong>Dezembro</strong><span class="tab-count">10 roteiros</span></button>
+            <button role="tab" aria-selected="false" class="month-tab" data-month="janeiro"><span class="month-no">01 / 27</span><strong>Janeiro</strong><span class="tab-count">12 roteiros</span></button>
+          </div>
+          <div class="month-heading"><div><span class="eyebrow dark" id="month-eyebrow">DEZEMBRO DE 2026</span><h3 id="month-title">Seu primeiro ciclo de vídeos</h3><p id="month-description">10 vídeos jurídicos + 2 peças institucionais de Natal e Ano-Novo, fora desta revisão.</p></div><div class="month-count"><b id="visible-count">10</b><small>VÍDEOS</small></div></div>
+          <div class="filters">
+            <div class="search-wrap"><span>⌕</span><input type="search" id="search" placeholder="Busque por tema ou advogado..." aria-label="Buscar por tema ou advogado"></div>
+            <select id="lawyer-filter" aria-label="Filtrar por advogado"><option value="">Todos os advogados</option></select>
+            <select id="model-filter" aria-label="Filtrar por formato"><option value="">Todos os formatos</option><option value="palestrinha">Palestrinha</option><option value="contraste">Contraste</option><option value="pergunta">Pergunta e resposta</option><option value="conversa">Conversa</option></select>
+          </div>
+          <div class="script-grid" id="script-grid"></div>
+          <div class="empty" id="empty" hidden>Nenhum roteiro corresponde à busca. Tente outro advogado ou formato.</div>
+        </section>
+
+        <footer><div><strong>NORTHE</strong><span>© 2026 — MADE IN THE NORTH.</span></div><p>Lavareda × NORTHE · Ambiente de revisão e pré-produção. Os conteúdos dependem de validação jurídica antes da publicação.</p></footer>
+      </div>
+    </main>
+  </div>
+
+  <dialog id="detail-dialog" class="detail-dialog" aria-label="Prévia de roteiro">
+    <div class="dialog-shell">
+      <div class="dialog-head"><div class="dialog-head-left"><span class="dialog-badge" id="dialog-number">ROTEIRO 01</span><span class="dialog-badge muted" id="dialog-model">PALESTRINHA</span><span class="dialog-badge muted" id="dialog-month">DEZEMBRO</span></div><button class="close-dialog" id="close-dialog" aria-label="Fechar roteiro">×</button></div>
+      <div class="dialog-body">
+        <div class="detail-main">
+          <div class="detail-ey">PRÉVIA DE GRAVAÇÃO • STORYBOARD</div>
+          <h2 id="detail-title"></h2>
+          <div class="detail-sub"><span id="detail-lawyer"></span><span>·</span><span id="detail-duration"></span></div>
+          <div class="storyboard-wrap">
+            <div class="storyboard-top"><span><i class="live-dot"></i> SIMULAÇÃO VISUAL DO FORMATO</span><span id="frame-counter">01 / 03</span></div>
+            <div id="storyboard-screen" class="storyboard-screen"></div>
+            <div class="story-controls"><button id="frame-prev" aria-label="Quadro anterior">←</button><div id="frame-dots" class="frame-dots"></div><button id="frame-next" aria-label="Próximo quadro">→</button><button class="play-btn" id="play-story">▶ Reproduzir sequência</button></div>
+          </div>
+          <div class="frame-notes"><div><small>O QUE APARECE NA TELA</small><p id="frame-draw"></p></div><div><small>COMO GRAVAR</small><p id="frame-action"></p></div></div>
+          <div class="speech-box"><div class="speech-head"><span>FALA DESTA CENA</span><button id="copy-scene">Copiar fala ↗</button></div><p id="scene-talk"></p></div>
+        </div>
+        <aside class="detail-side">
+          <div class="aside-title">GUIA PARA O ADVOGADO</div>
+          <div class="detail-goal"><span>01 / OBJETIVO DO VÍDEO</span><p id="detail-goal"></p></div>
+          <div class="detail-goal"><span>02 / FORMATO ESCOLHIDO</span><h3 id="detail-model-name"></h3><p id="detail-model-help"></p></div>
+          <div class="detail-goal"><span>03 / ANTES DE GRAVAR</span><p id="detail-prepare"></p></div>
+          <div class="side-action"><button class="btn btn-primary" id="open-full-script">Ler roteiro completo ↓</button><button class="btn btn-outline" id="copy-script">Copiar texto falado</button></div>
+        </aside>
+      </div>
+      <div class="script-review" id="full-script"><div class="script-review-title"><div><span class="eyebrow dark">ROTEIRO FALADO</span><h3>O que será dito na gravação</h3></div><button id="teleprompter" class="text-button">↗ Abrir modo leitura</button></div><div id="full-script-content" class="full-script-content"></div></div>
+      <div class="review-section"><div><span class="eyebrow dark">ETAPA FINAL</span><h3>Sua decisão sobre este roteiro</h3><p>As decisões ficam registradas neste navegador. Use “Copiar revisão” para enviar o resumo à NORTHE.</p></div><div class="review-buttons"><button data-review="approved" class="review-ok">✓ Aprovar</button><button data-review="adjust" class="review-adjust">✎ Pedir ajuste</button></div><label class="notes-label" for="review-note">Observações para a produção</label><textarea id="review-note" placeholder="Ex.: trocar uma expressão, corrigir uma informação, ajustar a maneira de apresentar..."></textarea><div class="review-meta"><span id="review-state">Aguardando revisão</span><button id="copy-review">Copiar resumo da revisão ↗</button></div></div>
+      <div class="dialog-footer"><button id="previous-script">← Roteiro anterior</button><button id="next-script">Próximo roteiro →</button></div>
+    </div>
+  </dialog>
+
+  <dialog id="read-dialog" class="read-dialog" aria-label="Modo leitura do roteiro"><div class="read-header"><span>NORTHE / MODO LEITURA</span><div><button id="font-down" aria-label="Diminuir fonte">A−</button><button id="font-up" aria-label="Aumentar fonte">A+</button><button id="close-read" aria-label="Fechar modo leitura">×</button></div></div><div id="read-body" class="read-body"></div></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="./dezembro.js"></script><script src="./janeiro.js"></script><script src="./app.js"></script>
+</body>
+</html>
