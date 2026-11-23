@@ -222,12 +222,13 @@
     showFullScript(script); renderFrame(); updateReviewControls();
     var list=monthScripts();var index=list.findIndex(function(s){return s.id===id;});
     $('#previous-script').disabled=index<=0;$('#next-script').disabled=index>=list.length-1;
-    $('#detail-dialog').showModal();$('#detail-dialog').scrollTop=0;
+    if (!$('#detail-dialog').open) $('#detail-dialog').showModal();
+    $('#detail-dialog').scrollTop=0;
   }
   function moveScript(delta) {
     var list=monthScripts();var index=list.findIndex(function(s){return s.id===active;});
     var next=list[index+delta];if(!next)return;
-    $('#detail-dialog').close();openScript(next.id);
+    openScript(next.id);
   }
   function exportReview() {
     var lines=['LAVAREDA × NORTHE | REVISÃO DE ROTEIROS','DEZEMBRO 2026 + JANEIRO 2027','Revisão anotada no navegador do cliente.',''];
