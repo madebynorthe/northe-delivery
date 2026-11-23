@@ -12,46 +12,76 @@ window.LAVAREDA_DECEMBER = [
     "hook": "Seu auxílio por incapacidade foi negado pelo INSS?",
     "slides": [
       {
-        "title": "INSS NEGOU?",
-        "board": "NEGADO",
-        "draw": "Documento com carimbo NEGADO e interrogação grande.",
-        "gesture": "Victoria aponta para o carimbo, câmera aproxima.",
-        "talk": "Seu auxílio por incapacidade foi negado pelo INSS? Antes de achar que acabou, presta atenção nisso: existe uma nova oportunidade de análise para pedidos feitos pelo Atestmed. E você precisa conhecer os prazos."
+        "title": "INSS NEGOU? PELO ATESTMED",
+        "board": "INSS NEGOU? PELO ATESTMED",
+        "asset": "./assets/palestrinhas/victoria-01.webp",
+        "talk": "Seu auxílio por incapacidade foi negado pelo INSS? Antes de achar que acabou, presta atenção nisso: existe uma nova oportunidade de análise para pedidos feitos pelo Atestmed. E você precisa conhecer os prazos.",
+        "gesture": "Victoria apresenta a negativa olhando para a câmera. Revelar o carimbo e a pergunta.",
+        "draw": "Documento INSS com negativa e pergunta central."
       },
       {
-        "title": "O QUE É ATESTMED?",
-        "board": "ATESTMED",
-        "draw": "Celular Meu INSS → documento médico → lupa.",
-        "gesture": "Acompanhar a seta com a mão.",
-        "talk": "Primeiro, o Atestmed é uma modalidade de análise do benefício por incapacidade temporária com base na documentação médica. E essa nova possibilidade de reanálise é específica para pedidos avaliados por esse procedimento."
+        "title": "O QUE É O ATESTMED?",
+        "board": "O QUE É O ATESTMED?",
+        "asset": "./assets/palestrinhas/victoria-02.webp",
+        "talk": "Primeiro, o Atestmed é uma modalidade de análise do benefício por incapacidade temporária com base na documentação médica.",
+        "gesture": "Apontar para o celular e depois para o laudo digital.",
+        "draw": "Celular Meu INSS, laudo, exames e atestados."
       },
       {
-        "title": "PRAZO",
-        "board": "10 DIAS",
-        "draw": "Calendário com o número 10 circulado e linha do tempo.",
-        "gesture": "Pausar e apontar para o número.",
-        "talk": "Se a incapacidade não for reconhecida nessa primeira análise, o segurado tem até dez dias para pedir uma segunda avaliação. Dez dias! Por isso é importante conferir o resultado e as orientações disponíveis no Meu INSS."
+        "title": "NEGOU? NÃO É O FIM",
+        "board": "NEGOU? NÃO É O FIM",
+        "asset": "./assets/palestrinhas/victoria-03.webp",
+        "talk": "E essa nova possibilidade de reanálise é específica para pedidos avaliados por esse procedimento.",
+        "gesture": "Acompanhar a seta do pedido negado até a reanálise.",
+        "draw": "Negativa do Atestmed com seta para a possibilidade de reanálise."
       },
       {
-        "title": "DOCUMENTOS",
-        "board": "CORRIGIR + COMPLEMENTAR",
-        "draw": "Laudo antigo → laudo corrigido + exames; dois peritos esquemáticos.",
-        "gesture": "Mostrar primeiro os documentos, depois os peritos.",
-        "talk": "Nessa oportunidade, é possível complementar ou corrigir a documentação médica, inclusive acrescentar exames e laudos. E tem um detalhe importante: a nova avaliação será feita por outro médico perito."
+        "title": "VOCÊ TEM 10 DIAS",
+        "board": "VOCÊ TEM 10 DIAS",
+        "asset": "./assets/palestrinhas/victoria-04.webp",
+        "talk": "Se a incapacidade não for reconhecida nessa primeira análise, o segurado tem até dez dias para pedir uma segunda avaliação. Dez dias! Por isso é importante conferir o resultado e as orientações disponíveis no Meu INSS.",
+        "gesture": "Dar uma pausa sobre o número 10 e apontar para o calendário.",
+        "draw": "Calendário com número 10 destacado e indicação do prazo da reanálise."
       },
       {
-        "title": "E SE NEGAR DE NOVO?",
-        "board": "PERÍCIA / RECURSO",
-        "draw": "Caminho bifurcado: perícia presencial e recurso 30 dias.",
-        "gesture": "Revelar cada caminho separadamente.",
-        "talk": "Mas e se houver uma segunda negativa? Nesse caso, o segurado será encaminhado para perícia presencial. Além disso, permanece a possibilidade de recurso administrativo, com prazo de trinta dias após a comunicação do resultado negativo da reanálise."
+        "title": "CORRIGIR E COMPLEMENTAR",
+        "board": "CORRIGIR E COMPLEMENTAR",
+        "asset": "./assets/palestrinhas/victoria-05.webp",
+        "talk": "Nessa oportunidade, é possível complementar ou corrigir a documentação médica, inclusive acrescentar exames e laudos.",
+        "gesture": "Apontar do laudo inicial aos documentos corrigidos. Revele os checklists na edição.",
+        "draw": "Laudos, exames e documentos, com indicação da complementação."
       },
       {
-        "title": "O QUE FAZER",
-        "board": "CONFERIR → ORGANIZAR → AGIR",
-        "draw": "Três caixas marcadas em um checklist.",
-        "gesture": "Concluir em plano médio olhando diretamente para a câmera.",
-        "talk": "Então, um pedido negado pelo Atestmed não significa necessariamente o fim do caminho. Confira o resultado, observe os prazos e organize seus documentos. Porque perder uma oportunidade por falta de informação pode fazer muita diferença."
+        "title": "OUTRO MÉDICO PERITO",
+        "board": "OUTRO MÉDICO PERITO",
+        "asset": "./assets/palestrinhas/victoria-06.webp",
+        "talk": "E tem um detalhe importante: a nova avaliação será feita por outro médico perito.",
+        "gesture": "Mostrar a passagem do processo de um perito ao outro.",
+        "draw": "Dois profissionais médicos esquemáticos e uma seta de nova avaliação."
+      },
+      {
+        "title": "NEGOU DE NOVO? PERÍCIA PRESENCIAL",
+        "board": "NEGOU DE NOVO? PERÍCIA PRESENCIAL",
+        "asset": "./assets/palestrinhas/victoria-07.webp",
+        "talk": "Mas e se houver uma segunda negativa? Nesse caso, o segurado será encaminhado para perícia presencial.",
+        "gesture": "Pausar sobre a segunda negativa e indicar o bloco da perícia.",
+        "draw": "Dois documentos negados e indicação de perícia presencial."
+      },
+      {
+        "title": "AINDA CABE RECURSO: 30 DIAS",
+        "board": "AINDA CABE RECURSO: 30 DIAS",
+        "asset": "./assets/palestrinhas/victoria-08.webp",
+        "talk": "Além disso, permanece a possibilidade de recurso administrativo, com prazo de trinta dias após a comunicação do resultado negativo da reanálise.",
+        "gesture": "Destacar o calendário, sem confundir esse prazo com os 10 dias anteriores.",
+        "draw": "Recurso administrativo acompanhado de calendário com 30 dias."
+      },
+      {
+        "title": "NÃO PERCA O PRAZO",
+        "board": "NÃO PERCA O PRAZO",
+        "asset": "./assets/palestrinhas/victoria-09.webp",
+        "talk": "Então, um pedido negado pelo Atestmed não significa necessariamente o fim do caminho. Confira o resultado, observe os prazos e organize seus documentos. Porque perder uma oportunidade por falta de informação pode fazer muita diferença.",
+        "gesture": "Encerrar olhando para a câmera enquanto as três ações aparecem.",
+        "draw": "Confira o resultado, organize os documentos e solicite a reanálise."
       }
     ]
   },
@@ -95,53 +125,84 @@ window.LAVAREDA_DECEMBER = [
     "hook": "O fim da escala 6 por 1 foi aprovado.",
     "slides": [
       {
-        "title": "O QUE MUDA?",
-        "board": "6 × 1",
-        "draw": "Seis dias de trabalho e um descanso; o esquema é o gancho.",
-        "gesture": "Felipe começa olhando para a câmera e aponta para o calendário.",
-        "talk": "O fim da escala 6 por 1 foi aprovado. Mas calma: isso não significa que todo trabalhador passou a trabalhar quatro dias por semana. E também não significa que todas as empresas terão a mesma escala. Vou te mostrar o que realmente muda."
+        "title": "FIM DA ESCALA 6×1",
+        "board": "FIM DA ESCALA 6×1",
+        "asset": "./assets/palestrinhas/felipe-01.webp",
+        "talk": "O fim da escala 6 por 1 foi aprovado.",
+        "gesture": "Felipe olha diretamente para a câmera antes de apontar para o grande 6×1.",
+        "draw": "Título grande: fim da escala 6×1 aprovado. Pergunta: e agora?"
       },
       {
-        "title": "COMO FUNCIONAVA",
-        "board": "6 + 1 · 44H",
-        "draw": "Calendário sete dias, seis preenchidos e um de descanso.",
-        "gesture": "Circular a jornada semanal.",
-        "talk": "Na escala tradicional de seis por um, o empregado trabalha seis dias e descansa um. A Constituição também permitia, como regra geral, jornada de até quarenta e quatro horas semanais."
+        "title": "O QUE ISSO NÃO SIGNIFICA",
+        "board": "O QUE ISSO NÃO SIGNIFICA",
+        "asset": "./assets/palestrinhas/felipe-02.webp",
+        "talk": "Mas calma: isso não significa que todo trabalhador passou a trabalhar quatro dias por semana. E também não significa que todas as empresas terão a mesma escala. Vou te mostrar o que realmente muda.",
+        "gesture": "Revelar os três avisos enquanto Felipe pontua o que não muda automaticamente.",
+        "draw": "Três caixas que desfazem expectativas sobre 4×3, empresas e negociações."
       },
       {
-        "title": "PRIMEIRA ETAPA",
-        "board": "16/12/26 · 42H",
-        "draw": "Calendário se redesenha: cinco dias e duas folgas.",
-        "gesture": "Felipe mostra a data e a mudança de calendário.",
-        "talk": "A Emenda Constitucional 141 de 2026 estabeleceu dois dias de repouso semanal remunerado, sem redução salarial. A primeira etapa está prevista para começar em dezesseis de dezembro de 2026, com jornada máxima de quarenta e duas horas por semana."
+        "title": "ANTES: 6 DIAS DE TRABALHO",
+        "board": "ANTES: 6 DIAS DE TRABALHO",
+        "asset": "./assets/palestrinhas/felipe-03.webp",
+        "talk": "Na escala tradicional de seis por um, o empregado trabalha seis dias e descansa um. A Constituição também permitia, como regra geral, jornada de até quarenta e quatro horas semanais.",
+        "gesture": "Acompanhar com a mão os seis dias de trabalho, o descanso e as 44 horas.",
+        "draw": "Calendário da escala anterior e limite semanal de 44 horas."
       },
       {
-        "title": "PRÓXIMA ETAPA",
-        "board": "2026: 42H → 2027: 40H",
-        "draw": "Linha do tempo de duas etapas, dois calendários.",
-        "gesture": "Mover a mão da primeira data para a segunda.",
-        "talk": "A redução não acontece toda de uma vez. A segunda etapa está prevista para dezembro de 2027, quando o limite semanal passa para quarenta horas. Por isso, quarenta e duas horas e quarenta horas são momentos diferentes da mesma transição."
+        "title": "AGORA: 2 DIAS DE DESCANSO",
+        "board": "AGORA: 2 DIAS DE DESCANSO",
+        "asset": "./assets/palestrinhas/felipe-04.webp",
+        "talk": "A Emenda Constitucional 141 de 2026 estabeleceu dois dias de repouso semanal remunerado, sem redução salarial.",
+        "gesture": "Apontar para os dias de repouso e para o salário preservado.",
+        "draw": "Novo calendário com cinco dias de trabalho e dois de descanso."
       },
       {
-        "title": "E O SALÁRIO?",
-        "board": "MENOS HORAS ≠ MENOS SALÁRIO",
-        "draw": "Balança com relógio e contracheque protegido por cadeado.",
-        "gesture": "Pausar no contraste, aproximar no rosto.",
-        "talk": "E o salário, pode diminuir porque a jornada diminuiu? Não. A emenda assegura que a redução da jornada aconteça sem redução salarial. Esse é um dos pontos centrais da mudança."
+        "title": "1ª ETAPA: 16/12/2026",
+        "board": "1ª ETAPA: 16/12/2026",
+        "asset": "./assets/palestrinhas/felipe-05.webp",
+        "talk": "A primeira etapa está prevista para começar em dezesseis de dezembro de 2026, com jornada máxima de quarenta e duas horas por semana.",
+        "gesture": "Destacar a data e, em seguida, o número 42 horas.",
+        "draw": "Calendário de dezembro/2026 e limite de 42 horas semanais."
       },
       {
-        "title": "EXCEÇÕES E TRANSIÇÃO",
-        "board": "FOLGAS ≠ SÁB/DOM",
-        "draw": "Duas semanas com folgas em posições diferentes. Relógio 8h24.",
-        "gesture": "Apontar para as duas distribuições, depois para o relógio.",
-        "talk": "Agora vem a parte que exige atenção. Os dias de descanso não precisam ser, necessariamente, sábado e domingo. E existem possibilidades de negociação coletiva e regras diferenciadas. Além disso, o Supremo está discutindo detalhes da implementação da emenda. Uma decisão provisória permitiu, em certas condições e durante a transição, distribuir as quarenta e duas horas em cinco jornadas de até oito horas e vinte e quatro minutos."
+        "title": "2ª ETAPA: DEZEMBRO/2027",
+        "board": "2ª ETAPA: DEZEMBRO/2027",
+        "asset": "./assets/palestrinhas/felipe-06.webp",
+        "talk": "A redução não acontece toda de uma vez. A segunda etapa está prevista para dezembro de 2027, quando o limite semanal passa para quarenta horas.",
+        "gesture": "Mostrar a progressão para o segundo marco e destacar as 40 horas.",
+        "draw": "Calendário de dezembro/2027 com máximo de 40 horas semanais."
       },
       {
-        "title": "RESUMO",
-        "board": "2 FOLGAS · 42 → 40H · SALÁRIO",
-        "draw": "Checklist dos três pontos centrais em marcador azul.",
-        "gesture": "Felipe encerra em plano médio e olhar direto para a câmera.",
-        "talk": "Então, três coisas precisam ficar claras: a escala 6 por 1 está sendo substituída, a redução semanal será gradual e o salário deve ser preservado. Trabalhadores e empresas precisam observar a legislação, as decisões judiciais aplicáveis e os instrumentos coletivos da categoria. A mudança foi aprovada. Agora é essencial compreender como ela será aplicada."
+        "title": "TRANSIÇÃO: 42H → 40H",
+        "board": "TRANSIÇÃO: 42H → 40H",
+        "asset": "./assets/palestrinhas/felipe-07.webp",
+        "talk": "Por isso, quarenta e duas horas e quarenta horas são momentos diferentes da mesma transição.",
+        "gesture": "Percorrer a linha do tempo do primeiro marco ao segundo.",
+        "draw": "Linha do tempo em duas etapas, 2026 e 2027."
+      },
+      {
+        "title": "MENOS HORAS NÃO É MENOS SALÁRIO",
+        "board": "MENOS HORAS NÃO É MENOS SALÁRIO",
+        "asset": "./assets/palestrinhas/felipe-08.webp",
+        "talk": "E o salário, pode diminuir porque a jornada diminuiu? Não. A emenda assegura que a redução da jornada aconteça sem redução salarial. Esse é um dos pontos centrais da mudança.",
+        "gesture": "Pausar na pergunta e reforçar o salário protegido.",
+        "draw": "Relógio, moedas/contracheque e comparação das jornadas sem redução salarial."
+      },
+      {
+        "title": "ATENÇÃO ÀS REGRAS DE TRANSIÇÃO",
+        "board": "ATENÇÃO ÀS REGRAS DE TRANSIÇÃO",
+        "asset": "./assets/palestrinhas/felipe-09.webp",
+        "talk": "Agora vem a parte que exige atenção. Os dias de descanso não precisam ser, necessariamente, sábado e domingo. E existem possibilidades de negociação coletiva e regras diferenciadas. Além disso, o Supremo está discutindo detalhes da implementação da emenda. Uma decisão provisória permitiu, em certas condições e durante a transição, distribuir as quarenta e duas horas em cinco jornadas de até oito horas e vinte e quatro minutos.",
+        "gesture": "Apontar às três caixas e ressaltar que situações concretas dependem das regras aplicáveis.",
+        "draw": "Folgas em dias diferentes, negociação coletiva e discussão judicial."
+      },
+      {
+        "title": "RESUMINDO",
+        "board": "RESUMINDO",
+        "asset": "./assets/palestrinhas/felipe-10.webp",
+        "talk": "Então, três coisas precisam ficar claras: a escala 6 por 1 está sendo substituída, a redução semanal será gradual e o salário deve ser preservado. Trabalhadores e empresas precisam observar a legislação, as decisões judiciais aplicáveis e os instrumentos coletivos da categoria. A mudança foi aprovada. Agora é essencial compreender como ela será aplicada.",
+        "gesture": "Felipe finaliza em plano médio com três pontos aparecendo em sequência.",
+        "draw": "Resumo: dois dias de descanso, redução 42→40h, sem redução salarial."
       }
     ],
     "legalReview": "Conferir vigência e decisões das ADIs 8.041 e 8.042 antes da publicação."
