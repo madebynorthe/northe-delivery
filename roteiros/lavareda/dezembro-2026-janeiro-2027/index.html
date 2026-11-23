@@ -82,6 +82,39 @@
         <div class="reference-note">O vídeo ao lado é uma referência do formato. O conteúdo jurídico e a fala serão os do roteiro abaixo.</div>
       </div>
     </section>
+    <section class="palestrinha-gallery" id="palestrinha-gallery" hidden aria-labelledby="slides-heading">
+      <div class="script-section-head slide-section-head">
+        <div><span class="eyebrow">MATERIAL REAL DA GRAVAÇÃO</span><h3 id="slides-heading">Slides que serão usados</h3><p>Selecione cada quadro para ver a arte final, a fala correspondente e a indicação de gravação.</p></div>
+        <span class="slides-total" id="slides-total"></span>
+      </div>
+      <div class="slide-workspace">
+        <div class="slide-art-container">
+          <div class="slide-art-background"><img id="slide-art" alt="Slide do Palestrinha em formato vertical, estilo quadro branco" loading="eager"></div>
+          <div class="slide-art-caption">ARTE FINAL · 1080 × 1920</div>
+        </div>
+        <div class="slide-instructions">
+          <span class="slide-count" id="slide-count"></span>
+          <h4 id="slide-heading"></h4>
+          <div class="slide-speaking">
+            <small>FALA DURANTE ESTE SLIDE</small>
+            <p id="slide-speaking-text"></p>
+          </div>
+          <div class="slide-direction">
+            <small>COMO APRESENTAR</small>
+            <p id="slide-direction-text"></p>
+          </div>
+          <div class="slide-navigation">
+            <button type="button" id="slide-prev" aria-label="Slide anterior">← Anterior</button>
+            <button type="button" id="slide-next" aria-label="Próximo slide">Próximo →</button>
+          </div>
+          <div class="slide-downloads">
+            <button type="button" id="download-slide-png">↓ Baixar PNG</button>
+            <button type="button" id="download-slide-svg">↓ Baixar SVG</button>
+          </div>
+        </div>
+      </div>
+      <div class="slide-thumbnails" id="slide-thumbnails" aria-label="Escolher slide"></div>
+    </section>
     <section class="full-script" id="full-script">
       <div class="script-section-head"><div><span class="eyebrow">TEXTO PARA GRAVAÇÃO</span><h3>Roteiro falado</h3></div><div class="script-actions"><button class="small-button" id="copy-script">Copiar texto</button><button class="small-button" id="reading-mode">Modo leitura ↗</button></div></div>
       <div id="script-text" class="script-text"></div>
@@ -104,6 +137,7 @@
 <div class="toast" role="status" aria-live="polite" id="toast"></div>
 <script src="./dezembro.js"></script>
 <script src="./janeiro.js"></script>
+<script src="./palestrinha-slides.js"></script>
 <script src="./app.js"></script>
 </body>
 </html>
