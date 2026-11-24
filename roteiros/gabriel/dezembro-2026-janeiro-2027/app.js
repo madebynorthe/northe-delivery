@@ -1,0 +1,39 @@
+(function appMain(){
+  const data=window.NORTHE_SCRIPT_DATA, nav=document.querySelector('#nav');
+  if(!data||!nav||!Array.isArray(data.scripts))return;
+  let active=null;
+  const storageKey=data.storageKey||`northe-script-review:${data.id}`;
+  const state=JSON.parse(localStorage.getItem(storageKey)||'{}');
+  const esc=(v='')=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'})[c]);
+  const save=()=>localStorage.setItem(storageKey,JSON.stringify(state));
+  const byId=id=>data.scripts.find(s=>s.id===id);
+  const get=id=>state[id]||state[Number(id)]||{};
+  const status=s=>s==='ok'?'APROVADO':s==='chg'?'PEDIR AJUSTE':'AGUARDANDO REVISÃO';
+  const color=s=>s==='ok'?'#35533d':s==='chg'?'#8b3e33':'#77756f';
+  function progress(){const r=data.scripts.filter(s=>get(s.id).status).length;document.querySelector('#pl').textContent=`${r}/${data.scripts.length}`;document.querySelector('#pf').style.width=`${(r/data.scripts.length)*100}%`;}
+  function panel(s){
+    const st=get(s.id),i=data.scripts.findIndex(x=>x.id===s.id),next=data.scripts[i+1];
+    return `<section class="panel" id="panel">
+      <div class="toprow"><div>
+        <div class="badges"><span class="badge">Reel ${esc(s.id)}</span><span class="badge date">${esc(s.date)}</span><span class="format-chip">${esc(s.format)}</span><span class="badge">${esc(s.role)}</span></div>
+        <h2>${esc(s.title)}</h2>
+      </div><b style="font-size:12px;color:${color(st.status)}">${status(st.status)}</b></div>
+      <div class="meta"><div><small>Ideia central</small>${esc(s.idea)}</div><div><small>Formato</small>${esc(s.format)}</div></div>
+      <div class="script-section"><div class="script-label"><div class="ey muted">ROTEIRO FINAL</div></div><div class="script">${esc(s.text)}</div></div>
+      <div class="capture"><div class="ey muted">CAPTAÇÃO</div><div>${esc(s.capture)}</div></div>
+      <div class="review"><div class="ey muted">SUA DECISÃO</div>
+        <div class="decision"><button class="ok ${st.status==='ok'?'sel':''}" data-a="ok">✓ Aprovar roteiro</button><button class="chg ${st.status==='chg'?'sel':''}" data-a="chg">✎ Pedir ajuste</button></div>
+        <textarea placeholder="Ex.: ajustar uma frase, simplificar um termo, mudar uma situação…">${esc(st.note||'')}</textarea>
+      </div>
+      ${next?`<div class="nextbar"><button type="button" data-next="${next.id}">Próximo roteiro →</button></div>`:''}
+    </section>`;
+  }
+  function renderButtons(){nav.innerHTML=data.scripts.map(s=>`<button type="button" class="${active===s.id?'active':''}" data-id="${s.id}"><div class="n">${s.id} · ${esc(s.date)}</div><div class="t">${esc(s.title)}</div><div class="d">${esc(s.format)} · ${esc(s.role)}</div></button>`).join('');nav.querySelectorAll('[data-id]').forEach(b=>b.onclick=()=>open(b.dataset.id));}
+  function point(id){const bs=[...nav.querySelectorAll('button[data-id]')],cur=bs.find(b=>b.dataset.id===id);if(!cur)return null;if(matchMedia('(max-width:760px)').matches)return cur;const i=bs.indexOf(cur);return bs[Math.min(bs.length-1,Math.floor(i/3)*3+2)];}
+  function mount(id,scroll=true){const s=byId(id),p=point(id);if(!s||!p)return;p.insertAdjacentHTML('afterend',panel(s));bind(s);if(scroll)requestAnimationFrame(()=>nav.querySelector('#panel')?.scrollIntoView({behavior:'smooth',block:'start'}));}
+  function open(id,scroll=true){if(active===id){active=null;renderButtons();return;}active=id;renderButtons();mount(id,scroll);}
+  function refresh(id){active=id;renderButtons();mount(id,false);}
+  function bind(s){const p=nav.querySelector('#panel'),ta=p.querySelector('textarea');p.querySelectorAll('[data-a]').forEach(b=>b.onclick=()=>{state[s.id]={...get(s.id),status:b.dataset.a,note:ta.value};delete state[Number(s.id)];save();progress();refresh(s.id);});ta.oninput=e=>{state[s.id]={...get(s.id),note:e.target.value};delete state[Number(s.id)];save();};p.querySelector('[data-next]')?.addEventListener('click',e=>open(e.currentTarget.dataset.next));}
+  let rt;addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(()=>{if(active){renderButtons();mount(active,false)}},120);});
+  renderButtons();progress();
+})();
