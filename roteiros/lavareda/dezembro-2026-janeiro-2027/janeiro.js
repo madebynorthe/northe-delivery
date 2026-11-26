@@ -445,19 +445,19 @@ window.LAVAREDA_JANUARY = [
     "duration": "45–60s",
     "goal": "Distinguir impressão subjetiva de fundada suspeita.",
     "hook": "A polícia pode revistar alguém em qualquer situação?",
-    "text": "Uma pessoa está andando na rua e a polícia decide revistá-la.\n\nIsso é permitido em qualquer situação?\n\nNão.\n\nO Código de Processo Penal admite busca pessoal sem mandado judicial em situações previstas na lei, mas exige fundada suspeita.\n\nAgora compare duas situações.\n\nNa primeira, alguém é revistado apenas porque o policial achou sua aparência suspeita ou porque demonstrou nervosismo.\n\nNa segunda, existem circunstâncias objetivas anteriores à revista que indicam a possível posse de objeto relacionado a um crime.\n\nPercebe a diferença?\n\nA jurisprudência exige que a busca tenha justificativa concreta, e não apenas uma impressão subjetiva.\n\nIsso não significa impedir o trabalho policial.\n\nSignifica que a atuação do Estado precisa respeitar os limites legais.\n\nSegurança pública e direitos fundamentais não são conceitos incompatíveis.",
+    "text": "CLIENTE:\n\nLeonardo, a polícia pode me revistar apenas porque achou minha aparência suspeita?\n\nLEONARDO:\n\nNÃO PODE.\n\nCLIENTE:\n\nE se eu demonstrar nervosismo ao ver uma viatura, só por isso pode me revistar?\n\nLEONARDO:\n\nNÃO PODE.\n\nCLIENTE:\n\nE se houver uma denúncia anônima específica, confirmada pelos policiais antes da abordagem, gerando fundada suspeita?\n\nLEONARDO:\n\nPODE.\n\nCLIENTE:\n\nE se eu estiver em flagrante e for preso, a polícia pode fazer uma busca pessoal sem mandado?\n\nLEONARDO:\n\nPODE.\n\nCLIENTE:\n\nE a polícia pode justificar uma revista sem fundamento legal apenas pelo que encontrou depois?\n\nLEONARDO:\n\nNÃO PODE.\n\nLEONARDO:\n\nUma busca pessoal precisa respeitar os requisitos legais. A fundada suspeita exige elementos concretos, não apenas a impressão de um policial.",
     "shots": [
       [
-        "IMPRESSÃO SUBJETIVA",
-        "Aparência/nervosismo isolados não bastam."
+        "FORMATO CONTRASTE",
+        "Tela fixa com apenas duas possibilidades. Projetar cada resposta em um dos lados, sem terceira categoria."
       ],
       [
-        "FUNDADA SUSPEITA",
-        "Circunstâncias objetivas anteriores."
+        "PERGUNTAS",
+        "Cinco perguntas sucessivas, alternando CLIENTE e advogado; a pergunta aparece antes de cada resposta."
       ],
       [
-        "CONCLUSÃO",
-        "Abordagem e busca pessoal têm requisitos legais."
+        "FINALIZAÇÃO",
+        "Advogado explica o critério que diferenciou os casos."
       ]
     ]
   }
