@@ -84,6 +84,13 @@
     if (script.turns) return script.turns.map((line) => line[0] + ": " + line[1]).join("\n\n");
     return script.text || "";
   };
+  // Cópia limpa, com falas e pausas, sem instruções de gravação ou direção.
+  const teleprompterText = (script) => {
+    if (script.slides) return script.slides.map((slide) => slide.talk.trim()).join("\n\n");
+    if (script.turns) return script.turns.map(([speaker, speech]) =>
+      speaker.toUpperCase() + ":\n\n" + speech.trim()).join("\n\n");
+    return (script.text || "").trim().replace(/\n{3,}/g, "\n\n");
+  };
   const inMonth = () => scripts.filter((s) => s.month === month).sort((a, b) => a.number - b.number);
 
   function renderReferences() {
@@ -398,6 +405,7 @@
     });
     $("#download-slide-svg").addEventListener("click", openCurrentImage);
     $("#download-slide-png").addEventListener("click", downloadCurrentPNG);
+    $("#copy-teleprompter").addEventListener("click", () => current() && copy(teleprompterText(current())));
     $("#copy-script").addEventListener("click", () => current() && copy(scriptText(current())));
     $("#approve").addEventListener("click", () => setReview("approved"));
     $("#adjust").addEventListener("click", () => setReview("adjust"));
@@ -412,7 +420,7 @@
     $("#reading-mode").addEventListener("click", () => {
       if (!current()) return;
       $("#reading-lawyer").textContent = current().lawyer;
-      $("#reading-text").textContent = scriptText(current());
+      $("#reading-text").textContent = teleprompterText(current());
       $("#reading-text").style.fontSize = readingSize + "px";
       $("#reading-dialog").showModal();
     });
