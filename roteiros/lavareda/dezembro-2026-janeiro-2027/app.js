@@ -14,8 +14,8 @@
     },
     contraste: {
       name: "Contraste",
-      detail: "Um único apresentador compara duas situações, identificadas na tela por textos, imagens ou elementos gráficos.",
-      direction: "A fala apresenta cada situação e a edição destaca as diferenças. Não é necessário gravar com duas pessoas.",
+      detail: "O cliente faz cinco perguntas e o advogado responde com somente duas opções fixas durante o vídeo inteiro. A resposta vai para um dos lados da tela.",
+      direction: "Gravar as perguntas do cliente em voz off ou faixa separada e as respostas curtas do advogado. Manter as duas opções visíveis, com cada resposta deslocada para seu lado correspondente. Encerrar com uma explicação breve.",
       drive: "https://drive.google.com/file/d/14E7HH_PdHTSvKS8hNZ1YgKhziyk4W45a/view?usp=drivesdk",
       embed: "https://drive.google.com/file/d/14E7HH_PdHTSvKS8hNZ1YgKhziyk4W45a/preview"
     },
