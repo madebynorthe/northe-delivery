@@ -43,22 +43,22 @@ window.LAVAREDA_JANUARY = [
     "area": "Trabalhista",
     "title": "Antecipação do saque-aniversário do FGTS",
     "model": "contraste",
-    "duration": "45–60s",
+    "duration": "50–70s",
     "goal": "Diferenciar saque-aniversário de empréstimo.",
-    "hook": "Uma coisa é sacar o FGTS. Outra é antecipar esse dinheiro.",
-    "text": "Uma coisa é sacar o FGTS no mês do aniversário. Outra é antecipar esse dinheiro com um banco.\n\nE muita gente confunde as duas coisas.\n\nNo saque-aniversário, você retira anualmente uma parte do saldo, seguindo as regras do FGTS.\n\nNa antecipação, você contrata um empréstimo usando os saques futuros como garantia.\n\nE desde novembro de 2026 há um novo limite: em regra, podem ser antecipados até três saques anuais, com valores de cem a quinhentos reais por parcela.\n\nMas cuidado: a antecipação gera custos financeiros e pode deixar parte do saldo bloqueada.\n\nAlém disso, quem opta pelo saque-aniversário não consegue simplesmente retirar todo o saldo do FGTS em uma demissão sem justa causa.\n\nEntão não confunda acesso ao seu saldo com contratação de crédito. São decisões diferentes.",
+    "hook": "Victoria, se eu retiro uma parcela do meu FGTS todo ano no período do meu aniversário, sem contratar empréstimo, isso é saque-aniversário ou antecipação?",
+    "text": "CLIENTE:\n\nVictoria, se eu retiro uma parcela do meu FGTS todo ano no período do meu aniversário, sem contratar empréstimo, isso é saque-aniversário ou antecipação?\n\nVICTORIA:\n\nSAQUE-ANIVERSÁRIO.\n\nCLIENTE:\n\nE se eu contratar um crédito no banco para receber agora os valores dos saques dos próximos anos?\n\nVICTORIA:\n\nANTECIPAÇÃO.\n\nCLIENTE:\n\nE se o banco bloquear parte do meu saldo do FGTS como garantia de um empréstimo?\n\nVICTORIA:\n\nANTECIPAÇÃO.\n\nCLIENTE:\n\nE se eu receber a parcela anual diretamente pelas regras do FGTS, sem pagar juros?\n\nVICTORIA:\n\nSAQUE-ANIVERSÁRIO.\n\nCLIENTE:\n\nE se eu receber hoje valores de saques futuros, pagando juros ao banco?\n\nVICTORIA:\n\nANTECIPAÇÃO.\n\nVICTORIA:\n\nO saque-aniversário é uma modalidade de retirada do FGTS. A antecipação é um empréstimo, com custos e bloqueio de saldo como garantia. Não confunda os dois.",
     "shots": [
       [
-        "SAQUE-ANIVERSÁRIO",
-        "Calendário e dinheiro. Retirada periódica nas regras do FGTS."
+        "DUAS RESPOSTAS",
+        "Tela dividida: SAQUE-ANIVERSÁRIO | ANTECIPAÇÃO, sem outras categorias."
       ],
       [
-        "ANTECIPAÇÃO",
-        "Banco, contrato, juros e cadeado."
+        "PERGUNTAS",
+        "Cinco situações. Destaques visuais: calendário/saque versus banco/empréstimo."
       ],
       [
-        "CONCLUSÃO",
-        "Victoria ao centro: sacar não é contratar crédito."
+        "FECHAMENTO",
+        "Victoria diferencia saque permitido e crédito com juros/garantia."
       ]
     ]
   },
@@ -106,22 +106,22 @@ window.LAVAREDA_JANUARY = [
     "area": "Eleitoral",
     "title": "Por que a posse não acontece mais em 1º de janeiro?",
     "model": "contraste",
-    "duration": "40–50s",
+    "duration": "50–70s",
     "goal": "Explicar as datas constitucionais de posse em 2027.",
-    "hook": "Você ainda espera a posse do presidente em 1º de janeiro?",
-    "text": "Se você está acostumado a acompanhar a posse do presidente no dia primeiro de janeiro, uma mudança importante entrou no calendário.\n\nAntes, a posse presidencial acontecia em primeiro de janeiro.\n\nAgora, a Constituição estabelece o dia cinco de janeiro para o presidente e o vice-presidente.\n\nE os governadores e vice-governadores tomam posse no dia seis de janeiro.\n\nEssa mudança foi definida pela Emenda Constitucional 111 de 2021 e passa a produzir efeitos nas posses de 2027.\n\nEntão, atenção: não é atraso, nem descumprimento do calendário eleitoral.\n\nÉ a nova regra constitucional.\n\nDiplomação confirma quem foi eleito. Posse marca o início do exercício do novo mandato.",
+    "hook": "Letícia, o presidente eleito em 2022 tomou posse em primeiro de janeiro de 2023. Isso segue a regra antiga ou a nova?",
+    "text": "CLIENTE:\n\nLetícia, o presidente eleito em 2022 tomou posse em primeiro de janeiro de 2023. Isso segue a regra antiga ou a nova?\n\nLETÍCIA:\n\nREGRA ANTIGA.\n\nCLIENTE:\n\nE a posse dos governadores em primeiro de janeiro de 2023?\n\nLETÍCIA:\n\nREGRA ANTIGA.\n\nCLIENTE:\n\nE o presidente eleito em 2026 tomar posse em cinco de janeiro de 2027?\n\nLETÍCIA:\n\nREGRA NOVA.\n\nCLIENTE:\n\nE os governadores eleitos em 2026 assumirem em seis de janeiro de 2027?\n\nLETÍCIA:\n\nREGRA NOVA.\n\nCLIENTE:\n\nE o vice-presidente eleito em 2026 tomar posse junto com o presidente, em cinco de janeiro de 2027?\n\nLETÍCIA:\n\nREGRA NOVA.\n\nLETÍCIA:\n\nA Emenda Constitucional 111 mudou o calendário a partir das posses de 2027: presidente e vice tomam posse em cinco de janeiro; governadores e vices, em seis de janeiro. Não é atraso. É a nova regra constitucional.",
     "shots": [
       [
-        "ANTES",
-        "Calendário 01/01 com título POSSE."
+        "DUAS RESPOSTAS",
+        "Tela dividida: REGRA ANTIGA | REGRA NOVA, sem outras categorias."
       ],
       [
-        "AGORA",
-        "Calendários 05/01 presidente, 06/01 governadores."
+        "PERGUNTAS",
+        "Cinco datas comparadas. Calendários entram nos lados correspondentes."
       ],
       [
-        "CONCLUSÃO",
-        "Diplomação ≠ posse."
+        "FECHAMENTO",
+        "Letícia explica as datas da EC 111/2021 para 2027."
       ]
     ]
   },
@@ -196,22 +196,22 @@ window.LAVAREDA_JANUARY = [
     "area": "Financeiro",
     "title": "O ano acabou e o governo não pagou uma despesa",
     "model": "contraste",
-    "duration": "50–65s",
+    "duration": "50–70s",
     "goal": "Diferenciar restos a pagar processados e não processados.",
-    "hook": "Será que todas as despesas pendentes são iguais?",
-    "text": "Imagine que um órgão público termina o ano com despesas que ainda não foram pagas.\n\nSerá que todas são iguais?\n\nNão.\n\nExiste uma diferença importante entre restos a pagar processados e não processados.\n\nNo primeiro caso, pense em um serviço que já foi prestado, conferido e teve seu pagamento reconhecido pela administração, mas ainda não foi pago.\n\nNo segundo, a despesa foi empenhada, mas ainda não passou pela liquidação. Ou seja, falta verificar o cumprimento da obrigação.\n\nEm ambos os casos, a inscrição precisa respeitar as regras legais e orçamentárias.\n\nE por que essa diferença importa?\n\nPorque uma coisa é o governo reconhecer uma obrigação já cumprida. Outra é manter um compromisso cuja execução ainda depende de verificação.\n\nEntender essa diferença ajuda a fiscalizar como os recursos públicos atravessam de um exercício financeiro para outro.",
+    "hook": "Herberth, uma despesa foi empenhada, o serviço foi prestado e liquidado, mas ficou sem pagamento até trinta e um de dezembro. É resto a pagar processado ou não processado?",
+    "text": "CLIENTE:\n\nHerberth, uma despesa foi empenhada, o serviço foi prestado e liquidado, mas ficou sem pagamento até trinta e um de dezembro. É resto a pagar processado ou não processado?\n\nHERBERTH:\n\nPROCESSADO.\n\nCLIENTE:\n\nE se a despesa foi empenhada, mas ainda não foi liquidada até o fim do ano?\n\nHERBERTH:\n\nNÃO PROCESSADO.\n\nCLIENTE:\n\nE se o material foi entregue, conferido e a obrigação foi liquidada, mas o pagamento ficou para janeiro?\n\nHERBERTH:\n\nPROCESSADO.\n\nCLIENTE:\n\nE se o serviço foi empenhado, mas ainda não houve liquidação quando o ano terminou?\n\nHERBERTH:\n\nNÃO PROCESSADO.\n\nCLIENTE:\n\nE uma despesa já liquidada, que só está aguardando o pagamento?\n\nHERBERTH:\n\nPROCESSADO.\n\nHERBERTH:\n\nA diferença está na liquidação. Nos processados, a obrigação já foi verificada e liquidada. Nos não processados, a despesa foi empenhada, mas ainda não liquidada. A inscrição também precisa seguir as regras legais.",
     "shots": [
       [
-        "PROCESSADOS",
-        "Despesa já liquidada, ainda não paga."
+        "DUAS RESPOSTAS",
+        "Tela dividida: PROCESSADO | NÃO PROCESSADO, sem terceira categoria."
       ],
       [
-        "NÃO PROCESSADOS",
-        "Despesa empenhada, ainda não liquidada."
+        "PERGUNTAS",
+        "Cinco exemplos de despesa empenhada. Destacar linha de etapas: empenho, liquidação, pagamento."
       ],
       [
-        "CONCLUSÃO",
-        "Duas classificações, etapas diferentes."
+        "FECHAMENTO",
+        "Herberth explica o critério da liquidação."
       ]
     ]
   },
@@ -355,22 +355,22 @@ window.LAVAREDA_JANUARY = [
     "area": "Administrativo",
     "title": "Todo erro de um gestor público é improbidade?",
     "model": "contraste",
-    "duration": "45–60s",
+    "duration": "50–70s",
     "goal": "Distinguir ilegalidade administrativa de improbidade dolosa.",
-    "hook": "Um gestor errou. Isso significa improbidade?",
-    "text": "Um gestor público tomou uma decisão errada.\n\nIsso significa que ele cometeu improbidade administrativa?\n\nNão necessariamente.\n\nExiste uma diferença importante entre uma ilegalidade administrativa e uma conduta que preenche os requisitos da Lei de Improbidade.\n\nImagine um agente público que interpreta uma regra de determinada maneira e depois essa interpretação é considerada incorreta.\n\nAgora compare com alguém que atua deliberadamente para praticar uma conduta proibida pela lei, causando um resultado juridicamente relevante.\n\nEssas situações não podem ser tratadas automaticamente da mesma forma.\n\nA legislação de improbidade exige a análise do dolo e dos elementos específicos da infração.\n\nIsso não significa que todo erro esteja livre de responsabilização.\n\nSignifica que responsabilidade administrativa, civil e improbidade possuem requisitos próprios.\n\nPorque responsabilizar corretamente também faz parte do Estado de Direito.",
+    "hook": "Keyvson, um gestor interpretou uma norma de boa-fé, errou, mas não houve dolo nem os requisitos da lei. Isso é improbidade?",
+    "text": "CLIENTE:\n\nKeyvson, um gestor interpretou uma norma de boa-fé, errou, mas não houve dolo nem os requisitos da lei. Isso é improbidade?\n\nKEYVSON:\n\nNÃO É IMPROBIDADE.\n\nCLIENTE:\n\nE se um agente público receber propina intencionalmente para favorecer uma empresa numa contratação?\n\nKEYVSON:\n\nÉ IMPROBIDADE.\n\nCLIENTE:\n\nE se houve uma falha administrativa sem dolo e sem os requisitos previstos na Lei de Improbidade?\n\nKEYVSON:\n\nNÃO É IMPROBIDADE.\n\nCLIENTE:\n\nE se um servidor desviar dinheiro público intencionalmente para a própria conta?\n\nKEYVSON:\n\nÉ IMPROBIDADE.\n\nCLIENTE:\n\nE se uma decisão administrativa for anulada por interpretação jurídica divergente, sem dolo nem outros elementos de improbidade?\n\nKEYVSON:\n\nNÃO É IMPROBIDADE.\n\nKEYVSON:\n\nNem todo erro administrativo é improbidade. A lei exige dolo e enquadramento numa conduta prevista. Isso não impede outras formas de responsabilização quando cabíveis.",
     "shots": [
       [
-        "ERRO / ILEGALIDADE",
-        "Documento com equívoco de interpretação."
+        "DUAS RESPOSTAS",
+        "Tela dividida: É IMPROBIDADE | NÃO É IMPROBIDADE, sem terceira categoria."
       ],
       [
-        "IMPROBIDADE",
-        "Conduta dolosa com requisitos legais próprios."
+        "PERGUNTAS",
+        "Cinco hipóteses com ou sem dolo; destacar cada conclusão para seu lado."
       ],
       [
         "FECHAMENTO",
-        "Responsabilidade não é sinônimo de improbidade."
+        "Keyvson explica requisitos de dolo e enquadramento legal."
       ]
     ]
   },
