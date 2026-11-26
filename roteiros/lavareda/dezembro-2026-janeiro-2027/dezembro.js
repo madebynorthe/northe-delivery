@@ -390,19 +390,19 @@ window.LAVAREDA_DECEMBER = [
     "duration": "45–60s",
     "goal": "Distinguir troca comercial, arrependimento e defeito.",
     "hook": "A loja é obrigada a trocar o presente?",
-    "text": "Você ganhou um presente de Natal, não gostou e foi até a loja para trocar.\n\nA loja é obrigada a aceitar?\n\nDepende de como a compra aconteceu.\n\nSe o produto foi comprado em uma loja física e não apresenta defeito, a troca por gosto ou tamanho depende da política oferecida pela empresa.\n\nAgora, se a compra foi realizada pela internet, existe o direito de arrependimento, em regra, dentro de sete dias do recebimento, nas condições previstas pelo Código de Defesa do Consumidor.\n\nE se o produto estiver com defeito?\n\nAí estamos falando de outro direito, com regras de garantia e solução do problema.\n\nEntão guarda essa diferença: não gostar, desistir de uma compra on-line e receber um produto defeituoso são situações diferentes.\n\nE cada uma tem uma proteção jurídica específica.",
+    "text": "CLIENTE:\n\nElisa, ganhei um presente comprado em loja física, não gostei da cor e a loja não prometeu troca. Posso exigir que troquem?\n\nELISA:\n\nNÃO TEM DIREITO.\n\nCLIENTE:\n\nE se a loja prometeu que eu poderia trocar dentro de um prazo e eu ainda estiver nesse prazo?\n\nELISA:\n\nTEM DIREITO.\n\nCLIENTE:\n\nE se eu comprei pela internet e quero devolver dentro dos sete dias após receber?\n\nELISA:\n\nTEM DIREITO.\n\nCLIENTE:\n\nE se já passaram os sete dias, o produto está perfeito e a loja não ofereceu devolução?\n\nELISA:\n\nNÃO TEM DIREITO.\n\nCLIENTE:\n\nE se o presente veio com defeito, tenho direito a uma solução?\n\nELISA:\n\nTEM DIREITO.\n\nELISA:\n\nTroca por preferência, arrependimento e defeito são situações diferentes. O seu direito depende de como a compra aconteceu e das condições de cada caso.",
     "shots": [
       [
-        "LOJA FÍSICA",
-        "Troca por gosto: depende da política da loja."
+        "FORMATO CONTRASTE",
+        "Tela fixa com apenas duas possibilidades. Projetar cada resposta em um dos lados, sem terceira categoria."
       ],
       [
-        "COMPRA ON-LINE",
-        "Arrependimento: em regra, sete dias."
+        "PERGUNTAS",
+        "Cinco perguntas sucessivas, alternando CLIENTE e advogado; a pergunta aparece antes de cada resposta."
       ],
       [
-        "PRODUTO COM DEFEITO",
-        "Garantia e regras próprias. Elisa explica a distinção."
+        "FINALIZAÇÃO",
+        "Advogado explica o critério que diferenciou os casos."
       ]
     ]
   },
@@ -477,19 +477,19 @@ window.LAVAREDA_DECEMBER = [
     "duration": "50–65s",
     "goal": "Explicar alterações e controvérsia de aplicação temporal.",
     "hook": "A saidinha de Natal acabou no Brasil?",
-    "text": "Você provavelmente já ouviu que a saidinha de Natal acabou no Brasil.\n\nMas será que isso significa que nenhum preso pode mais ter esse benefício?\n\nA questão é mais complexa.\n\nA Lei 14.843 de 2024 alterou as regras da saída temporária e retirou as hipóteses tradicionais de visita à família e atividades de convívio social.\n\nMas existe uma discussão jurídica importante: essas restrições podem ser aplicadas a quem praticou o crime antes da mudança na lei?\n\nO Supremo Tribunal Federal reconheceu que essa questão precisa de definição.\n\nAlém disso, a saída temporária para determinadas atividades educacionais possui tratamento específico na legislação.\n\nPor isso, não dá para analisar todos os presos como se estivessem na mesma situação jurídica.\n\nA data do crime, o regime de cumprimento da pena e a legislação aplicável fazem diferença.\n\nEm execução penal, cada detalhe pode mudar a resposta.",
+    "text": "CLIENTE:\n\nLeonardo, quem está no regime fechado pode receber saída temporária para passar o Natal com a família?\n\nLEONARDO:\n\nNÃO PODE.\n\nCLIENTE:\n\nE quem está no semiaberto, mas cometeu o crime depois da mudança na lei de 2024, pode sair para visitar a família?\n\nLEONARDO:\n\nNÃO PODE.\n\nCLIENTE:\n\nE quem cometeu o crime antes dessa mudança, está no semiaberto e cumpre os requisitos da regra anterior?\n\nLEONARDO:\n\nPODE.\n\nCLIENTE:\n\nE quem está no semiaberto, cumpre os requisitos legais e precisa sair para frequentar um curso autorizado pela lei?\n\nLEONARDO:\n\nPODE.\n\nCLIENTE:\n\nE quem está no semiaberto, mas não cumpre os requisitos legais da saída temporária?\n\nLEONARDO:\n\nNÃO PODE.\n\nLEONARDO:\n\nA saída temporária não é automática. A data do crime, o regime de cumprimento da pena e os requisitos legais determinam quando ela pode ser autorizada.",
     "shots": [
       [
-        "REGRAS DE 2024",
-        "Lei 14.843/2024, mudanças na saída temporária."
+        "FORMATO CONTRASTE",
+        "Tela fixa com apenas duas possibilidades. Projetar cada resposta em um dos lados, sem terceira categoria."
       ],
       [
-        "CRIMES ANTERIORES",
-        "Discussão sobre aplicação temporal das restrições."
+        "PERGUNTAS",
+        "Cinco perguntas sucessivas, alternando CLIENTE e advogado; a pergunta aparece antes de cada resposta."
       ],
       [
-        "CONCLUSÃO",
-        "Data do fato, regime e caso concreto mudam a análise."
+        "FINALIZAÇÃO",
+        "Advogado explica o critério que diferenciou os casos."
       ]
     ]
   }
