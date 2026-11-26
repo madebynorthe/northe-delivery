@@ -93,22 +93,22 @@ window.LAVAREDA_DECEMBER = [
     "area": "Trabalhista",
     "title": "Férias coletivas ou recesso?",
     "model": "contraste",
-    "duration": "45–60s",
+    "duration": "50–70s",
     "goal": "Distinguir férias coletivas do recesso de fim de ano.",
-    "hook": "Chegou dezembro e a empresa disse que todo mundo vai parar.",
-    "text": "Chegou dezembro e a empresa disse que todo mundo vai parar.\n\nMas isso significa férias coletivas?\n\nDepende.\n\nSe a empresa concede férias coletivas, ela precisa seguir as regras da CLT, incluindo as formalidades legais, a remuneração de férias e o adicional de um terço.\n\nAgora, se a empresa simplesmente concede um recesso remunerado, sem caracterizar férias coletivas, essa folga não pode ser automaticamente tratada como dias de férias já utilizados.\n\nE tem mais uma diferença: férias coletivas podem ser concedidas para toda a empresa ou para setores específicos.\n\nEntão, antes de achar que qualquer paralisação de fim de ano é férias, confira como esse período foi formalizado.\n\nPorque parar de trabalhar e estar oficialmente de férias não são necessariamente a mesma coisa.",
+    "hook": "Victoria, a empresa formalizou férias para um setor inteiro, cumprindo as regras da CLT. Isso é férias coletivas ou recesso?",
+    "text": "CLIENTE:\n\nVictoria, a empresa formalizou férias para um setor inteiro, cumprindo as regras da CLT. Isso é férias coletivas ou recesso?\n\nVICTORIA:\n\nFÉRIAS COLETIVAS.\n\nCLIENTE:\n\nE se a empresa liberar a equipe entre o Natal e o Ano-Novo, pagando os dias normalmente e sem descontar das férias?\n\nVICTORIA:\n\nRECESSO.\n\nCLIENTE:\n\nE se a empresa conceder férias a todos os funcionários de um estabelecimento, com as formalidades e o adicional de um terço?\n\nVICTORIA:\n\nFÉRIAS COLETIVAS.\n\nCLIENTE:\n\nE se a empresa fechar por alguns dias e conceder folga remunerada sem registrar férias?\n\nVICTORIA:\n\nRECESSO.\n\nCLIENTE:\n\nE se uma parte da empresa continuar trabalhando, mas outro setor entrar em férias coletivas formalizadas?\n\nVICTORIA:\n\nFÉRIAS COLETIVAS.\n\nVICTORIA:\n\nNem toda pausa de fim de ano é férias. Nas férias coletivas, valem as regras da CLT e o adicional de um terço. No recesso remunerado, a folga não desconta automaticamente os dias de férias.",
     "shots": [
       [
-        "FÉRIAS COLETIVAS",
-        "Cartão esquerdo. Mostrar CLT, 1/3, formalidades."
+        "DUAS RESPOSTAS",
+        "Tela dividida: FÉRIAS COLETIVAS | RECESSO, sem outras categorias."
       ],
       [
-        "RECESSO",
-        "Cartão direito. Folga sem desconto automático das férias."
+        "PERGUNTAS",
+        "Cinco perguntas curtas em voz do cliente. A resposta aparece integralmente do lado correspondente."
       ],
       [
-        "A DIFERENÇA",
-        "Victoria ao centro: como a pausa foi formalizada?"
+        "FECHAMENTO",
+        "Victoria diferencia férias formais de recesso remunerado."
       ]
     ]
   },
